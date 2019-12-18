@@ -31,7 +31,7 @@
                         <div class="navicon-line"></div>
                      </div>
                      <h1>
-                        <a href="http://localhost:8010/home"
+                        <a href="http://localhost:8010/"
                            title="Vũ Gia Phát - Thiết bị phòng tắm, phòng bếp nhập khẩu" class="logo" rel="home">
                         <img class="logo_img"
                            src="https://vugiaphat.vn/images/config/logo42_1556877970_1558501237_1560389234.png"

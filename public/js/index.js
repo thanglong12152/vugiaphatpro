@@ -60,3 +60,5 @@ $(document).ready(function() {
       $(".filters_in_field_inner.item").addClass("activated");
     });
   });
+
+ 

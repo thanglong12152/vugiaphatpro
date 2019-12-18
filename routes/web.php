@@ -11,34 +11,39 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/home',function(){
-    return view('page/home');
-});
+// Route::get('/trang-chu',function(){
+//     return view('page/trangchu');
+// });
 
-Route::get('/bon-tam',function(){
-    return view('page/bath');
-});
+// Route::get('/bon-tam',function(){
+//     return view('page/bath');
+// });
 
-Route::get('/tin-tuc', function(){
-    return view('page/news');
-});
+// Route::get('/tin-tuc', function(){
+//     return view('page/news');
+// });
 
-Route::get('/phong-xong-hoi', function(){
-    return view('page/sauna');
-});
+// Route::get('/phong-xong-hoi', function(){
+//     return view('page/sauna');
+// });
 
-Route::get('/may-xong-hoi', function(){
-    return view('page/steam_machine');
-});
+// Route::get('/may-xong-hoi', function(){
+//     return view('page/steam_machine');
+// });
 
-Route::get('/quat-den-tran', function(){
-    return view('page/ceiling_fan');
-});
+// Route::get('/quat-den-tran', function(){
+//     return view('page/ceiling_fan');
+// });
 
-Route::get('/du-an', function(){
-    return view('page/project');
-});
+// Route::get('/du-an', function(){
+//     return view('page/project');
+// });
+
+
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
