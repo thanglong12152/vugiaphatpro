@@ -29,6 +29,18 @@ class CreateTbSanPham extends Migration
             $table->string('thoi_gian_bh')->nullable();
             $table->string('chuc_nang')->nullable();
             $table->string('phu_kien_di_kem')->nullable();
+            $table->string('max_people');
+            $table->string('cong_suat_may');
+            $table->string('chung_loai');
+            $table->string('dien_nang');
+            $table->string('ong_cap_nuoc');
+            $table->string('day_dien');
+            $table->string('kieu_dang');
+            $table->string('loai_den');
+            $table->string('mau_sac');
+            $table->string('sai_canh');
+            $table->string('dong_co');
+            $table->string('cong_suat_den');
             $table->foreign('id_loai_san_pham')->references('id_loai_san_pham')->on('tb_loai_san_pham');
             $table->foreign('id_thuong_hieu')->references('id')->on('tb_thuong_hieu');
             $table->timestamps();

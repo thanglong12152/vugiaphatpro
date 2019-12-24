@@ -411,7 +411,7 @@
                       tắm</a>
                    </h2>
                    <ul class="nav nav-tabs pull-left">
-                      <li class="item_tabs view_all"><a href="https://vugiaphat.vn/bon-tam-pc2.html"
+                      <li class="item_tabs view_all"><a href="<?php echo e(url('/bon-tam')); ?>"
                          title="Xem thêm Bồn tắm">Xem tất cả <span>››</span></a></li>
                    </ul>
                 </div>
@@ -483,7 +483,7 @@
                          title="Phòng xông hơi">Phòng xông hơi</a>
                    </h2>
                    <ul class="nav nav-tabs pull-left">
-                      <li class="item_tabs view_all"><a href="https://vugiaphat.vn/phong-xong-hoi-pc3.html"
+                   <li class="item_tabs view_all"><a href="<?php echo e(url('/phong-xong-hoi')); ?>"
                          title="Xem thêm Phòng xông hơi">Xem tất cả <span>››</span></a></li>
                    </ul>
                 </div>
@@ -543,130 +543,35 @@
                          title="Máy xông hơi">Máy xông hơi</a>
                    </h2>
                    <ul class="nav nav-tabs pull-left">
-                      <li class="item_tabs view_all"><a href="https://vugiaphat.vn/may-xong-hoi-pc4.html"
+                      <li class="item_tabs view_all"><a href="<?php echo e(url('/may-xong-hoi')); ?>"
                          title="Xem thêm Máy xông hơi">Xem tất cả <span>››</span></a></li>
                    </ul>
                 </div>
                 <div class="product_grid">
                    <div class="row_inner" id="box_product_4">
                       <!--	EACH PRODUCT	-->
+                      <?php $__currentLoopData = $product_steam; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <div class="item">
                          <div class="frame_inner">
                             <figure class="product_image "> <a
-                               href="https://vugiaphat.vn/may-xong-uot/may-xong-hoi-uot-master-steam-6kw-van-an-toan-p869.html"
-                               title="Máy xông hơi ướt Master Steam 6KW(van an toàn chống nổ)"> <img
-                               alt="Máy xông hơi ướt Master Steam 6KW(van an toàn chống nổ)"
-                               class="lazy"
-                               src="https://vugiaphat.vn/images/products/2019/06/04/resized/may_xong_hoi_uot_master_steam_4_5kw_1559631666-copy.png"
+                               href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html"
+                               title="Bồn tắm nằm Amazon TP-7002"> <img
+                               alt="Bồn tắm nằm Amazon TP-7002" class="lazy"
+                               src="<?php echo e(url('image/product/small/'.$data->anh_sp)); ?>"
                                style="display: inline-block;"> </a> </figure>
-                            <h3><a href="https://vugiaphat.vn/may-xong-uot/may-xong-hoi-uot-master-steam-6kw-van-an-toan-p869.html"
-                               title="Máy xông hơi ướt Master Steam 6KW(van an toàn chống nổ)"
-                               class="name"> Máy xông hơi ướt Master Steam 6KW(van an toàn chống nổ)
-                               </a> 
+                            <h3><a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html"
+                            title="Bồn tắm nằm Amazon TP-7002" class="name"><?php echo e($data->ten_sp); ?></a> 
                             </h3>
-                            <div class="discount"><span>-22%</span></div>
+                            <div class="discount"><span>-<?php echo e(100-ceil(($data->sale_price/ $data->gia_goc)*100)); ?>%</span></div>
                             <div class="price_arae">
-                               <div class="price_current">14.040.000₫</div>
-                               <div class="price_old"><span>18.000.000₫</span></div>
+                               <div class="price_current"><?php echo e(number_format($data->sale_price,0,".",".")); ?>₫</div>
+                               <div class="price_old"><span><?php echo e(number_format($data->gia_goc,0,".",".")); ?>₫</span></div>
                             </div>
-                            <div class="more_summary">
-                               <p>Công suất: 6 KW</p>
-                               <p>Xuất xứ: Liên Doanh Hàn Quốc</p>
-                            </div>
+                            <div class="origin">Xuất xứ: <?php echo e($data->xuat_xu); ?></div>
+                            <div class="size">Kích thước: <?php echo e($data->kich_thuoc_sp); ?></div>
                          </div>
                       </div>
-                      <div class="item">
-                         <div class="frame_inner">
-                            <figure class="product_image "> <a
-                               href="https://vugiaphat.vn/may-xong-uot/may-xong-hoi-uot-helo-htp-60-p919.html"
-                               title="Máy xông hơi ướt Helo HTP 60"> <img
-                               alt="Máy xông hơi ướt Helo HTP 60" class="lazy"
-                               src="https://vugiaphat.vn/images/products/2019/06/05/resized/may_xong_hoi_uot_helo_htp_120_1559728101-copy-copy-copy.png"
-                               style="display: inline-block;"> </a> </figure>
-                            <h3><a href="https://vugiaphat.vn/may-xong-uot/may-xong-hoi-uot-helo-htp-60-p919.html"
-                               title="Máy xông hơi ướt Helo HTP 60" class="name"> Máy xông hơi ướt Helo
-                               HTP 60 </a> 
-                            </h3>
-                            <div class="discount"><span>-34%</span></div>
-                            <div class="price_arae">
-                               <div class="price_current">9.240.000₫</div>
-                               <div class="price_old"><span>14.000.000₫</span></div>
-                            </div>
-                            <div class="more_summary">
-                               <p>Công suất: 6 KW</p>
-                               <p>Xuất xứ: Việt Nam</p>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="item">
-                         <div class="frame_inner">
-                            <figure class="product_image "> <a
-                               href="https://vugiaphat.vn/may-xong-uot/may-xong-hoi-uot-master-steam-dt-600-p862.html"
-                               title="Máy xông hơi ướt Master Steam DT-600"> <img
-                               alt="Máy xông hơi ướt Master Steam DT-600" class="lazy"
-                               src="https://vugiaphat.vn/images/products/2019/06/04/resized/may_xong_hoi_uot_master_steam_dt600_1559620415.png"
-                               style="display: inline-block;"> </a> </figure>
-                            <h3><a href="https://vugiaphat.vn/may-xong-uot/may-xong-hoi-uot-master-steam-dt-600-p862.html"
-                               title="Máy xông hơi ướt Master Steam DT-600" class="name"> Máy xông hơi
-                               ướt Master Steam DT-600 </a> 
-                            </h3>
-                            <div class="discount"><span>-19%</span></div>
-                            <div class="price_arae">
-                               <div class="price_current">7.695.000₫</div>
-                               <div class="price_old"><span>9.500.000₫</span></div>
-                            </div>
-                            <div class="more_summary">
-                               <p>Công suất: 6 KW</p>
-                               <p>Xuất xứ: Việt Nam</p>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="item">
-                         <div class="frame_inner">
-                            <figure class="product_image "> <a
-                               href="https://vugiaphat.vn/may-xong-uot/may-xong-hoi-uot-amazon-tp-60-p838.html"
-                               title="Máy xông hơi ướt Amazon TP-60"> <img
-                               alt="Máy xông hơi ướt Amazon TP-60" class="lazy"
-                               src="https://vugiaphat.vn/images/products/2019/06/03/resized/may_xong_hoi_uot_amazon_tp90_1559532564-copy.png"
-                               style="display: inline-block;"> </a> </figure>
-                            <h3><a href="https://vugiaphat.vn/may-xong-uot/may-xong-hoi-uot-amazon-tp-60-p838.html"
-                               title="Máy xông hơi ướt Amazon TP-60" class="name"> Máy xông hơi ướt
-                               Amazon TP-60 </a> 
-                            </h3>
-                            <div class="discount"><span>-15%</span></div>
-                            <div class="price_arae">
-                               <div class="price_current">7.650.000₫</div>
-                               <div class="price_old"><span>9.000.000₫</span></div>
-                            </div>
-                            <div class="more_summary">
-                               <p>Công suất: 6 KW</p>
-                               <p>Xuất xứ: Việt Nam</p>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="item">
-                         <div class="frame_inner">
-                            <figure class="product_image "> <a
-                               href="https://vugiaphat.vn/may-xong-uot/may-xong-hoi-uot-amazon-tp-90-p837.html"
-                               title="Máy xông hơi ướt Amazon TP-90"> <img
-                               alt="Máy xông hơi ướt Amazon TP-90" class="lazy"
-                               src="https://vugiaphat.vn/images/products/2019/06/03/resized/may_xong_hoi_uot_amazon_tp90_1559532564.png"
-                               style="display: inline-block;"> </a> </figure>
-                            <h3><a href="https://vugiaphat.vn/may-xong-uot/may-xong-hoi-uot-amazon-tp-90-p837.html"
-                               title="Máy xông hơi ướt Amazon TP-90" class="name"> Máy xông hơi ướt
-                               Amazon TP-90 </a> 
-                            </h3>
-                            <div class="discount"><span>-16%</span></div>
-                            <div class="price_arae">
-                               <div class="price_current">8.400.000₫</div>
-                               <div class="price_old"><span>10.000.000₫</span></div>
-                            </div>
-                            <div class="more_summary">
-                               <p>Công suất: 9 KW</p>
-                               <p>Xuất xứ: Việt Nam</p>
-                            </div>
-                         </div>
-                      </div>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                       <!--	end EACH PRODUCT	-->
                       <div class="clear"></div>
                    </div>
@@ -687,113 +592,35 @@
                          title="Thiết bị vệ sinh">Thiết bị vệ sinh</a>
                    </h2>
                    <ul class="nav nav-tabs pull-left">
-                      <li class="item_tabs view_all"><a href="https://vugiaphat.vn/thiet-bi-ve-sinh-pc23.html"
+                      <li class="item_tabs view_all"><a href="<?php echo e(url('/thiet-bi-ve-sinh')); ?>"
                          title="Xem thêm Thiết bị vệ sinh">Xem tất cả <span>››</span></a></li>
                    </ul>
                 </div>
                 <div class="product_grid">
                    <div class="row_inner" id="box_product_23">
                       <!--	EACH PRODUCT	-->
+                      <?php $__currentLoopData = $product_tbvs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <div class="item">
                          <div class="frame_inner">
                             <figure class="product_image "> <a
-                               href="https://vugiaphat.vn/voi-chau-lavabo/voi-den-nong-lanh-lavabo-caesar-b680ct-cao-cap-p1712.html"
-                               title="Vòi Đèn Nóng Lạnh Lavabo CAESAR B680CT Cao Cấp"> <img
-                               alt="Vòi Đèn Nóng Lạnh Lavabo CAESAR B680CT Cao Cấp" class="lazy"
-                               src="https://vugiaphat.vn/images/products/2019/07/20/resized/voi-den-nong-lanh-lavabo-caesar-b680ct-cao-cap_1563608774.png"
+                               href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html"
+                               title="Bồn tắm nằm Amazon TP-7002"> <img
+                               alt="Bồn tắm nằm Amazon TP-7002" class="lazy"
+                               src="<?php echo e(url('image/product/small/'.$data->anh_sp)); ?>"
                                style="display: inline-block;"> </a> </figure>
-                            <h3><a href="https://vugiaphat.vn/voi-chau-lavabo/voi-den-nong-lanh-lavabo-caesar-b680ct-cao-cap-p1712.html"
-                               title="Vòi Đèn Nóng Lạnh Lavabo CAESAR B680CT Cao Cấp" class="name"> Vòi
-                               Đèn Nóng Lạnh Lavabo CAESAR B680CT Cao Cấp </a> 
+                            <h3><a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html"
+                            title="Bồn tắm nằm Amazon TP-7002" class="name"><?php echo e($data->ten_sp); ?></a> 
                             </h3>
-                            <div class="discount"><span>-30%</span></div>
+                            <div class="discount"><span>-<?php echo e(100-ceil(($data->sale_price/ $data->gia_goc)*100)); ?>%</span></div>
                             <div class="price_arae">
-                               <div class="price_current">4.589.200₫</div>
-                               <div class="price_old"><span>6.556.000₫</span></div>
+                               <div class="price_current"><?php echo e(number_format($data->sale_price,0,".",".")); ?>₫</div>
+                               <div class="price_old"><span><?php echo e(number_format($data->gia_goc,0,".",".")); ?>₫</span></div>
                             </div>
-                            <div class="more_summary"> </div>
+                            <div class="origin">Xuất xứ: <?php echo e($data->xuat_xu); ?></div>
+                            <div class="size">Kích thước: <?php echo e($data->kich_thuoc_sp); ?></div>
                          </div>
                       </div>
-                      <div class="item">
-                         <div class="frame_inner">
-                            <figure class="product_image "> <a
-                               href="https://vugiaphat.vn/voi-chau-lavabo/voi-nong-lanh-lavabo-caesar-b642c-co-cao-p1711.html"
-                               title="Vòi Nóng Lạnh Lavabo CAESAR B642C Cổ Cao"> <img
-                               alt="Vòi Nóng Lạnh Lavabo CAESAR B642C Cổ Cao" class="lazy"
-                               src="https://vugiaphat.vn/images/products/2019/07/20/resized/voi-nong-lanh-lavabo-caesar-b642c-co-cao_1563608622.png"
-                               style="display: inline-block;"> </a> </figure>
-                            <h3><a href="https://vugiaphat.vn/voi-chau-lavabo/voi-nong-lanh-lavabo-caesar-b642c-co-cao-p1711.html"
-                               title="Vòi Nóng Lạnh Lavabo CAESAR B642C Cổ Cao" class="name"> Vòi Nóng
-                               Lạnh Lavabo CAESAR B642C Cổ Cao </a> 
-                            </h3>
-                            <div class="discount"><span>-24%</span></div>
-                            <div class="price_arae">
-                               <div class="price_current">2.654.680₫</div>
-                               <div class="price_old"><span>3.493.000₫</span></div>
-                            </div>
-                            <div class="more_summary"> </div>
-                         </div>
-                      </div>
-                      <div class="item">
-                         <div class="frame_inner">
-                            <figure class="product_image "> <a
-                               href="https://vugiaphat.vn/voi-chau-lavabo/voi-nong-lanh-lavabo-caesar-b640c-p1710.html"
-                               title="Vòi Nóng Lạnh Lavabo CAESAR B640C"> <img
-                               alt="Vòi Nóng Lạnh Lavabo CAESAR B640C" class="lazy"
-                               src="https://vugiaphat.vn/images/products/2019/07/20/resized/voi-nong-lanh-lavabo-caesar-b640c_1563607183.png"
-                               style="display: inline-block;"> </a> </figure>
-                            <h3><a href="https://vugiaphat.vn/voi-chau-lavabo/voi-nong-lanh-lavabo-caesar-b640c-p1710.html"
-                               title="Vòi Nóng Lạnh Lavabo CAESAR B640C" class="name"> Vòi Nóng Lạnh
-                               Lavabo CAESAR B640C </a> 
-                            </h3>
-                            <div class="discount"><span>-24%</span></div>
-                            <div class="price_arae">
-                               <div class="price_current">2.296.720₫</div>
-                               <div class="price_old"><span>3.022.000₫</span></div>
-                            </div>
-                            <div class="more_summary"> </div>
-                         </div>
-                      </div>
-                      <div class="item">
-                         <div class="frame_inner">
-                            <figure class="product_image "> <a
-                               href="https://vugiaphat.vn/voi-chau-lavabo/voi-nong-lanh-lavabo-caesar-b570cp-p1709.html"
-                               title="Vòi Nóng Lạnh Lavabo CAESAR B570CP"> <img
-                               alt="Vòi Nóng Lạnh Lavabo CAESAR B570CP" class="lazy"
-                               src="https://vugiaphat.vn/images/products/2019/07/20/resized/voi-nong-lanh-lavabo-caesar-b570cp_1563607013.png"
-                               style="display: inline-block;"> </a> </figure>
-                            <h3><a href="https://vugiaphat.vn/voi-chau-lavabo/voi-nong-lanh-lavabo-caesar-b570cp-p1709.html"
-                               title="Vòi Nóng Lạnh Lavabo CAESAR B570CP" class="name"> Vòi Nóng Lạnh
-                               Lavabo CAESAR B570CP </a> 
-                            </h3>
-                            <div class="discount"><span>-17%</span></div>
-                            <div class="price_arae">
-                               <div class="price_current">1.135.440₫</div>
-                               <div class="price_old"><span>1.368.000₫</span></div>
-                            </div>
-                            <div class="more_summary"> </div>
-                         </div>
-                      </div>
-                      <div class="item">
-                         <div class="frame_inner">
-                            <figure class="product_image "> <a
-                               href="https://vugiaphat.vn/voi-chau-lavabo/voi-nong-lanh-lavabo-caesar-b551c-than-cao-p1708.html"
-                               title="Vòi Nóng Lạnh Lavabo CAESAR B551C Thân Cao"> <img
-                               alt="Vòi Nóng Lạnh Lavabo CAESAR B551C Thân Cao" class="lazy"
-                               src="https://vugiaphat.vn/images/products/2019/07/20/resized/voi-nong-lanh-lavabo-caesar-b551c-than-cao_1563606852.png"
-                               style="display: inline-block;"> </a> </figure>
-                            <h3><a href="https://vugiaphat.vn/voi-chau-lavabo/voi-nong-lanh-lavabo-caesar-b551c-than-cao-p1708.html"
-                               title="Vòi Nóng Lạnh Lavabo CAESAR B551C Thân Cao" class="name"> Vòi
-                               Nóng Lạnh Lavabo CAESAR B551C Thân Cao </a> 
-                            </h3>
-                            <div class="discount"><span>-24%</span></div>
-                            <div class="price_arae">
-                               <div class="price_current">2.283.800₫</div>
-                               <div class="price_old"><span>3.005.000₫</span></div>
-                            </div>
-                            <div class="more_summary"> </div>
-                         </div>
-                      </div>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                       <!--	end EACH PRODUCT	-->
                       <div class="clear"></div>
                    </div>

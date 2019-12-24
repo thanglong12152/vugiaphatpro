@@ -19,6 +19,7 @@ return array(
     'App\\Http\\Controllers\\BackEnd\\ProductTypeController' => $baseDir . '/app/Http/Controllers/BackEnd/ProductTypeController.php',
     'App\\Http\\Controllers\\BackEnd\\TradeMarkController' => $baseDir . '/app/Http/Controllers/BackEnd/TradeMarkController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\FrontEnd\\IndexController' => $baseDir . '/app/Http/Controllers/FrontEnd/IndexController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

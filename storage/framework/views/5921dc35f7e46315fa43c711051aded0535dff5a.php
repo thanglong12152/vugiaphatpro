@@ -213,405 +213,44 @@
                   </div>
                </article>
                <div class="product_grid">
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html" title="Bồn tắm nằm Amazon TP-7002" itemprop="url"><img itemprop="image" alt="Bồn tắm nằm Amazon TP-7002" src="https://vugiaphat.vn/images/products/2019/07/04/resized/bon-tam-nam-amazon-tp-7002_1562218344.png"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1429,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html" title="Bồn tắm nằm Amazon TP-7002" class="name">Bồn tắm nằm Amazon TP-7002</a> </h2>
-                        <div class="discount"><span>-10%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">5.715.000₫</div>
-                           <div class="price_old"><span>6.350.000₫</span></div>
+                  <?php if($product->isEmpty()): ?>
+                        <h1 class="text-center" style="width:100%">Không có dữ liệu</h1>
+                     <?php else: ?>
+                     <?php $__currentLoopData = $product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                     <div class="item" itemscope="" itemtype="http://schema.org/Product">
+                        <div class="frame_inner">
+                           <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html">
+                           <figure class="product_image ">
+                              <a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html" title="Bồn tắm nằm Amazon TP-7002" itemprop="url"><img itemprop="image" alt="Bồn tắm nằm Amazon TP-7002" src="<?php echo e(url('image/product/small/'.$data->anh_sp)); ?>"></a>
+                              <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1429,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
+                           </figure>
+                           <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html" title="Bồn tắm nằm Amazon TP-7002" class="name"><?php echo e($data->ten_sp); ?></a> </h2>
+                           <div class="discount"><span>-<?php echo e(100-ceil(($data->sale_price/ $data->gia_goc)*100)); ?>%</span></div>
+                           <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
+                              <div class="price_current" itemprop="price"><?php echo e(number_format($data->sale_price,0,".",".")); ?>₫</div>
+                              <div class="price_old"><span><?php echo e(number_format($data->gia_goc,0,".",".")); ?>₫</span></div>
+                           </div>
+                           <div class="origin">Xuất xứ: <?php echo e($data->xuat_xu); ?></div>
+                           <div class="size">Kích thước: <?php echo e($data->kich_thuoc_sp); ?></div>
                         </div>
-                        <div class="origin">Xuất xứ: Việt Nam</div>
-                        <div class="size">Kích thước: 1710x760x600 mm</div>
+                        <!-- end .frame_inner -->
+                        <div class="clear"></div>
                      </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-massage-euroca-eu4-1780-p531.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-massage-euroca-eu4-1780-p531.html" title="Bồn tắm nằm massage Euroca EU4-1780" itemprop="url"><img itemprop="image" alt="Bồn tắm nằm massage Euroca EU4-1780" src="https://vugiaphat.vn/images/products/2019/05/23/resized/bon_tam_massage_euroca_eu4-1780_1558603624.png"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(531,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-massage-euroca-eu4-1780-p531.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-massage-euroca-eu4-1780-p531.html" title="Bồn tắm nằm massage Euroca EU4-1780" class="name">Bồn tắm nằm massage Euroca EU4-1780</a> </h2>
-                        <div class="discount"><span>-15%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">14.206.050₫</div>
-                           <div class="price_old"><span>16.713.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Việt Nam</div>
-                        <div class="size">Kích thước: 1700 x 800 x 450mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-dung/bon-tam-dung-appollo-super-3-p630.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-dung/bon-tam-dung-appollo-super-3-p630.html" title="Bồn tắm đứng Appollo Super 3" itemprop="url"><img itemprop="image" alt="Bồn tắm đứng Appollo Super 3" src="https://vugiaphat.vn/images/products/2019/05/25/resized/phong_tam_vach_kinh_appollo_super_3_1558770847.png"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(630,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-dung/bon-tam-dung-appollo-super-3-p630.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-dung/bon-tam-dung-appollo-super-3-p630.html" title="Bồn tắm đứng Appollo Super 3" class="name">Bồn tắm đứng Appollo Super 3</a> </h2>
-                        <div class="discount"><span>-14%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">5.590.000₫</div>
-                           <div class="price_old"><span>6.500.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 900 x 900 x 1980 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-euroca-eu2-1780-p541.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-euroca-eu2-1780-p541.html" title="Bồn tắm nằm Euroca EU2-1780" itemprop="url"><img itemprop="image" alt="Bồn tắm nằm Euroca EU2-1780" src="https://vugiaphat.vn/images/products/2019/05/23/resized/bon_tam_nam_euroca_eu2-1780_1558605845.png"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(541,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-euroca-eu2-1780-p541.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-euroca-eu2-1780-p541.html" title="Bồn tắm nằm Euroca EU2-1780" class="name">Bồn tắm nằm Euroca EU2-1780</a> </h2>
-                        <div class="discount"><span>-15%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">6.312.950₫</div>
-                           <div class="price_old"><span>7.427.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Việt Nam</div>
-                        <div class="size">Kích thước: 1700 x 800 x 420 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-amazon-tp-7061-p423.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-amazon-tp-7061-p423.html" title="Bồn tắm nằm Amazon TP-7061" itemprop="url"><img itemprop="image" alt="Bồn tắm nằm Amazon TP-7061" src="https://vugiaphat.vn/images/products/2019/05/21/resized/bon_tam_nam_amazon_tp-7061_1558431325.png"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(423,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-amazon-tp-7061-p423.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-amazon-tp-7061-p423.html" title="Bồn tắm nằm Amazon TP-7061" class="name">Bồn tắm nằm Amazon TP-7061</a> </h2>
-                        <div class="discount"><span>-35%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">6.825.000₫</div>
-                           <div class="price_old"><span>10.500.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Việt Nam</div>
-                        <div class="size">Kích thước: 1600 x 750 x 600mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-massage-amazon-tp-8004-p408.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-massage-amazon-tp-8004-p408.html" title="Bồn tắm nằm Massage Amazon TP-8004" itemprop="url"><img itemprop="image" alt="Bồn tắm nằm Massage Amazon TP-8004" src="https://vugiaphat.vn/images/products/2019/05/21/resized/bon_tam_nam_massage_amazon_tp-8004_1558422974.png"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(408,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-massage-amazon-tp-8004-p408.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-massage-amazon-tp-8004-p408.html" title="Bồn tắm nằm Massage Amazon TP-8004" class="name">Bồn tắm nằm Massage Amazon TP-8004</a> </h2>
-                        <div class="discount"><span>-12%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">14.608.000₫</div>
-                           <div class="price_old"><span>16.600.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Việt Nam</div>
-                        <div class="size">Kích thước: 1600 x 850 x 600mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-amazon-tp-7005-p407.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-amazon-tp-7005-p407.html" title="Bồn tắm nằm Amazon TP-7005" itemprop="url"><img itemprop="image" alt="Bồn tắm nằm Amazon TP-7005" src="https://vugiaphat.vn/images/products/2019/05/21/resized/bon_tam_nam_amazon_tp-7005_1558422400.png"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(407,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-amazon-tp-7005-p407.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-nam-amazon-tp-7005-p407.html" title="Bồn tắm nằm Amazon TP-7005" class="name">Bồn tắm nằm Amazon TP-7005</a> </h2>
-                        <div class="discount"><span>-16%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">6.384.000₫</div>
-                           <div class="price_old"><span>7.600.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Việt Nam</div>
-                        <div class="size">Kích thước: 1800 x 890 x 600mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-nr-23-p640.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-nr-23-p640.html" title="Bồn tắm massage Nofer NR-23" itemprop="url"><img itemprop="image" alt="Bồn tắm massage Nofer NR-23" src="https://vugiaphat.vn/images/products/2019/05/25/resized/bon-tam-massage-nofer-nr-23_1558776591.jpg"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(640,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-nr-23-p640.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-nr-23-p640.html" title="Bồn tắm massage Nofer NR-23" class="name">Bồn tắm massage Nofer NR-23</a> </h2>
-                        <div class="discount"><span>-10%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">38.934.000₫</div>
-                           <div class="price_old"><span>43.260.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 1700 x 780 x 700mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-xay/bon-tam-nam-euroca-eu2-1775-bon-xay-p546.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-xay/bon-tam-nam-euroca-eu2-1775-bon-xay-p546.html" title="Bồn tắm nằm Euroca EU2-1775-bồn xây" itemprop="url"><img itemprop="image" alt="Bồn tắm nằm Euroca EU2-1775-bồn xây" src="https://vugiaphat.vn/images/products/2019/05/24/resized/bon_tam_nam_euroca_eu2-1775-bon_xay_1558661820.png"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(546,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-xay/bon-tam-nam-euroca-eu2-1775-bon-xay-p546.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-xay/bon-tam-nam-euroca-eu2-1775-bon-xay-p546.html" title="Bồn tắm nằm Euroca EU2-1775-bồn xây" class="name">Bồn tắm nằm Euroca EU2-1775-bồn xây</a> </h2>
-                        <div class="discount"><span>-15%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">3.904.050₫</div>
-                           <div class="price_old"><span>4.593.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Việt Nam</div>
-                        <div class="size">Kích thước: 1700 x 750 x 400mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-301a-p1878.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-301a-p1878.html" title="Bồn tắm massage Euroking EU-301A" itemprop="url"><img itemprop="image" alt="Bồn tắm massage Euroking EU-301A" src="https://vugiaphat.vn/images/products/2019/11/13/resized/eu301a-600x600_1573610462.jpg"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1878,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-301a-p1878.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-301a-p1878.html" title="Bồn tắm massage Euroking EU-301A" class="name">Bồn tắm massage Euroking EU-301A</a> </h2>
-                        <div class="discount"><span>-20%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">55.272.000₫</div>
-                           <div class="price_old"><span>69.090.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 1800 x 900 x 620 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-205-p1877.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-205-p1877.html" title="Bồn tắm massage Euroking EU-205" itemprop="url"><img itemprop="image" alt="Bồn tắm massage Euroking EU-205" data-src="https://vugiaphat.vn/images/products/2019/11/13/resized/ava-205-1024x1024-600x600_1573610256.jpg" class="lazy"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1877,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-205-p1877.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-205-p1877.html" title="Bồn tắm massage Euroking EU-205" class="name">Bồn tắm massage Euroking EU-205</a> </h2>
-                        <div class="discount"><span>-20%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">48.128.000₫</div>
-                           <div class="price_old"><span>60.160.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 1700 x 800 x 580 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-203-p1876.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-203-p1876.html" title="Bồn tắm massage Euroking EU-203" itemprop="url"><img itemprop="image" alt="Bồn tắm massage Euroking EU-203" data-src="https://vugiaphat.vn/images/products/2019/11/13/resized/ava-203-1024x1024-600x600_1573610112.jpg" class="lazy"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1876,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-203-p1876.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-203-p1876.html" title="Bồn tắm massage Euroking EU-203" class="name">Bồn tắm massage Euroking EU-203</a> </h2>
-                        <div class="discount"><span>-20%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">47.940.000₫</div>
-                           <div class="price_old"><span>59.925.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 1700 x 800 x 580 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-206-p1875.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-206-p1875.html" title="Bồn tắm massage Euroking EU-206" itemprop="url"><img itemprop="image" alt="Bồn tắm massage Euroking EU-206" data-src="https://vugiaphat.vn/images/products/2019/11/13/resized/eu2061-600x600_1573631007.jpg" class="lazy"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1875,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-206-p1875.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-euroking-eu-206-p1875.html" title="Bồn tắm massage Euroking EU-206" class="name">Bồn tắm massage Euroking EU-206</a> </h2>
-                        <div class="discount"><span>-20%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">65.988.000₫</div>
-                           <div class="price_old"><span>82.485.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 1850 x 1250 x 620mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1208-p1874.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1208-p1874.html" title="Bồn tắm massage Nofer NG-1208" itemprop="url"><img itemprop="image" alt="Bồn tắm massage Nofer NG-1208" data-src="https://vugiaphat.vn/images/products/2019/11/12/resized/1208-600x428_1573550383.jpg" class="lazy"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1874,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1208-p1874.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1208-p1874.html" title="Bồn tắm massage Nofer NG-1208" class="name">Bồn tắm massage Nofer NG-1208</a> </h2>
-                        <div class="discount"><span>-20%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">64.108.000₫</div>
-                           <div class="price_old"><span>80.135.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 1850 x 1200 x 650 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1206-p1873.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1206-p1873.html" title="Bồn tắm massage Nofer NG-1206" itemprop="url"><img itemprop="image" alt="Bồn tắm massage Nofer NG-1206" data-src="https://vugiaphat.vn/images/products/2019/11/12/resized/m-1206-11-600x494_1573550278.jpg" class="lazy"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1873,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1206-p1873.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1206-p1873.html" title="Bồn tắm massage Nofer NG-1206" class="name">Bồn tắm massage Nofer NG-1206</a> </h2>
-                        <div class="discount"><span>-20%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">73.320.000₫</div>
-                           <div class="price_old"><span>91.650.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 2000 x 1200 x 670 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1106-p1872.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1106-p1872.html" title="Bồn tắm massage Nofer NG-1106" itemprop="url"><img itemprop="image" alt="Bồn tắm massage Nofer NG-1106" data-src="https://vugiaphat.vn/images/products/2019/11/12/resized/eu1106logo-600x600_1573550113.jpg" class="lazy"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1872,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1106-p1872.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1106-p1872.html" title="Bồn tắm massage Nofer NG-1106" class="name">Bồn tắm massage Nofer NG-1106</a> </h2>
-                        <div class="discount"><span>-20%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">54.520.000₫</div>
-                           <div class="price_old"><span>68.150.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 1750 x 1200 x 720 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1312-p565.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1312-p565.html" title="Bồn tắm massage Nofer NG-1312" itemprop="url"><img itemprop="image" alt="Bồn tắm massage Nofer NG-1312" data-src="https://vugiaphat.vn/images/products/2019/05/24/resized/bon_tam_massage_nofer_ng-1312_1558686008.png" class="lazy"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(565,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1312-p565.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-ng-1312-p565.html" title="Bồn tắm massage Nofer NG-1312" class="name">Bồn tắm massage Nofer NG-1312</a> </h2>
-                        <div class="discount"><span>-20%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">85.164.000₫</div>
-                           <div class="price_old"><span>106.455.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 1850 x 1000 x 720 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-vr-102-p560.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-vr-102-p560.html" title="Bồn tắm massage Nofer VR-102" itemprop="url"><img itemprop="image" alt="Bồn tắm massage Nofer VR-102" data-src="https://vugiaphat.vn/images/products/2019/05/24/resized/bon_tam_massage_nofer_vr-102_1558670508.png" class="lazy"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(560,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-vr-102-p560.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/bon-tam-massage-nofer-vr-102-p560.html" title="Bồn tắm massage Nofer VR-102" class="name">Bồn tắm massage Nofer VR-102</a> </h2>
-                        <div class="discount"><span>-17%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">30.589.650₫</div>
-                           <div class="price_old"><span>36.855.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Malaysia</div>
-                        <div class="size">Kích thước: 1600 x 850 x 720 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7067-p1747.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7067-p1747.html" title="Bồn tắm nằm Amazon TP-7067" itemprop="url"><img itemprop="image" alt="Bồn tắm nằm Amazon TP-7067" data-src="https://vugiaphat.vn/images/products/2019/07/31/resized/bon-tam-nam-amazon-tp-7067_1564566323.png" class="lazy"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1747,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7067-p1747.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7067-p1747.html" title="Bồn tắm nằm Amazon TP-7067" class="name">Bồn tắm nằm Amazon TP-7067</a> </h2>
-                        <div class="discount"><span>-20%</span></div>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">5.600.000₫</div>
-                           <div class="price_old"><span>7.000.000₫</span></div>
-                        </div>
-                        <div class="origin">Xuất xứ: Việt Nam</div>
-                        <div class="size">Kích thước: 1700 x 810 x 600 mm</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
-                  <div class="item" itemscope="" itemtype="http://schema.org/Product">
-                     <div class="frame_inner">
-                        <link itemprop="url" href="https://vugiaphat.vn/bon-tam/bon-tam-massage-tri-lieu-p1730.html">
-                        <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam/bon-tam-massage-tri-lieu-p1730.html" title="Bồn tắm massage trị liệu em bé KW-3000" itemprop="url"><img itemprop="image" alt="Bồn tắm massage trị liệu em bé KW-3000" data-src="https://vugiaphat.vn/images/products/2019/07/22/resized/bon-tam-massage-tri-lieu_1563790933.jpg" class="lazy"></a>
-                           <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1730,1)" class="add_cart"><i></i></a><a href="https://vugiaphat.vn/bon-tam/bon-tam-massage-tri-lieu-p1730.html" class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
-                        </figure>
-                        <h2 itemprop="name"><a href="https://vugiaphat.vn/bon-tam/bon-tam-massage-tri-lieu-p1730.html" title="Bồn tắm massage trị liệu em bé KW-3000" class="name">Bồn tắm massage trị liệu em bé KW-3000</a> </h2>
-                        <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
-                           <div class="price_current" itemprop="price">Liên hệ</div>
-                        </div>
-                        <div class="origin">Xuất xứ: Thái Lan</div>
-                        <div class="size">Kích thước: 3000x200x1100</div>
-                     </div>
-                     <!-- end .frame_inner -->
-                     <div class="clear"></div>
-                  </div>
+                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                     <?php endif; ?>
                   <div class="clear"></div>
                </div>
                <!--end: .vertical-->
             </div>
          </section>
          <div class="pagination">
-            <span title="Page 1" class="current">
-               <span>1</span>
-            </span>
-            <a class="other-page" title="Page 2" href="/bon-tam-pc2-page2.html">
-               <span>2</span>
-            </a>
-            <a class="other-page" title="Page 3" href="/bon-tam-pc2-page3.html">
-               <span>3</span>
-            </a>
-            <a class="other-page" title="Page 4" href="/bon-tam-pc2-page4.html">
-               <span>4</span>
-            </a>
-            <b>..</b>
-            <a class="next-page" title="Next page" href="/bon-tam-pc2-page2.html">›</a>
-            <a class="last-page" title="Last page" href="/bon-tam-pc2-page27.html">››</a>
+            <?php if($product->isEmpty()): ?>
+
+            <?php else: ?>
+            
+            <?php echo e($product->links('vendor.pagination.bootstrap-4')); ?>
+
+            <?php endif; ?>
          </div>
       </div>
    </div>
