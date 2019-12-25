@@ -30,13 +30,14 @@ class ProductController extends Controller
         if ($request->isMethod('post')) {
             
             $data = $request->all();
-             //echo "<pre>"; print_r($data);
+            //echo "<pre>"; print_r($data);
             //die;
             $product = new Product;
             $product->ten_sp = $data['name_prod'];
             $product->id_loai_san_pham = $data['productType'];
             $product->ma_sp = $data['ma_sp'];
             $product->gia_goc = $data['gia_sp'];
+            $product->id_loai_sp_con = $data['productType_Child'];
             $product->id_thuong_hieu = $data['thuong_hieu'];
             $product->sale_price = $data['sale_price'];
             $product->kich_thuoc_sp= $data['kich_thuoc'];
@@ -45,6 +46,18 @@ class ProductController extends Controller
             $product->thiet_ke = $data['thiet_ke'];
             $product->thoi_gian_bh = $data['thoi_gian_bh'];
             $product->chuc_nang = $data['chuc_nang'];
+            $product->max_people = $data['max_people'];
+            $product->cong_suat_may = $data['cong_suat_may'];
+            // $product->chung_loai = $data['chung_loai'];
+            $product->dien_nang = $data['dien_nang'];
+            $product->ong_cap_nuoc = $data['ong_cap_nuoc'];
+            $product->day_dien = $data['day_dien'];
+            $product->kieu_dang = $data['kieu_dang'];
+            $product->loai_den = $data['loai_den'];
+            $product->mau_sac = $data['mau_sac'];
+            $product->sai_canh = $data['sai_canh'];
+            $product->dong_co = $data['dong_co'];
+            $product->cong_suat_den = $data['cong_suat_den'];
             if($data['phu_kien_di_kem'] === ''){
                 $product->phu_kien_di_kem = '';
             }else{
@@ -122,5 +135,25 @@ class ProductController extends Controller
             Product::where(['id_san_pham'=>$id])->delete();
             return redirect()->back()->with('flash_message_success','Xóa thành công');
         }
+    }
+
+    public function filter(Request $request){
+        if ($request->ajax()) {
+            $data = DB::table('tb_loai_san_pham')
+                    ->join('tb_sub_categories',function($join){
+                        $join->on('tb_loai_san_pham.id_loai_san_pham', '=','tb_sub_categories.id_loai_san_pham');
+                    })
+                    ->where('tb_loai_san_pham.id_loai_san_pham','=',$request->productType_s)->get();
+            //echo "<pre>"; print_r($data); die;
+            //   if ($data) {
+                $output = "<select name='productType_Child' id='productType_Child' class='form-control'>";
+                foreach($data as $key ){
+                    $output .= "<option value='$key->id_loai_san_pham'>".$key->ten_loai_sp_con."</option>";
+                  }
+                $output .= "</select>";
+             }                return response($output);
+
+            
+        // }
     }
 }

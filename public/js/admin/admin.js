@@ -30,52 +30,112 @@ $(document).on("change","#productType",function(){
     success: function (resp){
       //alert(resp);
       if(resp==="Bồn tắm"){
-        $('.phong-xong-hoi').hide();
-        $('.may-xong-hoi').hide();
-        $('.quat-den-tran').hide();
+        $('.name_prod').show();
+        $('.ma_sp').show();
+        $('.gia_sp').show();
+        $('.sale_price').show();
+        $('.max_people').hide();
         $('.cong_suat_may').hide();
-        $('.chat_lieu').show();
+       
+        $('.dien_nang').hide();
+        $('.ong_cap_nuoc').hide();
+        $('.day_dien').hide();
+        $('.kieu_dang').hide();
+        $('.loai_den').hide();
+        $('.mau_sac').hide();
+        $('.sai_canh').hide();
+        $('.dong_co').hide();
+        $('.cong_suat_den').hide();
         $('.kich_thuoc').show();
         $('.thuong_hieu').show();
+        $('.chat_lieu').show();
+        $('.xuat_xu').show();
         $('.thiet_ke').show();
         $('.thoi_gian_bh').show();
         $('.chuc_nang').show();
         $('.phu_kien_di_kem').show();
+        $('.anh_sp').show();
       }
       else if(resp==="Máy xông hơi"){
+        $('.name_prod').show();
+        $('.ma_sp').show();
+        $('.gia_sp').show();
+        $('.sale_price').show();
+        $('.max_people').hide();
         $('.cong_suat_may').show();
-        $('.may-xong-hoi').show();
-        $('.phong-xong-hoi').hide();
-        $('.quat-den-tran').hide();
-        $('.chat_lieu').hide();
-        $('.thiet_ke').hide();
-        $('.chuc_nang').hide();
-        $('.quat-den-tran').hide();
-      }
-      else if(resp==="Phòng xông hơi"){
-        $('.phong-xong-hoi').show();
-        $('.cong_suat_may').show();
-        $('.may-xong-hoi').hide();
-        $('.quat-den-tran').hide();
-        $('.chat_lieu').show();
+       
+        $('.dien_nang').show();
+        $('.ong_cap_nuoc').show();
+        $('.day_dien').show();
+        $('.kieu_dang').hide();
+        $('.loai_den').hide();
+        $('.mau_sac').hide();
+        $('.sai_canh').hide();
+        $('.dong_co').hide();
+        $('.cong_suat_den').hide();
         $('.kich_thuoc').show();
         $('.thuong_hieu').show();
+        $('.chat_lieu').hide();
+        $('.xuat_xu').show();
+        $('.thiet_ke').hide();
+        $('.thoi_gian_bh').show();
+        $('.chuc_nang').hide();
+        $('.phu_kien_di_kem').show();
+        $('.anh_sp').show();
+      }
+      else if(resp==="Phòng xông hơi"){
+        $('.name_prod').show();
+        $('.ma_sp').show();
+        $('.gia_sp').show();
+        $('.sale_price').show();
+        $('.max_people').show();
+        $('.cong_suat_may').show();
+        
+        $('.dien_nang').hide();
+        $('.ong_cap_nuoc').hide();
+        $('.day_dien').hide();
+        $('.kieu_dang').hide();
+        $('.loai_den').hide();
+        $('.mau_sac').hide();
+        $('.sai_canh').hide();
+        $('.dong_co').hide();
+        $('.cong_suat_den').hide();
+        $('.kich_thuoc').show();
+        $('.thuong_hieu').show();
+        $('.chat_lieu').show();
+        $('.xuat_xu').show();
         $('.thiet_ke').show();
         $('.thoi_gian_bh').show();
         $('.chuc_nang').show();
         $('.phu_kien_di_kem').show();
+        $('.anh_sp').show();
       }
       else if(resp==="Quạt đèn trần"){
-        $('.phong-xong-hoi').hide();
+        $('.name_prod').show();
+        $('.ma_sp').show();
+        $('.gia_sp').show();
+        $('.sale_price').show();
+        $('.max_people').hide();
         $('.cong_suat_may').hide();
-        $('.may-xong-hoi').hide();
-        $('.quat-den-tran').show();
+        
+        $('.dien_nang').hide();
+        $('.ong_cap_nuoc').hide();
+        $('.day_dien').hide();
+        $('.kieu_dang').show();
+        $('.loai_den').show();
+        $('.mau_sac').show();
+        $('.sai_canh').show();
+        $('.dong_co').show();
+        $('.cong_suat_den').show();
         $('.kich_thuoc').hide();
         $('.thuong_hieu').hide();
+        $('.chat_lieu').show();
+        $('.xuat_xu').hide();
         $('.thiet_ke').hide();
         $('.thoi_gian_bh').hide();
         $('.chuc_nang').hide();
         $('.phu_kien_di_kem').hide();
+        $('.anh_sp').hide();
       }
       
     },
@@ -87,6 +147,25 @@ $(document).on("change","#productType",function(){
 
 $(document).on("change","#productType_s",function(){
   var productType_s = $("#productType_s").val();
+  $.ajax({
+    type:'get',
+    url:'filter',
+    data:{productType_s:productType_s},
+    success: function (resp){
+      //alert(resp);
+     
+      $('#productType_Child').replaceWith(resp);
+      
+
+    },
+    error:function(){
+      alert('Error');
+    }
+  });
+});
+
+$(document).on("change","#productType",function(){
+  var productType_s = $("#productType").val();
   $.ajax({
     type:'get',
     url:'filter',
