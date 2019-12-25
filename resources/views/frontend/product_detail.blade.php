@@ -404,7 +404,7 @@
 											</div>
 											</div>
 											<div class="readmore " id="readmore_desc" onclick="redmore()"><span class="closed">Xem thêm nội dung</span></div>
-											<div class="readmore hide" id="readany_desc" onclick="redless()"><span class="closed">Ẩn bớt nội dung</span></div>
+											<div class="readmore hide1" id="readany_desc" onclick="redless()"><span class="closed">Ẩn bớt nội dung</span></div>
 											<script type="text/javascript">
 												function redmore() {
 													var btntextmore = document.getElementById("readmore_desc");

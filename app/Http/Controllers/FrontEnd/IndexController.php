@@ -52,7 +52,7 @@ class IndexController extends Controller
                 return view('frontend/project');
                 break; 
             case 'chi-tiet-san-pham':
-                return view('fontend/product_detail');
+                return view('frontend/product_detail');
                 break;  
         }
     }
