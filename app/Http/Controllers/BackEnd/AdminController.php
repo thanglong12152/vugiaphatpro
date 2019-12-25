@@ -55,17 +55,39 @@ class AdminController extends Controller
 
     public function checkPass(Request $request){
         $data = $request->all();
-        // echo "<pre>"; print_r($data);
-        $current_password = $data['current_pwd'];
-        $check_pass = User::where(['admin'=>'1'])->first();
-        if(Hash::check($current_password,$check_pass->password)){
-            echo "true"; die;
-        }
-        else{
-            echo "false"; die;
+         //echo "<pre>"; print_r($data);
+         $current_password = $data['current_pwd'];
+         $check_pass = User::where(['admin'=>'1'])->first();
+         if(Hash::check($current_password,$check_pass->password)){
+             echo "true"; die;
+         }
+         else{
+             echo "false"; die;
+         }
+    }
+    public function checkProduct(Request $request,$id=null){
+        $data = $request->all();
+        //echo "<pre>"; print_r($data);
+        $productType = $data['productType'];
+        switch($productType){
+            case '1':
+                echo "Bồn tắm";
+                break;
+            case '2':
+                echo "Máy xông hơi";
+                break;
+            case '3':
+                echo "Phòng xông hơi";
+                break;
+            case '4':
+                echo "Thiết bị vệ sinh";
+                break;
+            case '5':
+                echo "Quạt đèn trần";
+                break;
+            
         }
     }
-
     public function updatePass(Request $request){
         if ($request->isMethod('post')) {
             $data = $request->all();

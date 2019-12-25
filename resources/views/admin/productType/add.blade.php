@@ -41,8 +41,28 @@
                         <div class="form-group">
                            <label for="inputName" class="col-sm-2 control-label">Tên loại sản phẩm</label>
                            <div class="col-sm-5">
-                              <input type="text" class="form-control" name="loai_san_pham" id="loai_san_pham" placeholder="Tên loại sản phẩm" required>
-                              <span id="checkpass"></span>
+                              <input type="text" class="form-control" name="ten_loai_san_pham" id="loai_san_pham" placeholder="Tên loại sản phẩm" required>
+                              
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="inputName" class="col-sm-2 control-label">Loại sản phẩm</label>
+                           <div class="col-sm-5">
+                              <select name="productType_s" id="productType_s" class="form-control">
+                                 <option value="">Chọn loại sản phẩm</option>
+                                 @foreach($product as $prd)
+                                 <option value="{{$prd->id_loai_san_pham}}">{{$prd->loai_san_pham}}</option>
+                                 @endforeach
+                              </select>
+                             
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="inputName" class="col-sm-2 control-label">Chủng loại sản phẩm</label>
+                           <div class="col-sm-5">
+                              <select name="productType_Child" id="productType_Child" class="form-control">
+                                 
+                              </select>
                            </div>
                         </div>
                         {{-- 

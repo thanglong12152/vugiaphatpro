@@ -202,7 +202,7 @@ $(function () {
   $('#example1').DataTable({
     'paging'      : true,
     'lengthChange': true,
-    'searching'   : false,
+    'searching'   : true,
     'ordering'    : true,
     'info'        : true,
     'lengthMenu': [5, 10, 20],

@@ -445,6 +445,7 @@ class ComposerStaticInit1beacf52ae7b8a204815a63b003d344a
         'App\\Http\\Controllers\\BackEnd\\ProductTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackEnd/ProductTypeController.php',
         'App\\Http\\Controllers\\BackEnd\\TradeMarkController' => __DIR__ . '/../..' . '/app/Http/Controllers/BackEnd/TradeMarkController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\FrontEnd\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontEnd/IndexController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
