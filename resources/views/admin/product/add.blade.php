@@ -179,7 +179,7 @@
                         <div class="form-group chat_lieu" style="display:none;">
                            <label for="inputEmail" class="col-sm-2 control-label">Chất liệu</label>
                            <div class="col-sm-5">
-                              <input type="text" name="chat_lieu" class="form-control" id="chat_lieu" placeholder="Chất liệu" required>
+                              <input type="text" name="chat_lieu" class="form-control" id="chat_lieu" placeholder="Chất liệu" >
                            </div>
                         </div>
                         <div class="form-group xuat_xu" style="display:none;">
@@ -191,7 +191,7 @@
                         <div class="form-group thiet_ke" style="display:none;">
                            <label for="inputEmail" class="col-sm-2 control-label">Thiết kế</label>
                            <div class="col-sm-5">
-                              <input type="text" name="thiet_ke" class="form-control" id="thiet_ke" placeholder="Thiết kế" required>
+                              <input type="text" name="thiet_ke" class="form-control" id="thiet_ke" placeholder="Thiết kế" >
                            </div>
                         </div>
                         <div class="form-group thoi_gian_bh" style="display:none;">

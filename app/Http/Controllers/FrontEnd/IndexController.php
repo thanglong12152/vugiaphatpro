@@ -45,12 +45,34 @@ class IndexController extends Controller
                 
                 return view('frontend/ceiling_fan')->with(compact('product'));
                 break; 
+            case 'chi-tiet-san-pham':
+                return view('frontend/product_detail');
+                break;  
             case 'tin-tuc':
                 return view('frontend/news');
                 break;     
             case 'du-an':
                 return view('frontend/project');
                 break;    
+           
+        }
+    }
+
+    public function detailProduct(Request $request, $slug= null){
+        $data = DB::table('tb_san_pham')->where(['slug'=>$slug])
+        ->join('tb_thuong_hieu',function($join){
+            $join->on('tb_san_pham.id_thuong_hieu', '=','tb_thuong_hieu.id');
+        })
+        ->first();
+
+        return view('frontend/product_detail')->with(compact('data'));
+    }
+
+    public function search(request $request){
+        if ($request->ajax()) {
+            $data = DB::table('tb_san_pham')->where('tb_san_pham.ten_sp','like','%'.$request->name_prod.'%')->get();
+            echo "<pre>"; print_r($data);die;
+
         }
     }
 }

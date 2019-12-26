@@ -195,7 +195,7 @@
                 </div>
              </section>
          <div class="pagination">
-            <?php if(!empty($product)): ?>
+            <?php if($product->isEmpty()): ?>
 
             <?php else: ?>
             <?php echo e($product->links('vendor.pagination.bootstrap-4')); ?>

@@ -18,6 +18,7 @@ class CreateTbSanPham extends Migration
             $table->unsignedBigInteger('id_loai_san_pham');
             $table->unsignedBigInteger('id_loai_sp_con');
             $table->string('ten_sp')->nullable();
+            $table->string('slug')->nullable();
             $table->string('ma_sp')->nullable();
             $table->string('anh_sp')->nullable();
             $table->string('gia_goc')->nullable();  

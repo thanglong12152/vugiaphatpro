@@ -41,10 +41,9 @@
                      <div class="regions_search">
                         <div id="search" class="search search-contain s_close fr">
                            <div class="search-content">
-                              <form action="https://vugiaphat.vn/tim-kiem" name="search_form" id="search_form"
-                                 method="get" onsubmit="javascript: submit_form_search();return false;">
+                              <form action="" method="POST" name="search_form" id="search_form">
                                  <input type="text" value="" aria-label="Bạn tìm gì..." placeholder="Bạn tìm gì?"
-                                    id="keyword" name="keyword" class="keyword input-text" autocomplete="off">
+                                    id="keyword" class="nhapform" name="keyword" class="keyword input-text" >
                                  <button type="submit" class="button-search button" aria-label="tìm kiếm">
                                     <svg aria-hidden="true" data-prefix="far" data-icon="search" role="img"
                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -54,11 +53,7 @@
                                           class=""></path>
                                     </svg>
                                  </button>
-                                 <input type="hidden" name="module" value="news">
-                                 <input type="hidden" name="module" id="link_search"
-                                    value="https://vugiaphat.vn/tim-kiem/keyword.html">
-                                 <input type="hidden" name="view" value="search">
-                                 <input type="hidden" name="Itemid" value="10">
+                                 
                               </form>
                            </div>
                         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\BackEnd;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Input;
 use Image;
 use App\Http\Controllers\Controller;
@@ -16,6 +17,7 @@ class ProductController extends Controller
         $data = DB::table('tb_san_pham')
         ->join('tb_loai_san_pham','tb_san_pham.id_loai_san_pham', '=','tb_loai_san_pham.id_loai_san_pham')
         ->join('tb_thuong_hieu','tb_san_pham.id_thuong_hieu','=','tb_thuong_hieu.id')
+        ->join('tb_sub_categories','tb_san_pham.id_loai_sp_con','=','tb_sub_categories.id')
         ->get();
   
         $product = json_decode(json_encode($data));
@@ -58,6 +60,7 @@ class ProductController extends Controller
             $product->sai_canh = $data['sai_canh'];
             $product->dong_co = $data['dong_co'];
             $product->cong_suat_den = $data['cong_suat_den'];
+            $product->slug = Str::slug($data['name_prod'],'-');
             if($data['phu_kien_di_kem'] === ''){
                 $product->phu_kien_di_kem = '';
             }else{
@@ -81,6 +84,7 @@ class ProductController extends Controller
                     $product->anh_sp=$filename;
                 }
             }
+            
             $product->save();
             return redirect('admin/product/all')->with('flash_message_success','Thêm sản phẩm thành công');
         }
@@ -148,12 +152,17 @@ class ProductController extends Controller
             //   if ($data) {
                 $output = "<select name='productType_Child' id='productType_Child' class='form-control'>";
                 foreach($data as $key ){
-                    $output .= "<option value='$key->id_loai_san_pham'>".$key->ten_loai_sp_con."</option>";
+                    $output .= "<option value='$key->id'>".$key->ten_loai_sp_con."</option>";
                   }
                 $output .= "</select>";
              }                return response($output);
 
             
         // }
+    }
+    public function search(Request $request){
+        if ($request->ajax()){
+            return "abc";
+        }
     }
 }

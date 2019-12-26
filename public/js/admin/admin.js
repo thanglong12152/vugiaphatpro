@@ -183,6 +183,27 @@ $(document).on("change","#productType",function(){
   });
 });
 
+$('.ma_sp').click(function(){
+  var name_prod = $(".name_prod").val();
+  $.ajax({
+    type:'get',
+    url:'search',
+    data:{name_prod:name_prod},
+    success: function (resp){
+        alert(resp);
+     
+      //$('#productType_Child').replaceWith(resp);
+      
+
+    },
+    error:function(){
+      alert('Error');
+    }
+  });
+});
+
+
+
  $('.deleteProduct').click(function(){
     var id = $(this).attr('rel');
     var deleteProduct = $(this).attr('rel1');

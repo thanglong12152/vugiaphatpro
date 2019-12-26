@@ -49,7 +49,7 @@
                         <tr>
                            <td><?php echo e($data->id_san_pham); ?></td>
                            <td><?php echo e($data->ten_sp); ?></td>
-                           <td><?php echo e($data->loai_san_pham); ?></td>
+                           <td><?php echo e($data->ten_loai_sp_con); ?></td>
                            <td><?php echo e($data->ten_thuong_hieu); ?></td>
                            <td><?php echo e($data->ma_sp); ?></td>
                            <td><?php echo e($data->kich_thuoc_sp); ?></td>

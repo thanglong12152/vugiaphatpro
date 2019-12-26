@@ -342,7 +342,7 @@
                               </span>
                               </a>
                            </li>
-                           <li class="active treeview">
+                           <li class="treeview">
                                  <a href="">
                                  <i class="fa fa-shopping-cart"></i>
                                  <span class="pull-right-container">
@@ -355,6 +355,20 @@
                                     <li><a href="{{asset('admin/product/add')}}"><i class="fa fa-circle-o"></i>Thêm sản phẩm</a></li>
                                     <li><a href="{{asset('admin/productType/all')}}"><i class="fa fa-circle-o"></i>Danh sách loại sản phẩm</a></li>
                                     <li><a href="{{asset('admin/productType/add')}}"><i class="fa fa-circle-o"></i>Thêm loại sản phẩm</a></li>
+                                 </ul>
+                              </li>
+                              <li class="treeview">
+                                 <a href="">
+                                    <i class="fa fa-trademark"></i>
+                                 <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                 </span>
+                                 <span>Thương hiệu</span>
+                                 </a>
+                                 <ul class="treeview-menu">
+                                    <li><a href="{{asset('admin/trademark/all')}}"><i class="fa fa-circle-o"></i>Xem danh sách</a></li>
+                                    <li><a href="{{asset('admin/trademark/add')}}"><i class="fa fa-circle-o"></i>Thêm thương hiệu</a></li>
+                                    
                                  </ul>
                               </li>
                            <li class="">

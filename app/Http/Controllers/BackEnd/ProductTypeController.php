@@ -64,7 +64,7 @@ class ProductTypeController extends Controller
             //   if ($data) {
                 $output = "<select name='productType_Child' id='productType_Child' class='form-control'>";
                 foreach($data as $key ){
-                    $output .= "<option value='$key->id_loai_san_pham'>".$key->ten_loai_sp_con."</option>";
+                    $output .= "<option value='$key->id'>".$key->ten_loai_sp_con."</option>";
                   }
                 $output .= "</select>";
              }                return response($output);

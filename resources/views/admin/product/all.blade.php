@@ -49,7 +49,7 @@
                         <tr>
                            <td>{{$data->id_san_pham}}</td>
                            <td>{{$data->ten_sp}}</td>
-                           <td>{{$data->loai_san_pham}}</td>
+                           <td>{{$data->ten_loai_sp_con}}</td>
                            <td>{{$data->ten_thuong_hieu}}</td>
                            <td>{{$data->ma_sp}}</td>
                            <td>{{$data->kich_thuoc_sp}}</td>

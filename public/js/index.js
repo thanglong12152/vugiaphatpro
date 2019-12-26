@@ -60,5 +60,22 @@ $(document).ready(function() {
       $(".filters_in_field_inner.item").addClass("activated");
     });
   });
-
- 
+  $('#keyword').keyup(function(){
+    var name_prod = $("#keyword").val();
+    //alert(name_prod);
+    $.ajax({
+      type:'get',
+      url:'search/product',
+      data:{name_prod:name_prod},
+      success: function (data){
+       alert(data);
+       
+        //$('#productType_Child').replaceWith(resp);
+        
+  
+      },
+      error:function(){
+        alert('Error');
+      }
+    });
+  });

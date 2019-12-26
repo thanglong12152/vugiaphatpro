@@ -22,7 +22,7 @@ class TradeMarkController extends Controller
 
             $data = $request->all();
 
-            $trademark->id=$data['id'];
+           
             $trademark->ten_thuong_hieu=$data['ten_thuong_hieu'];
             $trademark->save();
             return redirect('admin/trademark/all')->with('flash_message_success','Thêm thương hiệu thành công');
