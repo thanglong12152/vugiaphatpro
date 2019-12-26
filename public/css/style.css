@@ -2127,6 +2127,91 @@ li.level1>h4 i{
     }
 }
 /*============FOOTER================*/
+/*SEARCH FORM*/
+.autocomplete-suggestions {
+    border: 1px solid #ececec;
+    background: #fff;
+    cursor: default;
+    overflow: auto;
+    margin: 0 0px 6px -1px;
+    width: 100%;
+    top: 31px;
+    left: 101px;
+}
+.autocomplete-suggestions .autocomplete-group {
+    padding: 8px 3%;
+    width: 100%;
+    background: #f9f9f9;
+    box-sizing: border-box;
+}
+.autocomplete-suggestions div {
+    cursor: pointer;
+    width: 100%;
+    display: inline-block;
+    clear: both;
+    padding: 0;
+    margin: 0;
+    margin-bottom: -5px;
+}
+.autocomplete-suggestions div {
+    cursor: pointer;
+    width: 100%;
+    display: inline-block;
+    clear: both;
+    padding: 0;
+    margin: 0;
+    margin-bottom: -5px;
+}
+.autocomplete-suggestions div a, .autocomplete-suggestions div a:link, .autocomplete-suggestions div a:visited {
+    display: inline-block;
+    margin: 0;
+    padding: 6px 3%;
+    width: 100%;
+    font-size: 13px;
+    color: #333;
+    background: #fff;
+    clear: both;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+}
+.autocomplete-suggestions div a img {
+    width: 64px;
+    float: left;
+    margin-right: 20px;
+}
+.autocomplete-suggestions div a label {
+    font-weight: normal;
+    cursor: pointer;
+    margin: 0;
+    float: left;
+}
+.autocomplete-suggestions div a span {
+    display: block;
+    clear: both;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+.autocomplete-suggestions div a span.price {
+    color: #fd0000;
+    padding-top: 10px;
+}
+.autocomplete-suggestions div a span {
+    display: block;
+    clear: both;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+.price {
+    color: #FF3333;
+    font-weight: 600;
+    font-size: 16px;
+}
+.autocomplete-suggestions div a:hover {
+    background: #ececec
+}
+/*SEARCH FORM*/   
 /*============NEWS PAGE==============*/
 .main-area-2col-right {
     width: -webkit-calc(100% - 290px);
@@ -4817,3 +4902,4 @@ tr.tr-0, tr.tr-1 {
     }
 }
 /*============PRODUCT DETAIL=========*/
+

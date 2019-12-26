@@ -155,14 +155,9 @@ class ProductController extends Controller
                     $output .= "<option value='$key->id'>".$key->ten_loai_sp_con."</option>";
                   }
                 $output .= "</select>";
-             }                return response($output);
-
-            
+             }               
+              return response($output);
         // }
     }
-    public function search(Request $request){
-        if ($request->ajax()){
-            return "abc";
-        }
-    }
+    
 }

@@ -70,9 +70,39 @@ class IndexController extends Controller
 
     public function search(request $request){
         if ($request->ajax()) {
-            $data = DB::table('tb_san_pham')->where('tb_san_pham.ten_sp','like','%'.$request->name_prod.'%')->get();
-            echo "<pre>"; print_r($data);die;
+            $name = $request->name_prod;
+            if(empty($name)){
+                $output = '<div class="autocomplete-suggestions" style="position: absolute; max-height: 300px; z-index: 9999; top: 54px; left: 571.5px; width: 550px; display: none;"><div class="autocomplete-group">Không có dữ liệu</div></div>';
+            }else{
+                $data = DB::table('tb_san_pham')
+            ->join('tb_loai_san_pham',function($join){
+                $join->on('tb_san_pham.id_loai_san_pham', '=','tb_loai_san_pham.id_loai_san_pham');
+            })
+            ->where('tb_san_pham.ten_sp','like','%'.$name.'%')->get();
 
+            if($data->isEmpty()){
+                $output = '<div class="autocomplete-suggestions" style="position: absolute; max-height: 300px; z-index: 9999; top: 54px; left: 571.5px; width: 550px; display: block;"><div class="autocomplete-group">Không có dữ liệu</div></div>';
+            }
+            else{
+                $output = '<div class="autocomplete-suggestions" style="position: absolute; max-height: 300px; z-index: 9999; top: 54px; left: 571.5px; width: 550px; display: block;">';
+                foreach($data as $key){
+                    $output .= '<div class="autocomplete-group">'.$key->loai_san_pham.'</div>
+                        <div class="autocomplete-suggestion" data-index="0"> 
+                        <a href="/chi-tiet-san-pham/'.$key->slug.'"> 
+                        <img src="/image/product/small/'.$key->anh_sp.'"> 
+                        <label> 
+                        <span>'.$key->ten_sp.'</span> 
+                        <span class="price">'.number_format($key->sale_price,0,".",".").'₫</span>
+                        </label>
+                        </a>
+                        </div>';
+                }
+                //echo "<pre>"; print_r($data);die;
+                $output .= "</div>";
+            }
+            }
+            
         }
+        return response($output);
     }
 }

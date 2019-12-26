@@ -68,9 +68,9 @@ $(document).ready(function() {
       url:'search/product',
       data:{name_prod:name_prod},
       success: function (data){
-       alert(data);
+       //alert(data);
        
-        //$('#productType_Child').replaceWith(resp);
+        $('.autocomplete-suggestions').replaceWith(data);
         
   
       },

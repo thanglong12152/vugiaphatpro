@@ -970,6 +970,9 @@
        </div>
     </div>
  </main>
- 
+<div class="autocomplete-suggestions">
+   
+   
+</div>
 
 <?php echo $__env->make('block/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\vugiaphatpro\resources\views/frontend/index.blade.php ENDPATH**/ ?>

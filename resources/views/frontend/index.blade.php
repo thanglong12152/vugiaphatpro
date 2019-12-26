@@ -970,6 +970,9 @@
        </div>
     </div>
  </main>
- 
+<div class="autocomplete-suggestions">
+   
+   
+</div>
 
 @include('block/footer')
