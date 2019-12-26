@@ -56,4 +56,24 @@ class IndexController extends Controller
                 break;  
         }
     }
+
+    public function search(Request $request){
+        if($request->ajax()){
+            $data=DB::table('tb_san_pham')->where('tb_san_pham.ten_sp','like','%'.$request->keyword.'%')->get();
+            echo '<pre>';
+            print_r($data);die;
+
+            //if($data){
+                // foreach($data as $key){
+                //     echo '<div class="autocomplete-group">'.$key->.'</div>
+                //     <div class="autocomplete-suggestion" data-index="0">
+                //         <a href="https://vugiaphat.vn/bon-cau-1-khoi/bon-cau-mot-khoi-inak-in-301-p1561.html"> <img src="https://vugiaphat.vn/images/products/2019/07/10/resized/inak-in301_1562722042.jpg">
+                //             <label> <span> <strong>Bồn</strong> cầu một khối Inak IN 301  </span> <span class="price"> 2.579.500₫</span>
+                //             </label>
+                //         </a>
+                //     </div>';
+                // }
+            //}
+        }
+    }
 }

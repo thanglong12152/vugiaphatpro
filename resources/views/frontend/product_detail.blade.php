@@ -1485,9 +1485,25 @@
 							                        Thiết Kế </td>
 							                    <td class="content_charactestic">
 							                        Hình vuông 2 mặt ốp tường cao 2 mét dài 1m rộng 1m có thể sử dụng tối đa 2 người </td>
-							                </tr>
+											</tr>
+											<script>
+												function readmore_detail() {
+													var btn_readmore_detail = document.getElementById("readmore_chareactestic");
+													var popup_readmore_detail = document.getElementById("charactestic_detail");
+													if(popup_readmore_detail.style.display = "none"){
+														popup_readmore_detail.style.display = "block";
+													}
+													
+												}
+												function readmore_detail_close() {
+													var popup_readmore_detail = document.getElementById("charactestic_detail");
+													if(popup_readmore_detail.style.display = "block") {
+														popup_readmore_detail.style.display = "none";
+													}
+												}
+											</script>
 							                <tr class="tr-1">
-							                    <td class="title_charactestic"><span class="readmore" id="readmore_chareactestic"> Xem thêm »</span>
+							                    <td class="title_charactestic"><span class="readmore" id="readmore_chareactestic" onclick="readmore_detail()"> Xem thêm »</span>
 							                    </td>
 							                    <td></td>
 							                </tr>
@@ -1498,7 +1514,7 @@
 							                <div class="modal-full-screen"></div>
 							                <div class="modal-content">
 							                    <div class="modal-header">
-							                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btn-readmore-detail" onclick="readmore_detail_close()">×</button>
 							                        <h3 class="modal-title"><span>Chi tiết tính năng Thiết kế phòng xông hơi khô 1mx1mx2m</span></h3>
 							                    </div>
 							                    <div class="content">

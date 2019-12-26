@@ -20,6 +20,25 @@
         }
     });
  });
+
+$("#keyword").keyup(function(){
+  var key_search = $("#keyword").val();
+  $.ajax({
+      type:'get',
+      url:'search/product',
+      data:{key_search:key_search},
+      success:function(resp){
+        // alert('OK');
+        alert(resp);
+      },
+      error:function(){
+        alert('Error');
+      }
+
+  });
+});
+
+
 $(document).on("change","#productType",function(){
   var productType = $("#productType").val();
 

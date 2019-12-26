@@ -277,10 +277,21 @@
        </div>
     </div>
  </footer>
+ <div class="autocomplete-suggestions-compare" style="position: absolute; display: none; width: 300px; max-height: 300px; z-index: 9999;"></div>
+	<div class="autocomplete-suggestions scrollbar" style="position: absolute; max-height: 300px; z-index: 9999; top: 48px; left: 288.422px; width: 556px; display: block;" id="style-1">
+	    <div class="autocomplete-group">Bồn cầu 1 khối</div>
+	    <div class="autocomplete-suggestion" data-index="0">
+	        <a href="https://vugiaphat.vn/bon-cau-1-khoi/bon-cau-mot-khoi-inak-in-301-p1561.html"> <img src="https://vugiaphat.vn/images/products/2019/07/10/resized/inak-in301_1562722042.jpg">
+	            <label> <span> <strong>Bồn</strong> cầu một khối Inak IN 301  </span> <span class="price"> 2.579.500₫</span>
+	            </label>
+	        </a>
+	    </div>
+	</div>
  </body>
 <script src="{{asset('js/index.js')}}"></script>
 <script src="{{asset('js/jquery.js')}}"></script>
 <script src="{{asset('js/jquery-migrate-1.2.1.min.js')}}"></script>
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/slick.min.js')}}"></script>
+<script src="{{asset('js/admin/admin.js')}}"></script>
 </html>

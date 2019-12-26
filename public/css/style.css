@@ -3122,6 +3122,425 @@ i {
     color:#333;
 } */
 
+/* =========== SEARCH SUGGESTIONS======== */
+#style-1::-webkit-scrollbar{
+    width: 4px;
+    background-color: #F5F5F5;
+}
+#style-1::-webkit-scrollbar-thumb {
+    background-color: #0099cc;
+}
+#style-1::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+.autocomplete-suggestions .autocomplete-group {
+    padding: 8px 3%;
+    width: 100%;
+    background: #f9f9f9;
+    box-sizing: border-box;
+}
+.autocomplete-suggestions div {
+    cursor: pointer;
+    width: 100%;
+    display: inline-block;
+    clear: both;
+    padding: 0;
+    margin: 0;
+    margin-bottom: -5px;
+}
+.autocomplete-suggestions div a img {
+    width: 64px;
+    float: left;
+    margin-right: 20px;
+}
+.autocomplete-suggestions div a label {
+    font-weight: normal;
+    cursor: pointer;
+    margin: 0;
+    float: left;
+}
+.autocomplete-suggestions div a span {
+    display: block;
+    clear: both;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+.autocomplete-suggestions div a span.price {
+    color: #fd0000;
+    padding-top: 10px;
+}
+.autocomplete-suggestions div a span {
+    display: block;
+    clear: both;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+.price {
+    color: #FF3333;
+    font-weight: 600;
+    font-size: 16px;
+}
+.autocomplete-suggestions div {
+    cursor: pointer;
+    width: 100%;
+    display: inline-block;
+    clear: both;
+    padding: 0;
+    margin: 0;
+    margin-bottom: -5px;
+}
+.autocomplete-suggestions div a, .autocomplete-suggestions div a:link, .autocomplete-suggestions div a:visited {
+    display: inline-block;
+    margin: 0;
+    padding: 6px 3%;
+    width: 100%;
+    font-size: 13px;
+    color: #333;
+    background: #fff;
+    clear: both;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+}
+.autocomplete-suggestions div a:hover {
+    background: #ececec;
+}
+.autocomplete-suggestions {
+    border: 1px solid #ececec;
+    background: #fff;
+    cursor: default;
+    overflow: auto;
+    margin: 0 0px 6px -1px;
+    width: 100%;
+    top: 31px;
+    left: 101px;
+}
+.autocomplete-suggestions {
+    position: absolute;
+    top: 4px;
+    right: -5px;
+    margin: 6px 0 0 6px;
+    _background: none;
+    _margin: 1px 0 0 0;
+}
+.autocomplete-suggestions-compare {
+    border: 1px solid #ececec;
+    background: #fff;
+    cursor: default;
+    overflow: auto;
+    margin: 0 0px 6px -30px;
+    width: 100%;
+    top: 31px;
+    left: 101px;
+    margin-left: -97px;
+}
+.autocomplete-suggestions-compare {
+    position: absolute;
+    top: 4px;
+    right: -5px;
+    margin: 6px 0 0 6px;
+    _background: none;
+    _margin: 1px 0 0 0;
+}
+@media only screen and (max-width: 1180px){
+    .autocomplete-suggestions {
+        width: 380px !important;
+        left: 40%;
+    }
+}
+/* =========== SEARCH SUGGESTIONS======== */
+@keyframes nudge {
+	0% {
+		transform: translate(-6px)
+	}
+
+	12% {
+		transform: translate(6px)
+	}
+
+	25% {
+		transform: translate(-6px)
+	}
+
+	37% {
+		transform: translate(0)
+	}
+
+	100% {
+		transform: translate(0)
+	}
+}
+@keyframes strange {
+	0% {
+		transform: translate(0)
+	}
+
+	25% {
+		transform: translate(0, -6px)
+	}
+
+	37% {
+		transform: translate(0, 6px)
+	}
+
+	50% {
+		transform: translate(0, -6px)
+	}
+
+	60% {
+		transform: translate(0)
+	}
+
+	100% {
+		transform: translate(0)
+	}
+}
+@keyframes diagonal {
+	0% {
+		transform: translate(0)
+	}
+
+	50% {
+		transform: translate(6px, -6px)
+	}
+
+	62% {
+		transform: translate(-6px, 6px)
+	}
+
+	75% {
+		transform: translate(6px, -6px)
+	}
+
+	85% {
+		transform: translate(0)
+	}
+
+	100% {
+		transform: translate(0)
+	}
+}
+@keyframes roll {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  
+  50% {
+    transform: rotate(45deg);
+  }
+  
+  80% {
+    transform: rotate(60deg);
+  }
+}
+@keyframes rotage-scale-1 {
+	0% {
+		transform: rotate(0deg) scale(1) skew(0)
+	}
+
+	20% {
+		transform: rotate(0deg) scale(1) skew(0)
+	}
+
+	25% {
+		transform: rotate(10deg) scale(1.1) skew(1deg)
+	}
+
+	35% {
+		transform: rotate(-10deg) scale(1) skew(1deg)
+	}
+
+	45% {
+		transform: rotate(10deg) scale(1.1) skew(1deg)
+	}
+
+	55% {
+		transform: rotate(-10deg) scale(1) skew(1deg)
+	}
+
+	60% {
+		transform: rotate(0deg) scale(1) skew(1deg)
+	}
+}
+@keyframes rotage-scale-1s {
+	0% {
+		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
+	}
+
+	20% {
+		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
+	}
+
+	25% {
+		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
+	}
+
+	35% {
+		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
+	}
+
+	45% {
+		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
+	}
+
+	55% {
+		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
+	}
+
+	60% {
+		transform: rotate(0deg) rotateX(180deg) scale(1) skew(1deg)
+	}
+}
+@keyframes  rotage-scale-2{
+	0% {
+		transform: rotate(0deg) scale(1) skew(0)
+	}
+
+	40% {
+		transform: rotate(0deg) scale(1) skew(0)
+	}
+
+	45% {
+		transform: rotate(10deg) scale(1.1) skew(1deg)
+	}
+
+	55% {
+		transform: rotate(-10deg) scale(1) skew(1deg)
+	}
+
+	65% {
+		transform: rotate(10deg) scale(1.1) skew(1deg)
+	}
+
+	75% {
+		transform: rotate(-10deg) scale(1) skew(1deg)
+	}
+
+	80% {
+		transform: rotate(0deg) scale(1) skew(1deg)
+	}
+}
+
+@keyframes  rotage-scale-2s {
+	0% {
+		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
+	}
+
+	40% {
+		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
+	}
+
+	45% {
+		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
+	}
+
+	55% {
+		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
+	}
+
+	65% {
+		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
+	}
+
+	75% {
+		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
+	}
+
+	80% {
+		transform: rotate(0deg) rotateX(180deg) scale(1) skew(1deg)
+	}
+}
+
+@keyframes  rotage-scale-3{
+	0% {
+		transform: rotate(0deg) scale(1) skew(0)
+	}
+
+	60% {
+		transform: rotate(0deg) scale(1) skew(0)
+	}
+
+	65% {
+		transform: rotate(10deg) scale(1.1) skew(1deg)
+	}
+
+	75% {
+		transform: rotate(-10deg) scale(1) skew(1deg)
+	}
+
+	85% {
+		transform: rotate(10deg) scale(1.1) skew(1deg)
+	}
+
+	95% {
+		transform: rotate(-10deg) scale(1) skew(1deg)
+	}
+
+	100% {
+		transform: rotate(0deg) scale(1) skew(1deg)
+	}
+}
+
+@keyframes  rotage-scale-3s {
+	0% {
+		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
+	}
+
+	60% {
+		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
+	}
+
+	65% {
+		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
+	}
+
+	75% {
+		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
+	}
+
+	85% {
+		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
+	}
+
+	95% {
+		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
+	}
+
+	100% {
+		transform: rotate(0deg) rotateX(180deg) scale(1) skew(1deg)
+	}
+}
+@keyframes chang-rotage-anim {
+    0% {
+        transform: rotate(0deg) scale(1) skew(1deg)
+    }
+
+    5% {
+        transform: rotate(-25deg) scale(1) skew(1deg)
+    }
+
+    10% {
+        transform: rotate(25deg) scale(1) skew(1deg)
+    }
+
+    15% {
+        transform: rotate(-25deg) scale(1) skew(1deg)
+    }
+
+    20% {
+        transform: rotate(25deg) scale(1) skew(1deg)
+    }
+
+    25% {
+        transform: rotate(0deg) scale(1) skew(1deg)
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1) skew(1deg)
+    }
+}
 /*============PRODUCT DETAIL=========*/
 .product {
     background: #fff;
@@ -4280,7 +4699,6 @@ tr.tr-0, tr.tr-1 {
 }
 .modal-dialog {
     width: 100%;
-    /*position: fixed;*/
     top: 4px;
     z-index: 1000;
     left: 0;
@@ -4523,294 +4941,4 @@ tr.tr-0, tr.tr-1 {
         display: block;
     }
 }
-/*============PRODUCT DETAIL=========*/
-@keyframes nudge {
-	0% {
-		transform: translate(-6px)
-	}
-
-	12% {
-		transform: translate(6px)
-	}
-
-	25% {
-		transform: translate(-6px)
-	}
-
-	37% {
-		transform: translate(0)
-	}
-
-	100% {
-		transform: translate(0)
-	}
-}
-@keyframes strange {
-	0% {
-		transform: translate(0)
-	}
-
-	25% {
-		transform: translate(0, -6px)
-	}
-
-	37% {
-		transform: translate(0, 6px)
-	}
-
-	50% {
-		transform: translate(0, -6px)
-	}
-
-	60% {
-		transform: translate(0)
-	}
-
-	100% {
-		transform: translate(0)
-	}
-}
-@keyframes diagonal {
-	0% {
-		transform: translate(0)
-	}
-
-	50% {
-		transform: translate(6px, -6px)
-	}
-
-	62% {
-		transform: translate(-6px, 6px)
-	}
-
-	75% {
-		transform: translate(6px, -6px)
-	}
-
-	85% {
-		transform: translate(0)
-	}
-
-	100% {
-		transform: translate(0)
-	}
-}
-@keyframes roll {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  
-  50% {
-    transform: rotate(45deg);
-  }
-  
-  80% {
-    transform: rotate(60deg);
-  }
-}
-@keyframes rotage-scale-1 {
-	0% {
-		transform: rotate(0deg) scale(1) skew(0)
-	}
-
-	20% {
-		transform: rotate(0deg) scale(1) skew(0)
-	}
-
-	25% {
-		transform: rotate(10deg) scale(1.1) skew(1deg)
-	}
-
-	35% {
-		transform: rotate(-10deg) scale(1) skew(1deg)
-	}
-
-	45% {
-		transform: rotate(10deg) scale(1.1) skew(1deg)
-	}
-
-	55% {
-		transform: rotate(-10deg) scale(1) skew(1deg)
-	}
-
-	60% {
-		transform: rotate(0deg) scale(1) skew(1deg)
-	}
-}
-@keyframes rotage-scale-1s {
-	0% {
-		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
-	}
-
-	20% {
-		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
-	}
-
-	25% {
-		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
-	}
-
-	35% {
-		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
-	}
-
-	45% {
-		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
-	}
-
-	55% {
-		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
-	}
-
-	60% {
-		transform: rotate(0deg) rotateX(180deg) scale(1) skew(1deg)
-	}
-}
-@keyframes  rotage-scale-2{
-	0% {
-		transform: rotate(0deg) scale(1) skew(0)
-	}
-
-	40% {
-		transform: rotate(0deg) scale(1) skew(0)
-	}
-
-	45% {
-		transform: rotate(10deg) scale(1.1) skew(1deg)
-	}
-
-	55% {
-		transform: rotate(-10deg) scale(1) skew(1deg)
-	}
-
-	65% {
-		transform: rotate(10deg) scale(1.1) skew(1deg)
-	}
-
-	75% {
-		transform: rotate(-10deg) scale(1) skew(1deg)
-	}
-
-	80% {
-		transform: rotate(0deg) scale(1) skew(1deg)
-	}
-}
-
-@keyframes  rotage-scale-2s {
-	0% {
-		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
-	}
-
-	40% {
-		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
-	}
-
-	45% {
-		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
-	}
-
-	55% {
-		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
-	}
-
-	65% {
-		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
-	}
-
-	75% {
-		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
-	}
-
-	80% {
-		transform: rotate(0deg) rotateX(180deg) scale(1) skew(1deg)
-	}
-}
-
-@keyframes  rotage-scale-3{
-	0% {
-		transform: rotate(0deg) scale(1) skew(0)
-	}
-
-	60% {
-		transform: rotate(0deg) scale(1) skew(0)
-	}
-
-	65% {
-		transform: rotate(10deg) scale(1.1) skew(1deg)
-	}
-
-	75% {
-		transform: rotate(-10deg) scale(1) skew(1deg)
-	}
-
-	85% {
-		transform: rotate(10deg) scale(1.1) skew(1deg)
-	}
-
-	95% {
-		transform: rotate(-10deg) scale(1) skew(1deg)
-	}
-
-	100% {
-		transform: rotate(0deg) scale(1) skew(1deg)
-	}
-}
-
-@keyframes  rotage-scale-3s {
-	0% {
-		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
-	}
-
-	60% {
-		transform: rotate(0deg) rotateX(180deg) scale(1) skew(0)
-	}
-
-	65% {
-		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
-	}
-
-	75% {
-		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
-	}
-
-	85% {
-		transform: rotate(-10deg) rotateX(180deg) scale(1.1) skew(1deg)
-	}
-
-	95% {
-		transform: rotate(10deg) rotateX(180deg) scale(1) skew(1deg)
-	}
-
-	100% {
-		transform: rotate(0deg) rotateX(180deg) scale(1) skew(1deg)
-	}
-}
-@keyframes chang-rotage-anim {
-    0% {
-        transform: rotate(0deg) scale(1) skew(1deg)
-    }
-
-    5% {
-        transform: rotate(-25deg) scale(1) skew(1deg)
-    }
-
-    10% {
-        transform: rotate(25deg) scale(1) skew(1deg)
-    }
-
-    15% {
-        transform: rotate(-25deg) scale(1) skew(1deg)
-    }
-
-    20% {
-        transform: rotate(25deg) scale(1) skew(1deg)
-    }
-
-    25% {
-        transform: rotate(0deg) scale(1) skew(1deg)
-    }
-
-    100% {
-        transform: rotate(0deg) scale(1) skew(1deg)
-    }
-}
+/*============END PRODUCT DETAIL=========*/
