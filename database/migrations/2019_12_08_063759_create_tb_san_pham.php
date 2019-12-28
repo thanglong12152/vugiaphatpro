@@ -26,7 +26,7 @@ class CreateTbSanPham extends Migration
             $table->string('kich_thuoc_sp')->nullable();
             $table->unsignedBigInteger('id_thuong_hieu')->nullable();
             $table->string('chat_lieu')->nullable();
-            $table->string('xuat_xu')->nullable();
+            $table->unsignedBigInteger('id_xuat_xu');
             $table->string('thiet_ke')->nullable();
             $table->string('thoi_gian_bh')->nullable();
             $table->string('chuc_nang')->nullable();
@@ -46,6 +46,7 @@ class CreateTbSanPham extends Migration
             $table->foreign('id_loai_san_pham')->references('id_loai_san_pham')->on('tb_loai_san_pham');
             $table->foreign('id_loai_sp_con')->references('id')->on('tb_sub_categories');
             $table->foreign('id_thuong_hieu')->references('id')->on('tb_thuong_hieu');
+            $table->foreign('id_xuat_xu')->references('id_xuat_xu')->on('tb_xuat_xu');
             $table->timestamps();
         });
     }

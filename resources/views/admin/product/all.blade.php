@@ -77,18 +77,18 @@
                                           <div class="title">
                                              <h4 style="font-weight:bold">{{$data->ten_sp}}</h4>
                                           </div>
-                                          <div class="ma-sp">Mã sản phẩm: {{$data->ma_sp}}</div>
-                                          <div class="price">Giá: </div>
-                                          <div class="name">Tên sản phẩm: {{$data->ten_sp}}</div>
-                                          <div class="prd-type">Loại sản phẩm: {{$data->loai_san_pham}}</div>
-                                          <div class="trademark">Thương hiệu: {{$data->ten_thuong_hieu}}</div>
-                                          <div class="size">Kích thước: </div>
-                                          <div class="chat-lieu">Chất liệu: </div>
-                                          <div class="xuat-xu">Xuất xứ: </div>
-                                          <div class="thiet-ke">Thiết kế: </div>
-                                          <div class="thoi-gian-bh">Thời gian bảo hành: </div>
-                                          <div class="chuc-nang">Chức năng: </div>
-                                          <div class="phu-kien">Phụ kiện đi kèm: </div>
+                                          <div class="ma-sp"><b class="text-uppercase">Mã sản phẩm:  </b> {{$data->ma_sp}}</div>
+                                          <div class="price"><b class="text-uppercase">giá:  </b> <div class="price" style="color:red">{{number_format($data->sale_price,0,".",".")}}₫</div></div>
+                                          
+                                          <div class="prd-type"><b class="text-uppercase">Loại sản phẩm:  </b><div class="price"> {{$data->ten_loai_sp_con}}</div></div>
+                                          <div class="trademark"><b class="text-uppercase">Thương hiệu: </b> <div class="price">{{$data->ten_thuong_hieu}}</div></div>
+                                          <div class="size"><b class="text-uppercase">Kích thước:  </b><div class="price"> {{$data->kich_thuoc_sp}}</div></div>
+                                          <div class="chat-lieu"><b class="text-uppercase">Chất liệu:  </b><div class="price"> {{$data->chat_lieu}}</div></div>
+                                          <div class="xuat-xu"><b class="text-uppercase">Xuất xứ:  </b> <div class="price">{{$data->xuat_xu}}</div></div>
+                                          <div class="thiet-ke"><b class="text-uppercase">Thiết kế:  </b> <div class="price">{{$data->thiet_ke}}</div></div>
+                                          <div class="thoi-gian-bh"><b class="text-uppercase">Thời gian bảo hành: <div class="price"> </b> {{$data->thoi_gian_bh}}</div></div>
+                                          <div class="chuc-nang"><b class="text-uppercase">Chức năng:  </b> <div class="price">{{$data->chuc_nang}}</div></div>
+                                          <div class="phu-kien"><b class="text-uppercase">Phụ kiện đi kèm:  </b> <div class="price">{{$data->phu_kien_di_kem}}</div></div>
                                        </div>
                                     </div>
                                  </div>

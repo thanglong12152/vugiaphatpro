@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\ProductType;
 use App\TradeMark;
+use App\XuatXu;
 use DB;
 class ProductController extends Controller
 {
@@ -18,6 +19,7 @@ class ProductController extends Controller
         ->join('tb_loai_san_pham','tb_san_pham.id_loai_san_pham', '=','tb_loai_san_pham.id_loai_san_pham')
         ->join('tb_thuong_hieu','tb_san_pham.id_thuong_hieu','=','tb_thuong_hieu.id')
         ->join('tb_sub_categories','tb_san_pham.id_loai_sp_con','=','tb_sub_categories.id')
+        ->join('tb_xuat_xu','tb_san_pham.id_xuat_xu','=','tb_xuat_xu.id_xuat_xu')
         ->get();
   
         $product = json_decode(json_encode($data));
@@ -27,6 +29,7 @@ class ProductController extends Controller
     }
 
     public function add(Request $request){
+        $madeby = XuatXu::all();
         $trademarkAll = TradeMark::all();
         $productType = ProductType::all();
         if ($request->isMethod('post')) {
@@ -44,7 +47,7 @@ class ProductController extends Controller
             $product->sale_price = $data['sale_price'];
             $product->kich_thuoc_sp= $data['kich_thuoc'];
             $product->chat_lieu = $data['chat_lieu'];
-            $product->xuat_xu = $data['xuat_xu'];
+            $product->id_xuat_xu = $data['xuat_xu'];
             $product->thiet_ke = $data['thiet_ke'];
             $product->thoi_gian_bh = $data['thoi_gian_bh'];
             $product->chuc_nang = $data['chuc_nang'];
@@ -88,7 +91,7 @@ class ProductController extends Controller
             $product->save();
             return redirect('admin/product/all')->with('flash_message_success','Thêm sản phẩm thành công');
         }
-        return view('admin/product/add',compact('productType','trademarkAll'));
+        return view('admin/product/add',compact('productType','trademarkAll','madeby'));
     }
 
     public function edit(Request $request, $id=null){

@@ -166,7 +166,8 @@
                         <div class="form-group thuong_hieu" style="display:none;">
                            <label for="inputEmail" class="col-sm-2 control-label">Thương hiệu</label>
                            <div class="col-sm-5">
-                              <select name="thuong_hieu" id="thuong_hieu" class="form-control">
+                              <select name="thuong_hieu" id="thuong_hieu" class="form-control" required>
+                                 <option value="">---Chọn thương hiệu---</option>
                                  <?php $__currentLoopData = $trademarkAll; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                  <option
                                     value="<?php echo e($prd->id); ?>"
@@ -187,7 +188,17 @@
                         <div class="form-group xuat_xu" style="display:none;">
                            <label for="inputEmail" class="col-sm-2 control-label">Xuất xứ</label>
                            <div class="col-sm-5">
-                              <input type="text" name="xuat_xu" class="form-control" id="xuat_xu" placeholder="Xuất xứ" required>
+                              <select name="xuat_xu" id="xuat_xu" class="form-control" required>
+                                 <option value="">---Chọn nơi xuất xứ---</option>
+                                 <?php $__currentLoopData = $madeby; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                 <option
+                                    value="<?php echo e($data->id_xuat_xu); ?>"
+                                    >
+                                    <?php echo e($data->xuat_xu); ?>
+
+                                 </option>
+                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              </select>
                            </div>
                         </div>
                         <div class="form-group thiet_ke" style="display:none;">

@@ -80,10 +80,10 @@ class AdminController extends Controller
                 echo "Phòng xông hơi";
                 break;
             case '4':
-                echo "Thiết bị vệ sinh";
+                echo "Quạt đèn trần";
                 break;
             case '5':
-                echo "Quạt đèn trần";
+                echo "Thiết bị vệ sinh";
                 break;
             
         }
