@@ -4,12 +4,12 @@
    <!-- Content Header (Page header) -->
    <section class="content-header">
       <h1>
-         THÊM SẢN PHẨM
+         SỬA SẢN PHẨM
       </h1>
       <ol class="breadcrumb">
          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
          <li><a href="#">Examples</a></li>
-         <li class="active">THÊM SẢN PHẨM</li>
+         <li class="active">SỬA SẢN PHẨM</li>
       </ol>
    </section>
    <!-- Main content -->
@@ -19,7 +19,7 @@
          <div class="col-md-12">
             <div class="nav-tabs-custom">
                <ul class="nav nav-tabs">
-                  <li><a href="#settings" data-toggle="tab">THÊM SẢN PHẨM</a></li>
+                  <li><a href="#settings" data-toggle="tab">SỬA SẢN PHẨM</a></li>
                </ul>
                <div class="tab-content">
                   <!-- /.tab-pane -->
@@ -63,9 +63,42 @@
                            </div>
                         </div>
                         <div class="form-group">
+                           <label for="inputEmail" class="col-sm-2 control-label">Chủng loại</label>
+                           <div class="col-sm-5">
+                              <select name="productType_Child" id="productType_Child" class="form-control">
+                              @foreach($productType_Child as $prd)
+                              <option
+                              value="{{$prd->id}}"
+                              @if($prd->id === $productDetails->id_loai_sp_con)
+                              selected
+                              @endif 
+                              >
+                              {{$prd->ten_loai_sp_con}}
+                              </option>
+                              @endforeach
+                              </select>
+                           </div>
+                        </div>
+                        <div class="form-group tinh_nang">
+                           <label for="inputEmail" class="col-sm-2 control-label">Tính năng</label>
+                           <div class="col-sm-5">
+                              @foreach($featureProduct as $data)
+                                 <input type="checkbox" name="feature[]" id="tinh_nang" value="{{$data->id_tinh_nang}}" 
+                                 @foreach($prod_data as $prod)
+                                    @if($prod->id_tinh_nang === $data->id_tinh_nang) 
+                                       checked
+                                    @endif
+                                 @endforeach
+                                 >
+                                 
+                                 {{$data->ten_tinh_nang}} 
+                              @endforeach
+                           </div>
+                        </div>
+                        <div class="form-group">
                            <label for="inputEmail" class="col-sm-2 control-label">Mã sản phẩm</label>
                            <div class="col-sm-5">
-                              <input type="text" name="ma_sp" class="form-control" id="ma_sp" value="{{$productDetails->ma_sp}}" placeholder="Mã sản phẩm" required>
+                              <input type="text" name="ma_sp" class="form-control" id="ma_sp" value="{{$productDetails->ma_sp}}" required>
                            </div>
                         </div>
                         <div class="form-group">
@@ -86,6 +119,71 @@
                            </div>
                         </div>
                         <div class="form-group">
+                           <label for="inputEmail" class="col-sm-2 control-label">Kích thước</label>
+                           <div class="col-sm-5">
+                              <input type="text" name="kich_thuoc" class="form-control" id="kich_thuoc" value="{{$productDetails->kich_thuoc_sp}}" required>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="inputEmail" class="col-sm-2 control-label">Chất liệu</label>
+                           <div class="col-sm-5">
+                              <input type="text" name="chat_lieu" class="form-control" id="chat_lieu" value="{{$productDetails->chat_lieu}}" required>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="inputEmail" class="col-sm-2 control-label">Thời gian bảo hành</label>
+                           <div class="col-sm-5">
+                              <input type="text" name="thoi_gian_bh" class="form-control" id="thoi_gian_bh" value="{{$productDetails->thoi_gian_bh}}" required>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="inputEmail" class="col-sm-2 control-label">Chức năng</label>
+                           <div class="col-sm-5">
+                              <input type="text" name="chuc_nang" class="form-control" id="chuc_nang" value="{{$productDetails->chuc_nang}}" required>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="inputEmail" class="col-sm-2 control-label">Phụ kiện đi kèm</label>
+                           <div class="col-sm-5">
+                              <input type="text" name="phu_kien_di_kem" class="form-control" id="phu_kien_di_kem" value="{{$productDetails->phu_kien_di_kem}}" required>
+                           </div>
+                        </div>
+                        @foreach($productType as $prd)
+                        @if($prd->id_loai_san_pham === $productDetails->id_loai_san_pham && $prd->loai_san_pham === 'Phòng xông hơi' )
+                        <div class="form-group">
+                           <label for="inputEmail" class="col-sm-2 control-label">Công suất máy</label>
+                           <div class="col-sm-5">
+                           <input type="text" name="cong_suat_may" class="form-control" id="cong_suat_may" value="{{$prd->cong_suat_may}}" placeholder="Công suất máy">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="inputEmail" class="col-sm-2 control-label">Điện năng</label>
+                           <div class="col-sm-5">
+                           <input type="text" name="dien_nang" class="form-control" id="dien_nang" value="{{$prd->dien_nang}}" placeholder="Điện năng">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="inputEmail" class="col-sm-2 control-label">Ống cấp nước</label>
+                           <div class="col-sm-5">
+                           <input type="text" name="ong_cap_nuoc" class="form-control" id="ong_cap_nuoc" value="{{$prd->ong_cap_nuoc}}" placeholder="Ống cấp nước">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="inputEmail" class="col-sm-2 control-label">Dây điện</label>
+                           <div class="col-sm-5">
+                           <input type="text" name="day_dien" class="form-control" id="day_dien" value="{{$prd->day_dien}}" placeholder="Dây điện">
+                           </div>
+                        </div>
+                        @endif
+                        @endforeach
+                        
+                        <div class="form-group mo_ta">
+                           <label for="inputEmail" class="col-sm-2 control-label">Mô tả</label>
+                           <div class="col-sm-8">
+                           <textarea name="mo_ta" class="form-control " id="editor1">{{$productDetails->mo_ta}}</textarea>
+                           </div>
+                        </div>
+                        <div class="form-group">
                            <label for="inputEmail" class="col-sm-2 control-label">Ảnh sản phẩm</label>
                            <div class="col-sm-5">
                               <input type="file" name="anh_sp" class="form-control" id="anh_sp"  placeholder="Mã sản phẩm" >
@@ -93,6 +191,7 @@
                               <img src="{{asset('/image/product/small/'.$productDetails->anh_sp)}}" alt="">
                            </div>
                         </div>
+                        
                         <div class="form-group">
                            <div class="col-sm-offset-2 col-sm-10">
                               <button type="submit" class="btn btn-danger">Submit</button>

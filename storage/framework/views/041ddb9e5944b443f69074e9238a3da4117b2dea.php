@@ -36,13 +36,31 @@
                   </div>
                   <?php endif; ?>
                   <div class="active tab-pane" id="settings">
-                     <form class="form-horizontal" method="post" action="<?php echo e(url('admin/productType/edit/'.$productType->id_loai_san_pham)); ?>">
+                     <form class="form-horizontal" method="post" action="<?php echo e(url('admin/productType/edit/'.$productType->id)); ?>">
                         <?php echo e(csrf_field()); ?>
 
                         <div class="form-group">
-                           <label for="inputName" class="col-sm-2 control-label">Tên sản phẩm</label>
+                           <label for="inputEmail" class="col-sm-2 control-label">Loại sản phẩm</label>
                            <div class="col-sm-5">
-                              <input type="text" class="form-control" name="loai_san_pham" id="loai_san_pham" value="<?php echo e($productType->loai_san_pham); ?>" placeholder="Tên sản phẩm" required>
+                              <select name="loai_sp" id="loai_sp" class="form-control">
+                              <?php $__currentLoopData = $productTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <option
+                              value="<?php echo e($prd->id_loai_san_pham); ?>"
+                              <?php if($prd->id_loai_san_pham === $productType->id_loai_san_pham): ?>
+                              selected
+                              <?php endif; ?> 
+                              >
+                              <?php echo e($prd->loai_san_pham); ?>
+
+                              </option>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <label for="inputName" class="col-sm-2 control-label">Chủng loại</label>
+                           <div class="col-sm-5">
+                              <input type="text" class="form-control" name="productType_Child" id="productType_Child" value="<?php echo e($productType->ten_loai_sp_con); ?>" placeholder="Tên sản phẩm" required>
                               <span id="checkpass"></span>
                            </div>
                         </div>

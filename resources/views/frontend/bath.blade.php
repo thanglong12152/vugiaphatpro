@@ -230,7 +230,7 @@
                               <div class="price_current" itemprop="price">{{number_format($data->sale_price,0,".",".")}}₫</div>
                               <div class="price_old"><span>{{number_format($data->gia_goc,0,".",".")}}₫</span></div>
                            </div>
-                           <div class="origin">Xuất xứ: {{$data->xuat_xu}}</div>
+                           {{-- <div class="origin">Xuất xứ: {{$data->xuat_xu}}</div> --}}
                            <div class="size">Kích thước: {{$data->kich_thuoc_sp}}</div>
                         </div>
                         <!-- end .frame_inner -->

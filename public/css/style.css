@@ -44,6 +44,13 @@ img {
 .clear, .clearfix {
     clear: both;
 }
+.description ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+.description li {
+    list-style: unset;
+}
 /*Pagination*/
 
   /* .page-item{

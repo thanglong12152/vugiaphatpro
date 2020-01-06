@@ -196,27 +196,33 @@
 <!-- Sweet alert -->
 <script src="<?php echo e(asset('js/sweetalert.js')); ?>"></script>
 
+<script src="<?php echo e(asset('ckeditor/ckeditor.js')); ?>"></script>
+
 <!-- page script -->
 <script>
-$(function () {
-  $('#example1').DataTable({
-    'paging'      : true,
-    'lengthChange': true,
-    'searching'   : true,
-    'ordering'    : true,
-    'info'        : true,
-    'lengthMenu': [5, 10, 20],
-    'autoWidth'   : false
-  });
-  $('#example2').DataTable({
-    'paging'      : true,
-    'lengthChange': true,
-    'searching'   : false,
-    'ordering'    : true,
-    'info'        : true,
-    'autoWidth'   : false
-  })
-})
+
+</script>
+<script> CKEDITOR.replace( 'editor1', {
+   filebrowserBrowseUrl: '<?php echo e(asset('ckfinder/ckfinder.html')); ?>',
+   filebrowserImageBrowseUrl: '<?php echo e(asset('ckfinder/ckfinder.html?type=Images')); ?>',
+   filebrowserFlashBrowseUrl: '<?php echo e(asset('ckfinder/ckfinder.html?type=Flash')); ?>',
+   filebrowserUploadUrl: '<?php echo e(asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files')); ?>',
+   filebrowserImageUploadUrl: '<?php echo e(asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images')); ?>',
+   filebrowserFlashUploadUrl: '<?php echo e(asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash')); ?>',
+   entities: false
+} );
+</script>
+<script type="text/javascript">
+/** add active class and stay opened when selected */
+var url = window.location;
+// for sidebar menu but not for treeview submenu
+$('ul.sidebar-menu a').filter(function() {
+    return this.href == url;
+}).parent().siblings().removeClass('active').end().addClass('active');
+// for treeview which is like a submenu
+$('ul.treeview-menu a').filter(function() {
+    return this.href == url;
+}).parentsUntil(".sidebar-menu > .treeview-menu").siblings().removeClass('active menu-open').end().addClass('active menu-open');
 </script>
 </body>
 </html><?php /**PATH C:\xampp\htdocs\vugiaphatpro\resources\views/block/footer-admin.blade.php ENDPATH**/ ?>

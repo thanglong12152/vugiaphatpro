@@ -38,6 +38,7 @@
                   <div class="active tab-pane" id="settings">
                      <form enctype="multipart/form-data" class="form-horizontal" method="post" action="{{asset('admin/product/add')}}">
                         {{csrf_field()}}
+                        {{-- <input type="hidden" name="id_san_pham" value="{{$prod_data->id_san_pham}}"> --}}
                         <div class="form-group productType">
                            <label for="inputEmail" class="col-sm-2 control-label">Loại sản phẩm</label>
                            <div class="col-sm-5">
@@ -69,6 +70,14 @@
                            <label for="inputEmail" class="col-sm-2 control-label">Mã sản phẩm</label>
                            <div class="col-sm-5">
                               <input type="text" name="ma_sp" class="form-control" id="ma_sp" placeholder="Mã sản phẩm" required>
+                           </div>
+                        </div>
+                        <div class="form-group tinh_nang">
+                           <label for="inputEmail" class="col-sm-2 control-label">Tính năng</label>
+                           <div class="col-sm-5">
+                              @foreach($featureProduct as $data)
+                                 <input type="checkbox" name="feature[]" id="tinh_nang" value="{{$data->id_tinh_nang}}" >{{$data->ten_tinh_nang}} 
+                              @endforeach
                            </div>
                         </div>
                         <div class="form-group gia_sp">
@@ -226,6 +235,12 @@
                            <label for="inputEmail" class="col-sm-2 control-label">Ảnh sản phẩm</label>
                            <div class="col-sm-5">
                               <input type="file" name="anh_sp" class="form-control" id="anh_sp" placeholder="Ảnh sản phẩm" required>
+                           </div>
+                        </div>
+                        <div class="form-group mo_ta">
+                           <label for="inputEmail" class="col-sm-2 control-label">Mô tả</label>
+                           <div class="col-sm-8">
+                              <textarea name="mo_ta" class="form-control " id="editor1"></textarea>
                            </div>
                         </div>
                         <div class="form-group">

@@ -363,44 +363,8 @@
 			            				<div class="description boxdesc" id="boxdesc">
 											<div id="box_conten_linfo">
 												<div class="box_conten_linfo_inner" itemprop="description">
-													<p>
-														<strong>Mẫu phòng xông hơi kích thước : 1m x 1m x 2m</strong> là mẫu phòng xông hơi khô được thiết kế và sản xuất tại Việt Nam. Đối với dòng sản phẩm thiết kế theo không gian vị trí lắp đặt đáp ứng được các tiêu chí như : tận dụng tối đa vị trí lắp đặt, mẫu thiết kế đa dạng có thể&nbsp;tuỳ chỉnh theo đặc điểm không gian, địa hình&nbsp;và vị trí lắp đặt.&nbsp;
-													</p>
-
-													<p>
-														<a href="https://vugiaphat.vn/phong-xong-hoi-kho-pc7.html"><strong>Phòng xông hơi khô</strong></a> có&nbsp;kích thước&nbsp;1m x 1m x 2m dễ dàng lắp đặt, phù hợp với các gia đình có tần suất sử dụng ít hay những căn hộ chung cư cao cấp. Đặc điểm phòng nhỏ do đó công suất của máy xông hơi bé chính vì vậy phù hợp với nguồn điện và dây điện cõ sẵn mà không sợ quả tải nguồn điện tổng cho gia đình.
-													</p>
-
-													<h2><strong>Về chất liệu sản phẩm:</strong></h2>
-
-													<p>
-														Phòng sử dụng 2 loại gỗ thông cơ bản là <strong>gỗ thông vàng nhập khẩu từ Phần Lan</strong>&nbsp;hoặc <strong>gỗ thông trắng nhập khẩu từ Newziland</strong> đây là hai nước đi đầu về chất lượng và công nghệ sản xuất&nbsp;gỗ thông tiên tiếp góp phần đem lại một chiếc <a href="https://vugiaphat.vn/phong-xong-hoi-pc3.html">phòng xông hơi</a>&nbsp;khô đẹp, bền.
-													</p>
-
-													<p style="text-align:center"><img alt="" src="vugiaphat/upload_images/images/2019/phong-xong-hoi-kho-dt01.jpg" style="height:600px; width:600px"></p>
-
-													<p style="text-align:center">Mẫu phòng xông hơi 1m x 1m x 2m</p>
-
-													<h2><strong>Về công suất máy xông hơi :&nbsp;</strong></h2>
-
-													<p>Đối với loại 1m x 1m x 2m có thể dùng loại máy xông hơi 6kw tiết kiệm điện năng, mang thương hiệu uy tín như Amazon, Master Sauna, Gunsan, Sika, Sara có thể lựa chọn ngẫu nhiên hoặc tuỳ theo yêu cầu của khách hàng lựa chọn.</p>
-
-													<p style="text-align:center"><img alt="" src="vugiaphat/upload_images/images/2019/pxh-1m.jpg" style="height:960px; width:720px"></p>
-
-													<p style="text-align:center">Hình ảnh thực tế mẫu 1m x 1m x 2m</p>
-
-													<h2><strong>Phụ kiện đi kèm :&nbsp;</strong></h2>
-
-													<ol>
-														<li><strong>Xô gáo gỗ thông:</strong> chứa nước, tinh dầu để tưới lên đá sauna làm cho hơi nóng từ đá tỏa ra nhiều hơn.</li>
-														<li><strong>Đá sauna :</strong> là loại đá đã qua gia nhiệt, được đốt nóng , khi gặp nước sẽ bốc hơi nóng lên làm nóng khắp phòng.</li>
-														<li><strong>Đồng hồ cát:</strong> thời gian hiển thị là 15 phút, giúp người ngồi xông hơi biết được thời gian xông của mình.</li>
-														<li><strong>Đồng hồ nhiệt :</strong> Hiển thị nhiệt độ trong phòng và độ ẩm trong phòng</li>
-														<li><strong>Đèn chịu nhiệt: </strong>&nbsp;Đèn chuyên dùng cho phòng sauna, chịu được độ nóng trong phòng.</li>
-														<li><strong>Khung bao máy:</strong> Giúp cách ly máy xông hơi tránh trường hợp bị bỏng khi người dùng xơ ý chạm phải</li>
-													</ol>
-
-													<p>&nbsp;</p>
+														<?php echo htmlspecialchars_decode($data->mo_ta) ?>
+												
 											</div>
 											</div>
 											<div class="readmore " id="readmore_desc" onclick="redmore()"><span class="closed">Xem thêm nội dung</span></div>

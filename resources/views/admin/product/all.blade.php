@@ -30,16 +30,66 @@
                   @endif
                </div>
                <!-- /.box-header -->
+               <div class="filter-form" style="display:flex">
+                  <div class="col-md-2 pl-1">
+                     <div class="form-group" id="filter_col2" data-column="2">
+                         <label>Loại sản phẩm: </label>
+                         <select style="width: 140px; display: inline-block;" name="JobID" class="form-control column_filter_2" id="col2_filter">
+                                 <option value="">Tất cả</option>
+                                 @foreach($productType as $data)
+                                    <option>{{$data->loai_san_pham}}</option>
+                                 @endforeach
+                         </select>
+                         </div>
+                   </div>
+                  <div class="col-md-2 pl-1">
+                     <div class="form-group" id="filter_col3" data-column="3">
+                         <label>Chủng loại: </label>
+                         <select style="width: 140px; display: inline-block;" name="chung_loai" class="form-control column_filter_3" id="col3_filter">
+                                 <option value="">Tất cả</option>
+                                 @foreach($productType_Child as $data)
+                                    <option>{{$data->ten_loai_sp_con}}</option>
+                                 @endforeach
+                         </select>
+                         </div>
+                   </div>
+                   
+                   <div class="col-md-2 pl-1">
+                     <div class="form-group" id="filter_col4" data-column="4">
+                         <label>Thương hiệu: </label>
+                         <select style="width: 140px; display: inline-block;" name="thuong_hieu" class="form-control column_filter_4" id="col4_filter">
+                                 <option value="">Tất cả</option>
+                                 @foreach($trademark as $data)
+                                    <option>{{$data->ten_thuong_hieu}}</option>
+                                 @endforeach
+                         </select>
+                         </div>
+                   </div>
+                   <div class="col-md-2 pl-1">
+                     <div class="" id="filter_col5" data-column="5">
+                         <label>Kích thước:</label>
+                         <select style="width: 150px; display: inline-block;" name="kich_thuoc" class="form-control column_filter_5 input-sm" id="col5_filter">
+                                 <option value="">Tất cả</option>
+                                 @foreach($size as $data)
+                                    <option>{{$data->kich_thuoc}}</option>
+                                 @endforeach
+                         </select>
+                         </div>
+                   </div>
+               </div>
                <div class="box-body">
+                   
                   <table id="example1" class="table table-bordered table-striped">
                      <thead>
                         <tr>
                            <th>ID</th>
                            <th>Tên sản phẩm</th>
                            <th>Loại sản phẩm</th>
+                           <th>Chủng loại</th>
                            <th>Thương hiệu</th>
-                           <th>Mã sản phẩm</th>
                            <th>Kích thước</th>
+                           <th>Mã sản phẩm</th>
+                           
                            <th>Ảnh sản phẩm</th>
                            <th>Chức năng</th>
                         </tr>
@@ -49,10 +99,12 @@
                         <tr>
                            <td>{{$data->id_san_pham}}</td>
                            <td>{{$data->ten_sp}}</td>
+                           <td>{{$data->loai_san_pham}}</td>
                            <td>{{$data->ten_loai_sp_con}}</td>
                            <td>{{$data->ten_thuong_hieu}}</td>
-                           <td>{{$data->ma_sp}}</td>
                            <td>{{$data->kich_thuoc_sp}}</td>
+                           <td>{{$data->ma_sp}}</td>
+                           
                            <td><img src="{{asset('/image/product/small/'.$data->anh_sp)}}" alt="" width="60px"></td>
                            <td> 
                               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default{{$data->id_san_pham}}">
@@ -108,9 +160,11 @@
                            <th>ID</th>
                            <th>Tên sản phẩm</th>
                            <th>Loại sản phẩm</th>
+                           <th>Chủng loại</th>
                            <th>Thương hiệu</th>
-                           <th>Mã sản phẩm</th>
                            <th>Kích thước</th>
+                           <th>Mã sản phẩm</th>
+                           
                            <th>Ảnh sản phẩm</th>
                            <th>Chức năng</th>
                         </tr>

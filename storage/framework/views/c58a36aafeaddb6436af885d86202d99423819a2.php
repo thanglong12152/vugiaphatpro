@@ -39,13 +39,7 @@
                      <form class="form-horizontal" method="post" action="<?php echo e(asset('admin/productType/add')); ?>">
                         <?php echo e(csrf_field()); ?>
 
-                        <div class="form-group">
-                           <label for="inputName" class="col-sm-2 control-label">Tên loại sản phẩm</label>
-                           <div class="col-sm-5">
-                              <input type="text" class="form-control" name="ten_loai_san_pham" id="loai_san_pham" placeholder="Tên loại sản phẩm" required>
-                              
-                           </div>
-                        </div>
+                        
                         <div class="form-group">
                            <label for="inputName" class="col-sm-2 control-label">Loại sản phẩm</label>
                            <div class="col-sm-5">
@@ -59,13 +53,13 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <label for="inputName" class="col-sm-2 control-label">Chủng loại sản phẩm</label>
+                           <label for="inputName" class="col-sm-2 control-label">Tên loại sản phẩm</label>
                            <div class="col-sm-5">
-                              <select name="productType_Child" id="productType_Child" class="form-control">
+                              <input type="text" class="form-control" name="ten_loai_san_pham" id="loai_san_pham" placeholder="Tên loại sản phẩm" required>
                                  
-                              </select>
                            </div>
                         </div>
+                        
                         
                         <div class="form-group">
                            <div class="col-sm-offset-2 col-sm-10">

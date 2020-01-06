@@ -27,10 +27,10 @@ class CreateTbSanPham extends Migration
             $table->unsignedBigInteger('id_thuong_hieu')->nullable();
             $table->string('chat_lieu')->nullable();
             $table->unsignedBigInteger('id_xuat_xu');
-            $table->string('thiet_ke')->nullable();
+            $table->string('thiet_ke',300)->nullable();
             $table->string('thoi_gian_bh')->nullable();
             $table->string('chuc_nang')->nullable();
-            $table->string('phu_kien_di_kem')->nullable();
+            $table->string('phu_kien_di_kem',300)->nullable();
             $table->string('max_people')->nullable();
             $table->string('cong_suat_may')->nullable();
             $table->string('chung_loai')->nullable();
@@ -42,6 +42,7 @@ class CreateTbSanPham extends Migration
             $table->string('mau_sac')->nullable();
             $table->string('sai_canh')->nullable();
             $table->string('dong_co')->nullable();
+            $table->longText('mo_ta')->nullable();
             $table->string('cong_suat_den')->nullable();
             $table->foreign('id_loai_san_pham')->references('id_loai_san_pham')->on('tb_loai_san_pham');
             $table->foreign('id_loai_sp_con')->references('id')->on('tb_sub_categories');

@@ -195,28 +195,34 @@
 <script src="{{asset('js/admin/admin.js')}}"></script>
 <!-- Sweet alert -->
 <script src="{{asset('js/sweetalert.js')}}"></script>
+{{-- CKEDITOR --}}
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
 {{-- <script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script> --}}
 <!-- page script -->
 <script>
-$(function () {
-  $('#example1').DataTable({
-    'paging'      : true,
-    'lengthChange': true,
-    'searching'   : true,
-    'ordering'    : true,
-    'info'        : true,
-    'lengthMenu': [5, 10, 20],
-    'autoWidth'   : false
-  });
-  $('#example2').DataTable({
-    'paging'      : true,
-    'lengthChange': true,
-    'searching'   : false,
-    'ordering'    : true,
-    'info'        : true,
-    'autoWidth'   : false
-  })
-})
+
+</script>
+<script> CKEDITOR.replace( 'editor1', {
+   filebrowserBrowseUrl: '{{ asset('ckfinder/ckfinder.html') }}',
+   filebrowserImageBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Images') }}',
+   filebrowserFlashBrowseUrl: '{{ asset('ckfinder/ckfinder.html?type=Flash') }}',
+   filebrowserUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') }}',
+   filebrowserImageUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images') }}',
+   filebrowserFlashUploadUrl: '{{ asset('ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash') }}',
+   entities: false
+} );
+</script>
+<script type="text/javascript">
+/** add active class and stay opened when selected */
+var url = window.location;
+// for sidebar menu but not for treeview submenu
+$('ul.sidebar-menu a').filter(function() {
+    return this.href == url;
+}).parent().siblings().removeClass('active').end().addClass('active');
+// for treeview which is like a submenu
+$('ul.treeview-menu a').filter(function() {
+    return this.href == url;
+}).parentsUntil(".sidebar-menu > .treeview-menu").siblings().removeClass('active menu-open').end().addClass('active menu-open');
 </script>
 </body>
 </html>

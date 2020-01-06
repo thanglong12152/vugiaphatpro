@@ -11,6 +11,10 @@ use App\Product;
 use App\ProductType;
 use App\TradeMark;
 use App\XuatXu;
+use App\KichThuoc;
+use App\ProductType_Child;
+use App\featureProduct;
+use App\feature_Product;
 use DB;
 class ProductController extends Controller
 {
@@ -21,22 +25,31 @@ class ProductController extends Controller
         ->join('tb_sub_categories','tb_san_pham.id_loai_sp_con','=','tb_sub_categories.id')
         ->join('tb_xuat_xu','tb_san_pham.id_xuat_xu','=','tb_xuat_xu.id_xuat_xu')
         ->get();
-  
-        $product = json_decode(json_encode($data));
         
+        $product = json_decode(json_encode($data));
+        $productType = ProductType::all();
+        $productType_Child = ProductType_Child::all();
+        $trademark = TradeMark::all();
+        $size = KichThuoc::all();
         //echo "<pre>"; print_r($data); die;
-        return view('admin/product/all')->with(compact('product'));
+        return view('admin/product/all')->with(compact('product','productType','size','productType_Child','trademark'));
     }
 
     public function add(Request $request){
         $madeby = XuatXu::all();
+        $product = Product::all();
+        $prod_data = DB::table('tb_san_pham')->orderBy('id_san_pham','desc')->first();
         $trademarkAll = TradeMark::all();
         $productType = ProductType::all();
+        $productType_Child = ProductType_Child::all();
+        $featureProduct = featureProduct::all();
         if ($request->isMethod('post')) {
             
             $data = $request->all();
-            //echo "<pre>"; print_r($data);
+             //dd($request->feature);
+            //echo "<pre>"; print_r($prod_data);
             //die;
+            
             $product = new Product;
             $product->ten_sp = $data['name_prod'];
             $product->id_loai_san_pham = $data['productType'];
@@ -87,16 +100,41 @@ class ProductController extends Controller
                     $product->anh_sp=$filename;
                 }
             }
+            if($data['mo_ta'] === ''){
+                $product->mo_ta = '';
+            }else{
+               
+                $res = html_entity_decode($data['mo_ta']);
+                $product->mo_ta = $res;
+            }
             
             $product->save();
+            foreach($request->feature as $key ){
+               
+                $table = new feature_Product;
+                $table->id_tinh_nang = $key;
+                $table->id_san_pham= $prod_data->id_san_pham + 1;
+
+                $table->save();
+            }
             return redirect('admin/product/all')->with('flash_message_success','Thêm sản phẩm thành công');
         }
-        return view('admin/product/add',compact('productType','trademarkAll','madeby'));
+        return view('admin/product/add',compact('productType','trademarkAll','madeby','featureProduct','prod_data'));
     }
 
     public function edit(Request $request, $id=null){
-        $productType = ProductType::all();
+        $product = Product::all();
+        // $id = Product::where(['id_san_pham'=>$id])->first();
+        $productDetails = DB::table('tb_san_pham')->join('tb_loai_san_pham','tb_san_pham.id_loai_san_pham', '=','tb_loai_san_pham.id_loai_san_pham')->where(['id_san_pham'=>$id])->first();
+        $productType = productType::all();
+        $prod_data = DB::table('tb_san_pham')
+        ->join('tb_tinhnang_sanpham', function($join){
+            $join->on('tb_san_pham.id_san_pham', '=','tb_tinhnang_sanpham.id_san_pham');
+        })->where(['tb_san_pham.id_san_pham'=>$id])->get();
+        //echo "<pre>"; print_r($prod_data);
         $trademarkAll = TradeMark::all();
+        $featureProduct = featureProduct::all();
+        $productType_Child = ProductType_Child::all();
         if ($request->isMethod('post')) {
             $data = $request->all();
             //echo "<pre>"; print_r($data); die;
@@ -117,24 +155,43 @@ class ProductController extends Controller
                 }
             }else{
                 $filename = $data['current_image'];
-                //echo "<pre>"; print_r($filename); die()
+                
+            }
+            if(empty($data['cong_suat_may'])){
+                $cong_suat_may = '';
             }
             $dt = array(
                 'ten_sp' => $data['name_prod'],
                 'id_loai_san_pham' => $data['loai_sp'],
                 'ma_sp' => $data['ma_sp'],
                 'id_thuong_hieu' => $data['thuong_hieu'],
-                'anh_sp' => $filename
+                'anh_sp' => $filename,
+                'mo_ta'=> $data['mo_ta'],
+                'cong_suat_may' => $cong_suat_may,
+                'kich_thuoc_sp' => $data['kich_thuoc'],
+                'id_loai_sp_con' =>$data['productType_Child']
             );
+            //echo "<pre>"; print_r($dt); die();
             Product::where(['id_san_pham'=>$id])->update($dt);
+            
+            foreach($request->feature as $key ){
+
+                $table = new feature_Product;
+                $table->id_tinh_nang = $key;
+                $table->id_san_pham= $productDetails->id_san_pham ;
+
+                $table->save();
+                feature_Product::where(['id_san_pham'=>$id])->delete($dt);
+            }
+
             return redirect()->back()->with('flash_message_success','Sửa sản phẩm thành công');
         }
 
         //$productDetails = Product::where(['id_san_pham'=>$id])->first();
         $trademark = DB::table('tb_san_pham')->join('tb_thuong_hieu','tb_san_pham.id_thuong_hieu', '=','tb_thuong_hieu.id')->where(['id_san_pham'=>$id])->first();
-        $productDetails = DB::table('tb_san_pham')->join('tb_loai_san_pham','tb_san_pham.id_loai_san_pham', '=','tb_loai_san_pham.id_loai_san_pham')->where(['id_san_pham'=>$id])->first();
+        
         //echo "<pre>"; print_r($data);
-        return view('admin/product/edit')->with(compact('productDetails','productType','trademark','trademarkAll'));
+        return view('admin/product/edit')->with(compact('productDetails','productType','trademark','trademarkAll','productType_Child','prod_data','featureProduct'));
     }
 
     public function delete($id=null){

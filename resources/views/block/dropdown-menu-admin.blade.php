@@ -9,7 +9,10 @@
       <!-- Bootstrap 3.3.7 -->
       <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
       <!-- Font Awesome -->
-      <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
+      {{-- <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
+      <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/fontawesome.css')}}">
+      <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/brands.css')}}">
+      <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/solid.css')}}"> --}}
       <!-- Ionicons -->
       <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
       <!-- Theme style -->
@@ -30,7 +33,7 @@
       <!-- bootstrap wysihtml5 - text editor -->
       <link rel="stylesheet" href="{{asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
       <link rel="stylesheet" href="{{asset('css/sweetalert.css')}}">
-     
+      <script src="https://kit.fontawesome.com/7528d021f1.js" crossorigin="anonymous"></script>
       
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -320,7 +323,7 @@
                   </div>
                   <div class="pull-left info">
                      <p>Alexander Pierce</p>
-                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                     <a href="#"><i class="far fa-circle text-success"></i> Online</a>
                   </div>
                </div>
                <!-- search form -->
@@ -338,10 +341,12 @@
                <ul class="sidebar-menu" data-widget="tree">
                      <li class="header">MAIN NAVIGATION</li>
                            <li class="">
-                           <a href="{{asset('admin')}}">
-                              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                              </span>
+                              <a href="/admin">
+                              <i class="fa fa-tachometer-alt"></i>
+                              
+                              <span>Trang chủ</span>
                               </a>
+                             
                            </li>
                            <li class="treeview">
                                  <a href="">
@@ -352,10 +357,10 @@
                                  <span>Sản phẩm</span>
                                  </a>
                                  <ul class="treeview-menu">
-                                    <li><a href="{{asset('admin/product/all')}}"><i class="fa fa-circle-o"></i>Xem danh sách</a></li>
-                                    <li><a href="{{asset('admin/product/add')}}"><i class="fa fa-circle-o"></i>Thêm sản phẩm</a></li>
-                                    <li><a href="{{asset('admin/productType/all')}}"><i class="fa fa-circle-o"></i>Danh sách loại sản phẩm</a></li>
-                                    <li><a href="{{asset('admin/productType/add')}}"><i class="fa fa-circle-o"></i>Thêm loại sản phẩm</a></li>
+                                    <li><a href="{{asset('admin/product/all')}}"><i class="far fa-circle"></i>Xem danh sách</a></li>
+                                    <li><a href="{{asset('admin/product/add')}}"><i class="far fa-circle"></i>Thêm sản phẩm</a></li>
+                                    <li><a href="{{asset('admin/productType/all')}}"><i class="far fa-circle"></i>Danh sách loại sản phẩm</a></li>
+                                    <li><a href="{{asset('admin/productType/add')}}"><i class="far fa-circle"></i>Thêm loại sản phẩm</a></li>
                                  </ul>
                               </li>
                               <li class="treeview">
@@ -367,22 +372,38 @@
                                  <span>Thương hiệu</span>
                                  </a>
                                  <ul class="treeview-menu">
-                                    <li><a href="{{asset('admin/trademark/all')}}"><i class="fa fa-circle-o"></i>Xem danh sách</a></li>
-                                    <li><a href="{{asset('admin/trademark/add')}}"><i class="fa fa-circle-o"></i>Thêm thương hiệu</a></li>
+                                    <li><a href="{{asset('admin/trademark/all')}}"><i class="far fa-circle"></i>Xem danh sách</a></li>
+                                    <li><a href="{{asset('admin/trademark/add')}}"><i class="far fa-circle"></i>Thêm thương hiệu</a></li>
                                     
                                  </ul>
                               </li>
-                           <li class="">
-                              <a href="{{asset('admin/settings')}}">
-                              <i class="fa fa-cogs"></i>
-                              <span>Cài đặt</span>
-                              </a>
-                           </li>
+                              <li class="treeview">
+                                 <a href="">
+                                    <i class="fa fa-hockey-puck"></i>
+                                 <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                 </span>
+                                 <span>Tính năng sản phẩm</span>
+                                 </a>
+                                 <ul class="treeview-menu">
+                                    <li><a href="{{asset('admin/feature/all')}}"><i class="far fa-circle"></i>Xem danh sách</a></li>
+                                    <li><a href="{{asset('admin/feature/add')}}"><i class="far fa-circle"></i>Thêm tính năng</a></li>
+                                    
+                                 </ul>
+                              </li>
+                              <li class="">
+                                 <a href="/admin/settings">
+                                 <i class="fa fa-cogs"></i>
+                                 
+                                 <span>Cài đặt</span>
+                                 </a>
+                                
+                              </li>
                            <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
                            <li class="header">LABELS</li>
-                           <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-                           <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-                           <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+                           <li><a href="#"><i class="far fa-circle text-red"></i> <span>Important</span></a></li>
+                           <li><a href="#"><i class="far fa-circle text-yellow"></i> <span>Warning</span></a></li>
+                           <li><a href="#"><i class="far fa-circle text-aqua"></i> <span>Information</span></a></li>
                         </ul>
                   </li>
                   

@@ -7,7 +7,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('check-password','AdminController@checkPass');
     Route::get('/product/check-product','AdminController@checkProduct');
     Route::match(['get','post'],'/update-pwd','AdminController@updatePass');
-
+    
     //Product Route
     Route::match(['get','post'],'product/add','ProductController@add');
     Route::get('/product/all','ProductController@all');
@@ -17,7 +17,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/product/search','ProductController@search');
     //ProductType Route
     Route::get('/productType/all','ProductTypeController@all');
-    Route::get('/productType/filter','ProductTypeController@filter');
+    // Route::get('/productType/filter','ProductTypeController@filter');
     Route::match(['get','post'],'productType/add','ProductTypeController@add');
     Route::match(['get','post'],'productType/delete/{id}','ProductTypeController@delete');
     Route::match(['get','post'],'productType/edit/{id}','ProductTypeController@edit');
@@ -27,6 +27,12 @@ Route::group(['middleware' => ['auth']], function(){
     Route::match(['get','post'],'trademark/add','TradeMarkController@add');
     Route::match(['get','post'],'trademark/delete/{id}','TradeMarkController@delete');
     Route::match(['get','post'],'trademark/edit/{id}','TradeMarkController@edit');
+
+    //Feature product
+    Route::get('/feature/all','featureProductController@all');
+    Route::match(['get','post'],'feature/add','featureProductController@add');
+    Route::match(['get','post'],'feature/delete/{id}','featureProductController@delete');
+    Route::match(['get','post'],'feature/edit/{id}','featureProductController@edit');
 });
 
 Route::match(['get','post'],'/login','AdminController@login');

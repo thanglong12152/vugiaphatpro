@@ -38,13 +38,7 @@
                   <div class="active tab-pane" id="settings">
                      <form class="form-horizontal" method="post" action="{{asset('admin/productType/add')}}">
                         {{csrf_field()}}
-                        <div class="form-group">
-                           <label for="inputName" class="col-sm-2 control-label">Tên loại sản phẩm</label>
-                           <div class="col-sm-5">
-                              <input type="text" class="form-control" name="ten_loai_san_pham" id="loai_san_pham" placeholder="Tên loại sản phẩm" required>
-                              
-                           </div>
-                        </div>
+                        
                         <div class="form-group">
                            <label for="inputName" class="col-sm-2 control-label">Loại sản phẩm</label>
                            <div class="col-sm-5">
@@ -58,13 +52,20 @@
                            </div>
                         </div>
                         <div class="form-group">
+                           <label for="inputName" class="col-sm-2 control-label">Tên loại sản phẩm</label>
+                           <div class="col-sm-5">
+                              <input type="text" class="form-control" name="ten_loai_san_pham" id="loai_san_pham" placeholder="Tên loại sản phẩm" required>
+                                 
+                           </div>
+                        </div>
+                        {{-- <div class="form-group">
                            <label for="inputName" class="col-sm-2 control-label">Chủng loại sản phẩm</label>
                            <div class="col-sm-5">
                               <select name="productType_Child" id="productType_Child" class="form-control">
                                  
                               </select>
                            </div>
-                        </div>
+                        </div> --}}
                         {{-- 
                         <div class="form-group">
                            <label for="inputEmail" class="col-sm-2 control-label">Loại sản phẩm</label>

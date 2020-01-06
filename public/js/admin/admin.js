@@ -145,43 +145,43 @@ $(document).on("change","#productType",function(){
   });
 });
 
-$(document).on("change","#productType_s",function(){
-  var productType_s = $("#productType_s").val();
-  $.ajax({
-    type:'get',
-    url:'filter',
-    data:{productType_s:productType_s},
-    success: function (resp){
-      //alert(resp);
+// $(document).on("change","#productType_s",function(){
+//   var productType_s = $("#productType_s").val();
+//   $.ajax({
+//     type:'get',
+//     url:'filter',
+//     data:{productType_s:productType_s},
+//     success: function (resp){
+//       //alert(resp);
      
-      $('#productType_Child').replaceWith(resp);
+//       $('#productType_Child').replaceWith(resp);
       
 
-    },
-    error:function(){
-      alert('Error');
-    }
-  });
-});
+//     },
+//     error:function(){
+//       alert('Error');
+//     }
+//   });
+// });
 
-$(document).on("change","#productType",function(){
-  var productType_s = $("#productType").val();
-  $.ajax({
-    type:'get',
-    url:'filter',
-    data:{productType_s:productType_s},
-    success: function (resp){
-      //alert(resp);
+ $(document).on("change","#productType",function(){
+   var productType_s = $("#productType").val();
+   $.ajax({
+     type:'get',
+     url:'filter',
+     data:{productType_s:productType_s},
+     success: function (resp){
+       //alert(resp);
      
-      $('#productType_Child').replaceWith(resp);
+       $('#productType_Child').replaceWith(resp);
       
 
-    },
-    error:function(){
-      alert('Error');
-    }
-  });
-});
+     },
+     error:function(){
+       alert('Error');
+     }
+   });
+ });
 
 
 
@@ -208,3 +208,77 @@ $(document).on("change","#productType",function(){
         }
       });
 });
+
+
+//////////////////////////////FILTER DATATABLE//////////////////////////
+$(function () {
+
+  function filterGlobal () {
+  $('#example1').DataTable().search().draw();
+  }
+  
+  function filterColumn ( i ) {
+     $('#example1').DataTable().column( i ).search(
+        $('#col'+i+'_filter').val()
+     ).draw();
+  }
+  $(document).ready(function () {
+     $('#example1').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'lengthMenu': [5, 10, 20],
+      'autoWidth'   : false
+      
+    });
+  
+  
+    $('input.column_filter_1').on('keyup click', function () {
+      filterColumn($(this).parents('div').attr('data-column'));
+     });
+     $('input.column_filter_2').on('keyup click', function () {
+      filterColumn($(this).parents('div').attr('data-column'));
+    });
+    $('input.column_filter_3').on('keyup click', function () {
+      filterColumn($(this).parents('div').attr('data-column'));
+    });
+    $('input.column_filter_4').on('keyup click', function () {
+      filterColumn($(this).parents('div').attr('data-column'));
+    });
+    $('input.column_filter_5').on('keyup click', function () {
+      filterColumn($(this).parents('div').attr('data-column'));
+    });
+    $('input.column_filter_6').on('keyup click', function () {
+      filterColumn($(this).parents('div').attr('data-column'));
+    });
+  });
+  $('select.column_filter_1').on('change', function () {
+    filterColumn($(this).parents('div').attr('data-column'));
+  });
+  $('select.column_filter_2').on('change', function () {
+    filterColumn($(this).parents('div').attr('data-column'));
+  });
+  $('select.column_filter_3').on('change', function () {
+    filterColumn($(this).parents('div').attr('data-column'));
+  });
+  $('select.column_filter_4').on('change', function () {
+    filterColumn($(this).parents('div').attr('data-column'));
+  });
+  $('select.column_filter_5').on('change', function () {
+    filterColumn($(this).parents('div').attr('data-column'));
+  });
+  $('input.column_filter_6').on('keyup click', function () {
+    filterColumn($(this).parents('div').attr('data-column'));
+  });
+
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': true,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
