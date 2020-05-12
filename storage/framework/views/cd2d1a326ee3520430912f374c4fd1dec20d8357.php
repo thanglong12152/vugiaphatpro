@@ -85,17 +85,28 @@
                         <div class="form-group tinh_nang">
                            <label for="inputEmail" class="col-sm-2 control-label">Tính năng</label>
                            <div class="col-sm-5">
-                              <?php $__currentLoopData = $featureProduct; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                 <input type="checkbox" name="feature[]" id="tinh_nang" value="<?php echo e($data->id_tinh_nang); ?>" 
-                                 <?php $__currentLoopData = $prod_data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prod): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if($prod->id_tinh_nang === $data->id_tinh_nang): ?> 
-                                       checked
-                                    <?php endif; ?>
-                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                 >
-                                 
-                                 <?php echo e($data->ten_tinh_nang); ?> 
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              <?php
+                              foreach($featureProduct as $prod){
+                                 //dd($prod);
+                                 $check= " ";
+                                  foreach($prod_data as $key){
+                                     $string = $key->tinh_nang;
+                                    $data = explode(',',$string);
+                                    //dd($data);
+                                    for($i=0;$i<count(explode(',',$string));$i++){
+                                       
+                                       if($prod->ten_tinh_nang === $data[$i]){
+                                          $check = "checked";
+                                       
+                                          // echo '<input type="checkbox" name="feature[]" id="tinh_nang" value="'.$data[$i].'" '.$check.'>'.$data[$i].'';
+                                       }
+                                       
+                                    }
+                                  }
+                                  echo '<input type="checkbox" name="feature[]" id="tinh_nang" value="'.$prod->ten_tinh_nang.'" '.$check.'>'.$prod->ten_tinh_nang.'';
+                                 }
+                             ?>
+                            
                            </div>
                         </div>
                         <div class="form-group">

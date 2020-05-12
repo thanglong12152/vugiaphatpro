@@ -16,6 +16,7 @@ class CreateTbMucGia extends Migration
         Schema::create('tb_muc_gia', function (Blueprint $table) {
             $table->bigIncrements('id_muc_gia');
             $table->string('muc_gia');
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

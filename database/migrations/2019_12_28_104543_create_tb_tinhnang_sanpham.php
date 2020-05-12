@@ -16,9 +16,9 @@ class CreateTbTinhnangSanpham extends Migration
         Schema::create('tb_tinhnang_sanpham', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_san_pham');
-            $table->unsignedBigInteger('id_tinh_nang');
+            $table->longText('tinh_nang');
             $table->foreign('id_san_pham')->references('id_san_pham')->on('tb_san_pham');
-            $table->foreign('id_tinh_nang')->references('id_tinh_nang')->on('tb_tinh_nang');
+         
             $table->timestamps();
         });
     }

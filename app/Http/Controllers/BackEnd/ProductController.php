@@ -47,7 +47,7 @@ class ProductController extends Controller
             
             $data = $request->all();
              //dd($request->feature);
-            //echo "<pre>"; print_r($prod_data);
+            echo "<pre>"; print_r($prod_data);
             //die;
             
             $product = new Product;
@@ -109,14 +109,21 @@ class ProductController extends Controller
             }
             
             $product->save();
-            foreach($request->feature as $key ){
-               
-                $table = new feature_Product;
-                $table->id_tinh_nang = $key;
-                $table->id_san_pham= $prod_data->id_san_pham + 1;
 
-                $table->save();
+            $table = new feature_Product;
+            $table->tinh_nang = implode(',',$request->feature);
+            if(empty($prod_data->id_san_pham)){
+                $table->id_san_pham = 1;
+            }else{
+                $table->id_san_pham = $prod_data->id_san_pham + 1;
             }
+
+            $table->save(); 
+              
+                    
+                    
+             
+            
             return redirect('admin/product/all')->with('flash_message_success','Thêm sản phẩm thành công');
         }
         return view('admin/product/add',compact('productType','trademarkAll','madeby','featureProduct','prod_data'));
@@ -131,10 +138,12 @@ class ProductController extends Controller
         ->join('tb_tinhnang_sanpham', function($join){
             $join->on('tb_san_pham.id_san_pham', '=','tb_tinhnang_sanpham.id_san_pham');
         })->where(['tb_san_pham.id_san_pham'=>$id])->get();
+        
         //echo "<pre>"; print_r($prod_data);
         $trademarkAll = TradeMark::all();
         $featureProduct = featureProduct::all();
         $productType_Child = ProductType_Child::all();
+        $feature_Product =  feature_Product::all();
         if ($request->isMethod('post')) {
             $data = $request->all();
             //echo "<pre>"; print_r($data); die;
@@ -174,15 +183,14 @@ class ProductController extends Controller
             //echo "<pre>"; print_r($dt); die();
             Product::where(['id_san_pham'=>$id])->update($dt);
             
-            foreach($request->feature as $key ){
+            
+             $feature = array(
+                 'tinh_nang' =>implode(',',$request->feature),
+                 'id_san_pham'=> $id
+             );
 
-                $table = new feature_Product;
-                $table->id_tinh_nang = $key;
-                $table->id_san_pham= $productDetails->id_san_pham ;
 
-                $table->save();
-                feature_Product::where(['id_san_pham'=>$id])->delete($dt);
-            }
+             feature_Product::where(['id_san_pham'=>$id])->update($feature);
 
             return redirect()->back()->with('flash_message_success','Sửa sản phẩm thành công');
         }

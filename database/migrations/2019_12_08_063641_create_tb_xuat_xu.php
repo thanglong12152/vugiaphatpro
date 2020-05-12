@@ -16,6 +16,7 @@ class CreateTbXuatXu extends Migration
         Schema::create('tb_xuat_xu', function (Blueprint $table) {
             $table->bigIncrements('id_xuat_xu');
             $table->string('xuat_xu');
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

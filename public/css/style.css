@@ -2476,6 +2476,11 @@ element.style {
     padding-bottom: 15px;
     margin-bottom: 15px;
 }
+.pagination {
+    text-align: center;
+    padding: 13px;
+    background: #fff;
+}
 /* .pagination {
     display: block;
     clear: both;
@@ -2507,7 +2512,7 @@ element.style {
     color: #FFFFFF;
     -webkit-transition: 0.15s ease-in-out all;
     transition: 0.15s ease-in-out all;
-} */
+} 
 
 .main_wrapper .right-col .block {
     margin-bottom: 20px;
@@ -2871,6 +2876,9 @@ i {
     top:44px;
     padding-top: 4px;
     left:-9px;
+}
+.filters_in_field_1_column {
+    width: 200px;
 }
 .block_products_filter .field_item:after {
     border-left: 4px solid transparent;

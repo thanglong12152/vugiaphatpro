@@ -279,7 +279,8 @@
  </footer>
  </body>
 <script src="<?php echo e(asset('js/index.js')); ?>"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="<?php echo e(asset('js/jquery.js')); ?>"></script>
 <script src="<?php echo e(asset('js/jquery-migrate-1.2.1.min.js')); ?>"></script>
 <script src="<?php echo e(asset('js/owl.carousel.min.js')); ?>"></script>
 <script src="<?php echo e(asset('js/slick.min.js')); ?>"></script>

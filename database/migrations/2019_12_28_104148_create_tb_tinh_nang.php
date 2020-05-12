@@ -17,6 +17,7 @@ class CreateTbTinhNang extends Migration
             $table->bigIncrements('id_tinh_nang');
             $table->string('ten_tinh_nang')->nullable();
             $table->unsignedBigInteger('id_loai_sp');
+            $table->string('slug')->nullable();
             $table->foreign('id_loai_sp')->references('id_loai_san_pham')->on('tb_loai_san_pham');
             
             $table->timestamps();

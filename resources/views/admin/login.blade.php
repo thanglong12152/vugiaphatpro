@@ -72,17 +72,11 @@
       </div>
     </form>
 
-    <div class="social-auth-links text-center">
-      <p>- HOẶC -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Đăng ký bằng
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Đăng ký bằng
-        Google+</a>
-    </div>
+
     <!-- /.social-auth-links -->
 
     <a href="#">Quên mật khẩu?</a><br>
-    <a href="register.html" class="text-center">Đăng ký tài khoản</a>
+
 
   </div>
   <!-- /.login-box-body -->

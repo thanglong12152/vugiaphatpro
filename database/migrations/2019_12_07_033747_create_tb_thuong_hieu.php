@@ -16,6 +16,7 @@ class CreateTbThuongHieu extends Migration
         Schema::create('tb_thuong_hieu', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ten_thuong_hieu');
+            $table->string('slug')->nullable();
             $table->timestamps();
             
         });

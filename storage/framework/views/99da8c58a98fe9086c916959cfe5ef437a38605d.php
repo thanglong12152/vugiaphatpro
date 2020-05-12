@@ -435,7 +435,7 @@
                                <div class="price_current"><?php echo e(number_format($data->sale_price,0,".",".")); ?>₫</div>
                                <div class="price_old"><span><?php echo e(number_format($data->gia_goc,0,".",".")); ?>₫</span></div>
                             </div>
-                            
+                             <div class="origin">Xuất xứ: <?php echo e($data->xuat_xu); ?></div> 
                             <div class="size">Kích thước: <?php echo e($data->kich_thuoc_sp); ?></div>
                          </div>
                       </div>
@@ -508,7 +508,7 @@
                                  <div class="price_current"><?php echo e(number_format($data->sale_price,0,".",".")); ?>₫</div>
                                  <div class="price_old"><span><?php echo e(number_format($data->gia_goc,0,".",".")); ?>₫</span></div>
                               </div>
-                              
+                               <div class="origin">Xuất xứ: <?php echo e($data->xuat_xu); ?></div> 
                               <div class="size">Kích thước: <?php echo e($data->kich_thuoc_sp); ?></div>
                            </div>
                         </div>
@@ -567,7 +567,7 @@
                                <div class="price_current"><?php echo e(number_format($data->sale_price,0,".",".")); ?>₫</div>
                                <div class="price_old"><span><?php echo e(number_format($data->gia_goc,0,".",".")); ?>₫</span></div>
                             </div>
-                            
+                            <div class="origin">Xuất xứ: <?php echo e($data->xuat_xu); ?></div> 
                             <div class="size">Kích thước: <?php echo e($data->kich_thuoc_sp); ?></div>
                          </div>
                       </div>
@@ -616,7 +616,7 @@
                                <div class="price_current"><?php echo e(number_format($data->sale_price,0,".",".")); ?>₫</div>
                                <div class="price_old"><span><?php echo e(number_format($data->gia_goc,0,".",".")); ?>₫</span></div>
                             </div>
-                            
+                             <div class="origin">Xuất xứ: <?php echo e($data->xuat_xu); ?></div>
                             <div class="size">Kích thước: <?php echo e($data->kich_thuoc_sp); ?></div>
                          </div>
                       </div>

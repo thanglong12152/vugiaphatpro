@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\BackEnd;
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['login']], function(){
     Route::get('/', 'AdminController@index');
     Route::get('settings','AdminController@settings');
     Route::get('check-password','AdminController@checkPass');

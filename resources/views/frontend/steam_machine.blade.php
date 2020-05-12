@@ -39,22 +39,7 @@
                         <div class="filter_inner mypopup">
                            <div class="block_products_filter">
                               <div class="block_product_filter">
-                                 <div class="field_area field_item" id="m-tinh_nang">
-                                    <div class="field_name normal field field_opened " data-id="id_field_tinh_nang">Tính Năng</div>
-                                    <div id="tinh_nang" class="field_label filters_in_field filters_in_field_0_column filter_4_tinh_nang">
-                                       <div class="filters_in_field_inner cls">
-                                          <span class="close">
-                                             <svg height="10px" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
-                                                <g>
-                                                   <path fill="#4e4b4b" d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59 c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59 c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0 L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"></path>
-                                                </g>
-                                             </svg>
-                                          </span>
-                                          <div class="cls item"><a href="#" title="Có Massage"><i class="icon_v1 "></i>Có Massage</a></div>
-                                          <div class="cls item"><a href="#" title="Sục Khí Kèm Massage"><i class="icon_v1 "></i>Sục Khí Kèm Massage</a></div>
-                                       </div>
-                                    </div>
-                                 </div>
+                                 
                                  <div class="field_area field_item" id="m-manufactory">
                                     <div class="field_name normal field field_opened " data-id="id_field_manufactory">Hãng sản xuất</div>
                                     <div id="manufactory" class="field_label filters_in_field filters_in_field_1_column filter_4_manufactory">
@@ -66,14 +51,45 @@
                                                 </g>
                                              </svg>
                                           </span>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-bon-tam-amazon.html" title="Amazon"><i class="icon_v1 "></i>Amazon</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-bon-tam-euroca.html" title="Euroca"><i class="icon_v1 "></i>Euroca</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-bon-tam-nofer.html" title="Nofer"><i class="icon_v1 "></i>Nofer</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-bon-tam-appollo.html" title="Appollo"><i class="icon_v1 "></i>Appollo</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-bon-tam-euroking.html" title="Euroking"><i class="icon_v1 "></i>Euroking</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-bon-tam-kawa.html" title="Kawa"><i class="icon_v1 "></i>Kawa</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-bon-tam-milano.html" title="Milano"><i class="icon_v1 "></i>Milano</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-bon-tam-fulisi.html" title="Trẻ em"><i class="icon_v1 "></i>Trẻ em</a></div>
+                                          @php
+                                             foreach($thuong_hieu as $data){
+                                                $activated = '';
+                                                $comma ='';
+                                                if(empty($feature)){
+                                                   $feature ='';
+                                                   
+                                                }else{
+                                                   $comma = ',';
+                                                   
+                                                   for ($i = 0; $i < count($datasp) ;$i++){
+                                                      if($data->slug === $datasp[$i]){
+                                                         $activated = 'activated';
+                                                         
+                                                         $array = array(
+                                                            'data' => $data->slug
+                                                         );
+                                                         $array2 = array(
+                                                            'data' => $datasp[$i]
+                                                         );
+                                                         $array3 = array_diff($datasp,$array);
+                                                         $array4 = implode(',',$array3);
+                                                      }
+                                                      
+                                                   }
+                                                   //unset($datasp[$place]);
+                                                }
+                                                
+                                                if($activated === 'activated'){
+                                                   if(empty($array4)){
+                                                      echo '<div class="'.$activated.' cls item"><a href="/'.$namespace.'" title="'.$data->ten_thuong_hieu.'"><i class="icon_v1 "></i>'.$data->ten_thuong_hieu.'</a></div>';
+                                                   }else{
+                                                      echo '<div class="'.$activated.' cls item"><a href="/'.$namespace.'/?feature='.$array4.'" title="'.$data->ten_thuong_hieu.'"><i class="icon_v1 "></i>'.$data->ten_thuong_hieu.'</a></div>';
+                                                   }
+                                                }else{
+                                                   echo '<div class="'.$activated.' cls item"><a href="/'.$namespace.'/?feature='.$feature.''.$comma.''.$data->slug.'" title="'.$data->ten_thuong_hieu.'"><i class="icon_v1 "></i>'.$data->ten_thuong_hieu.'</a></div>';
+                                                }
+                                             }
+                                          @endphp
                                        </div>
                                     </div>
                                  </div>
@@ -88,13 +104,45 @@
                                                 </g>
                                              </svg>
                                           </span>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-duoi-5-trieu.html" title="Dưới 5 triệu"><i class="icon_v1 "></i>Dưới 5 triệu</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-tu-5-10-trieu.html" title="Từ 5 - 10 triệu"><i class="icon_v1 "></i>Từ 5 - 10 triệu</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-tu-10-15-trieu.html" title="Từ 10 - 15 triệu"><i class="icon_v1 "></i>Từ 10 - 15 triệu</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-tu-15-20-trieu.html" title="Từ 15 - 20 triệu"><i class="icon_v1 "></i>Từ 15 - 20 triệu</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-tu-20-30-trieu.html" title="Từ 20 - 30 Triệu"><i class="icon_v1 "></i>Từ 20 - 30 Triệu</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-tu-30-40-trieu.html" title="Từ 30 - 40 Triệu"><i class="icon_v1 "></i>Từ 30 - 40 Triệu</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-tren-40-trieu.html" title="Trên 40 Triệu"><i class="icon_v1 "></i>Trên 40 Triệu</a></div>
+                                          @php
+                                             foreach($muc_gia as $data){
+                                                $activated = '';
+                                                $comma ='';
+                                                if(empty($feature)){
+                                                   $feature ='';
+                                                   
+                                                }else{
+                                                   $comma = ',';
+                                                   
+                                                   for ($i = 0; $i < count($datasp) ;$i++){
+                                                      if($data->slug === $datasp[$i]){
+                                                         $activated = 'activated';
+                                                         
+                                                         $array = array(
+                                                            'data' => $data->slug
+                                                         );
+                                                         $array2 = array(
+                                                            'data' => $datasp[$i]
+                                                         );
+                                                         $array3 = array_diff($datasp,$array);
+                                                         $array4 = implode(',',$array3);
+                                                      }
+                                                      
+                                                   }
+                                                   //unset($datasp[$place]);
+                                                }
+                                                
+                                                if($activated === 'activated'){
+                                                   if(empty($array4)){
+                                                      echo '<div class="'.$activated.' cls item"><a href="/'.$namespace.'" title="'.$data->muc_gia.'"><i class="icon_v1 "></i>'.$data->muc_gia.'</a></div>';
+                                                   }else{
+                                                      echo '<div class="'.$activated.' cls item"><a href="/'.$namespace.'/?feature='.$array4.'" title="'.$data->muc_gia.'"><i class="icon_v1 "></i>'.$data->muc_gia.'</a></div>';
+                                                   }
+                                                }else{
+                                                   echo '<div class="'.$activated.' cls item"><a href="/'.$namespace.'/?feature='.$feature.''.$comma.''.$data->slug.'" title="'.$data->muc_gia.'"><i class="icon_v1 "></i>'.$data->muc_gia.'</a></div>';
+                                                }
+                                             }
+                                          @endphp
                                        </div>
                                     </div>
                                  </div>
@@ -109,38 +157,49 @@
                                                 </g>
                                              </svg>
                                           </span>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-viet-nam.html" title="Việt Nam"><i class="icon_v1 "></i>Việt Nam</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-han-quoc.html" title="Hàn Quốc"><i class="icon_v1 "></i>Hàn Quốc</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-trung-quoc.html" title="Trung Quốc"><i class="icon_v1 "></i>Trung Quốc</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-thai-lan.html" title="Thái Lan"><i class="icon_v1 "></i>Thái Lan</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-bon-tam-malaysia.html" title="Malaysia"><i class="icon_v1 "></i>Malaysia</a></div>
+                                          @php
+                                             foreach($xuat_xu as $data){
+                                                $activated = '';
+                                                $comma ='';
+                                                if(empty($feature)){
+                                                   $feature ='';
+                                                   
+                                                }else{
+                                                   $comma = ',';
+                                                   
+                                                   for ($i = 0; $i < count($datasp) ;$i++){
+                                                      if($data->slug === $datasp[$i]){
+                                                         $activated = 'activated';
+                                                         
+                                                         $array = array(
+                                                            'data' => $data->slug
+                                                         );
+                                                         $array2 = array(
+                                                            'data' => $datasp[$i]
+                                                         );
+                                                         $array3 = array_diff($datasp,$array);
+                                                         $array4 = implode(',',$array3);
+                                                      }
+                                                      
+                                                   }
+                                                   //unset($datasp[$place]);
+                                                }
+                                                
+                                                if($activated === 'activated'){
+                                                   if(empty($array4)){
+                                                      echo '<div class="'.$activated.' cls item"><a href="/'.$namespace.'" title="'.$data->xuat_xu.'"><i class="icon_v1 "></i>'.$data->xuat_xu.'</a></div>';
+                                                   }else{
+                                                      echo '<div class="'.$activated.' cls item"><a href="/'.$namespace.'/?feature='.$array4.'" title="'.$data->xuat_xu.'"><i class="icon_v1 "></i>'.$data->xuat_xu.'</a></div>';
+                                                   }
+                                                }else{
+                                                   echo '<div class="'.$activated.' cls item"><a href="/'.$namespace.'/?feature='.$feature.''.$comma.''.$data->slug.'" title="'.$data->xuat_xu.'"><i class="icon_v1 "></i>'.$data->xuat_xu.'</a></div>';
+                                                }
+                                             }
+                                          @endphp
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="field_area field_item" id="m-kich_thuoc">
-                                    <div class="field_name normal field field_opened " data-id="id_field_kich_thuoc">Kích thước</div>
-                                    <div id="kich_thuoc" class="field_label filters_in_field filters_in_field_2_column filter_4_kich_thuoc">
-                                       <div class="filters_in_field_inner cls">
-                                          <span class="close">
-                                             <svg height="10px" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
-                                                <g>
-                                                   <path fill="#4e4b4b" d="M28.941,31.786L0.613,60.114c-0.787,0.787-0.787,2.062,0,2.849c0.393,0.394,0.909,0.59,1.424,0.59 c0.516,0,1.031-0.196,1.424-0.59l28.541-28.541l28.541,28.541c0.394,0.394,0.909,0.59,1.424,0.59c0.515,0,1.031-0.196,1.424-0.59 c0.787-0.787,0.787-2.062,0-2.849L35.064,31.786L63.41,3.438c0.787-0.787,0.787-2.062,0-2.849c-0.787-0.786-2.062-0.786-2.848,0 L32.003,29.15L3.441,0.59c-0.787-0.786-2.061-0.786-2.848,0c-0.787,0.787-0.787,2.062,0,2.849L28.941,31.786z"></path>
-                                                </g>
-                                             </svg>
-                                          </span>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-1-met.html" title="1 Mét"><i class="icon_v1 "></i>1 Mét</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-90-cm.html" title="90 cm"><i class="icon_v1 "></i>90 cm</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-1-met-1.html" title="1 Mét 1"><i class="icon_v1 "></i>1 Mét 1</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-1-met-2.html" title="1 Mét 2"><i class="icon_v1 "></i>1 Mét 2</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-1-met-3.html" title="1 Mét 3"><i class="icon_v1 "></i>1 Mét 3</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-1-met-4.html" title="1 Mét 4"><i class="icon_v1 "></i>1 Mét 4</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-1-met-5.html" title="1 Mét 5"><i class="icon_v1 "></i>1 Mét 5</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-1-met-6.html" title="1 Mét 6"><i class="icon_v1 "></i>1 Mét 6</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-1-met-7.html" title="1 Mét 7"><i class="icon_v1 "></i>1 Mét 7</a></div>
-                                          <div class="cls item"><a href="https://vugiaphat.vn/bon-tam-pc2/loc-tren-1-met-7.html" title="Trên 1 Mét 7"><i class="icon_v1 "></i>Trên 1 Mét 7</a></div>
-                                       </div>
-                                    </div>
-                                 </div>
+                                
                               </div>
                            </div>
                         </div>
