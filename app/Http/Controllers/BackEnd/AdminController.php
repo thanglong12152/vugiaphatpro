@@ -22,23 +22,7 @@ class AdminController extends Controller
     }
 
     public function login(Request $request){
-        if ($request->isMethod('post')) {
-            $data = $request->input();
-            if (Auth::attempt(['admin'=>'1','email'=>$data['email'],'password'=>$data['password']])) {
-                // echo "Success";
-                // Session::put('adminSession',$data['email']);
-                return redirect('admin/');
-            }
-            else if (Auth::attempt(['admin'=>'0','email'=>$data['email'],'password'=>$data['password']])){
-                return redirect('home/');
-            }
-            else{
-                return redirect('admin/login')->with('flash_message_error','Invalid Username or Password');
-                //return view('admin/login');
-            }
-        }
         return view('admin/login');
-        
     }
 
     public function logout(){
@@ -51,6 +35,24 @@ class AdminController extends Controller
 
     public function settings(){
         return view('admin/settings');
+    }
+
+    public function checkLogin(Request $request){
+        if ($request->isMethod('post')) {
+            $data = $request->input();
+            if (Auth::attempt(['is_admin'=>'1','email'=>$data['email'],'password'=>$data['password']])) {
+                // echo "Success";
+                // Session::put('adminSession',$data['email']);
+                return redirect('admin/');
+            }
+            else if (Auth::attempt(['is_admin'=>'0','email'=>$data['email'],'password'=>$data['password']])){
+                return redirect('home/');
+            }
+            else{
+                return redirect('admin/login')->with('flash_message_error','Invalid Username or Password');
+                //return view('admin/login');
+            }
+        }
     }
 
     public function checkPass(Request $request){

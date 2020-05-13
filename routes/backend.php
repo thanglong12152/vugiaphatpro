@@ -35,7 +35,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::match(['get','post'],'feature/edit/{id}','featureProductController@edit');
 });
 
-Route::match(['get','post'],'/login','AdminController@login');
+Route::match(['get'],'/login','AdminController@login');
+Route::match(['get','post'],'/checkLogin','AdminController@checkLogin');
 
 Route::get('/logout','AdminController@logout');
 
