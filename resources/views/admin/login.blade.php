@@ -47,7 +47,7 @@
         <strong>{!! session('flash_message_logout') !!}</strong>
         </div>
     @endif
-    <form action="{{url('admin/login')}}" method="post">{{ csrf_field() }}
+    <form action="{{url('admin/checkLogin')}}" method="post">{{ csrf_field() }}
       <div class="form-group has-feedback">
         <input type="email" class="form-control" placeholder="Tên đăng nhập" name="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

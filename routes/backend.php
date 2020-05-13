@@ -36,6 +36,7 @@ Route::group(['middleware' => ['login']], function(){
 });
 
 Route::match(['get','post'],'/login','AdminController@login');
+Route::match(['get','post'],'/checkLogin','AdminController@checkLogin');
 
 Route::get('/logout','AdminController@logout');
 

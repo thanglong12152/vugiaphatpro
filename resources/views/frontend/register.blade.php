@@ -81,7 +81,7 @@
     </div>
     <!-- /.social-auth-links -->
 
-    <a href="register.html" class="text-center">Đăng nhập ---></a>
+    <a href="{{url('login')}}" class="text-center"><--------------Đăng nhập------------></a>
 
   </div>
   <!-- /.login-box-body -->

@@ -47,7 +47,7 @@
         <strong>{!! session('flash_message_logout') !!}</strong>
         </div>
     @endif
-    <form action="{{url('admin/login')}}" method="post">{{ csrf_field() }}
+    <form action="{{url('admin/checkLogin')}}" method="post">{{ csrf_field() }}
       <div class="form-group has-feedback">
         <input type="email" class="form-control" placeholder="Tên đăng nhập" name="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -82,7 +82,7 @@
     <!-- /.social-auth-links -->
 
     <a href="#">Quên mật khẩu?</a><br>
-    <a href="register.html" class="text-center">Đăng ký tài khoản</a>
+  <a href="{{url('register')}}" class="text-center">Đăng ký tài khoản</a>
 
   </div>
   <!-- /.login-box-body -->

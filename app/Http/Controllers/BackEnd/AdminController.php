@@ -12,16 +12,16 @@ class AdminController extends Controller
 {
     
     public function index(){
-        // if(Session::has('adminSession')){
-
-        // }
-        // else{
-        //     return redirect('admin/login')->with('flash_message_error','Please login to access');
-        // }
         return view('admin/index');
     }
 
     public function login(Request $request){
+        return view('admin/login');
+        
+    }
+
+    public function checkLogin(Request $request){
+
         if ($request->isMethod('post')) {
             $data = $request->input();
             if (Auth::attempt(['is_admin'=>'1','email'=>$data['email'],'password'=>$data['password']])) {
@@ -37,10 +37,7 @@ class AdminController extends Controller
                 //return view('admin/login');
             }
         }
-        return view('admin/login');
-        
     }
-
     public function logout(){
         Session::flush();
         return redirect('admin/login')->with('flash_message_logout','Logged out');
