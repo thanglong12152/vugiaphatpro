@@ -17,7 +17,6 @@ class AdminController extends Controller
 
     public function login(Request $request){
         return view('admin/login');
-        
     }
 
     public function checkLogin(Request $request){
@@ -37,6 +36,7 @@ class AdminController extends Controller
                 //return view('admin/login');
             }
         }
+
     }
     public function logout(){
         Session::flush();
@@ -49,6 +49,7 @@ class AdminController extends Controller
     public function settings(){
         return view('admin/settings');
     }
+
 
     public function checkPass(Request $request){
         $data = $request->all();
