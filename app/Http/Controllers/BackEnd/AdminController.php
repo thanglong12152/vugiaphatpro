@@ -8,66 +8,78 @@ use Auth;
 use Session;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+
 class AdminController extends Controller
 {
-    
-    public function index(){
+
+    public function index()
+    {
         return view('admin/index');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         return view('admin/login');
     }
 
-    public function checkLogin(Request $request){
+    public function checkLogin(Request $request)
+    {
 
         if ($request->isMethod('post')) {
             $data = $request->input();
-            if (Auth::attempt(['is_admin'=>'1','email'=>$data['email'],'password'=>$data['password']])) {
+            if (Auth::attempt(['is_admin' => '1', 'email' => $data['email'], 'password' => $data['password']])) {
                 // echo "Success";
                 // Session::put('adminSession',$data['email']);
+                $request->session()->put('login', true);
+                $request->session()->put('email', $data['email']);
+
                 return redirect('admin/');
-            }
-            else if (Auth::attempt(['is_admin'=>'2','email'=>$data['email'],'password'=>$data['password']])){
+            } else if (Auth::attempt(['is_admin' => '2', 'email' => $data['email'], 'password' => $data['password']])) {
+                $request->session()->put('login', true);
+                $request->session()->put('email', $data['email']);
                 return redirect('/');
-            }
-            else{
-                return redirect('admin/login')->with('flash_message_error','Invalid Username or Password');
+            } else {
+                return redirect('admin/login')->with('flash_message_error', 'Invalid Username or Password');
                 //return view('admin/login');
             }
         }
-
     }
-    public function logout(){
+    public function logout()
+    {
         Session::flush();
-        return redirect('admin/login')->with('flash_message_logout','Logged out');
+        return redirect('admin/login')->with('flash_message_logout', 'Logged out');
     }
-    public function forgot_password(){
+    public function forgot_password()
+    {
         return view('admin/forgot_password');
     }
 
-    public function settings(){
+    public function settings()
+    {
         return view('admin/settings');
     }
 
 
-    public function checkPass(Request $request){
+    public function checkPass(Request $request)
+    {
         $data = $request->all();
-         //echo "<pre>"; print_r($data);
-         $current_password = $data['current_pwd'];
-         $check_pass = User::where(['admin'=>'1'])->first();
-         if(Hash::check($current_password,$check_pass->password)){
-             echo "true"; die;
-         }
-         else{
-             echo "false"; die;
-         }
+        //echo "<pre>"; print_r($data);
+        $current_password = $data['current_pwd'];
+        $check_pass = User::where(['admin' => '1'])->first();
+        if (Hash::check($current_password, $check_pass->password)) {
+            echo "true";
+            die;
+        } else {
+            echo "false";
+            die;
+        }
     }
-    public function checkProduct(Request $request,$id=null){
+    public function checkProduct(Request $request, $id = null)
+    {
         $data = $request->all();
         //echo "<pre>"; print_r($data);
         $productType = $data['productType'];
-        switch($productType){
+        switch ($productType) {
             case '1':
                 echo "Bồn tắm";
                 break;
@@ -83,26 +95,23 @@ class AdminController extends Controller
             case '5':
                 echo "Thiết bị vệ sinh";
                 break;
-            
         }
     }
-    public function updatePass(Request $request){
+    public function updatePass(Request $request)
+    {
         if ($request->isMethod('post')) {
             $data = $request->all();
             // echo "<pre>"; print_r($data); die;
-            $check_pass = User::where(['email'=>Auth::user()->email])->first();
+            $check_pass = User::where(['email' => Auth::user()->email])->first();
             $current_password = $data['current_pwd'];
-            if(Hash::check($current_password, $check_pass->password)){
+            if (Hash::check($current_password, $check_pass->password)) {
                 // echo "true"; die;
                 $password = bcrypt($data['new_pwd']);
-                User::where(['id'=>'1'])->update(['password'=>$password]);
-                return redirect('admin/settings')->with('flash_message_success','Update Success');
-            }
-            else{
-                return redirect('admin/settings')->with('flash_message_error','Update Failed');
+                User::where(['id' => '1'])->update(['password' => $password]);
+                return redirect('admin/settings')->with('flash_message_success', 'Update Success');
+            } else {
+                return redirect('admin/settings')->with('flash_message_error', 'Update Failed');
             }
         }
     }
-
-   
 }

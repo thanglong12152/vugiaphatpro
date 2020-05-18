@@ -93,6 +93,7 @@ class ProductController extends Controller
                     $medium_image_path = 'image/product/medium/'.$filename;
                     $small_image_path = 'image/product/small/'.$filename;
                     //Resize image
+                    
                     Image::make($image_tmp)->save($large_image_path);
                     Image::make($image_tmp)->resize(600,600)->save($medium_image_path);
                     Image::make($image_tmp)->resize(300,300)->save($small_image_path);
