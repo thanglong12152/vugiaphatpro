@@ -77,7 +77,7 @@
                            <label for="inputEmail" class="col-sm-2 control-label">Tính năng</label>
                            <div class="col-sm-5">
                               <?php $__currentLoopData = $featureProduct; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                 <input type="checkbox" name="feature[]" id="tinh_nang" value="<?php echo e($data->ten_tinh_nang); ?>" ><?php echo e($data->ten_tinh_nang); ?> 
+                                 <input type="checkbox" name="feature[]" id="tinh_nang" value="<?php echo e($data->id_tinh_nang); ?>" ><?php echo e($data->ten_tinh_nang); ?> 
                               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                            </div>
                         </div>

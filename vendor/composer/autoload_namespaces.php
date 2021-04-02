@@ -6,8 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Sentry\\Laravel\\' => array($vendorDir . '/sentry/sentry-laravel/src'),
-    'Parsedown' => array($vendorDir . '/erusev/parsedown'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
-    'GeoJson\\' => array($vendorDir . '/jmikola/geojson/src'),
 );

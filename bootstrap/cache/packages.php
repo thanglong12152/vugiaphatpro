@@ -1,20 +1,13 @@
 <?php return array (
-  'beyondcode/laravel-dump-server' => 
+  'facade/ignition' => 
   array (
     'providers' => 
     array (
-      0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
-    ),
-  ),
-  'bschmitt/laravel-amqp' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Bschmitt\\Amqp\\AmqpServiceProvider',
+      0 => 'Facade\\Ignition\\IgnitionServiceProvider',
     ),
     'aliases' => 
     array (
-      'Amqp' => 'Bschmitt\\Amqp\\Facades\\Amqp',
+      'Flare' => 'Facade\\Ignition\\Facades\\Flare',
     ),
   ),
   'fideloper/proxy' => 
@@ -29,13 +22,6 @@
     'providers' => 
     array (
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
-    ),
-  ),
-  'grimzy/laravel-mysql-spatial' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Grimzy\\LaravelMysqlSpatial\\SpatialServiceProvider',
     ),
   ),
   'intervention/image' => 
@@ -56,17 +42,6 @@
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
-  'maatwebsite/excel' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
-    ),
-  ),
   'nesbot/carbon' => 
   array (
     'providers' => 
@@ -79,17 +54,6 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    ),
-  ),
-  'sentry/sentry-laravel' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Sentry\\Laravel\\ServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Sentry' => 'Sentry\\Laravel\\Facade',
     ),
   ),
 );

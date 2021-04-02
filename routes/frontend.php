@@ -1,5 +1,8 @@
-<?php 
-use App\Http\Controllers\FrontEnd;
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Aws\DynamoDb\Marshaler;
+
 Route::get('/','IndexController@index');
 Route::get('/login','IndexController@login');
 Route::get('/logout','IndexController@logout');
@@ -16,6 +19,3 @@ Route::post('order','IndexController@orderCart');
 
 Route::get('show/cart/{cartId}','IndexController@showCart');
 Route::post('delete/cart','IndexController@deleteProduct');
-// Route::get('cart','IndexController@showCart');
-// Route::get('/{namespace}/{string}','IndexController@filter');
-?>

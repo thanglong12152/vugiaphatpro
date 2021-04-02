@@ -41,6 +41,7 @@
                         <div class="form-group">
                            <label for="inputName" class="col-sm-2 control-label">Tên sản phẩm</label>
                            <div class="col-sm-5">
+                              <input type="hidden" class="form-control" name="id_sp" id="id_sp" value="{{$productDetails->id_san_pham}}" placeholder="Tên sản phẩm" required>
                               <input type="text" class="form-control" name="name_prod" id="name_prod" value="{{$productDetails->ten_sp}}" placeholder="Tên sản phẩm" required>
                               <span id="checkpass"></span>
                            </div>
@@ -86,11 +87,9 @@
                               foreach($featureProduct as $prod){
                                  //dd($prod);
                                  $check= " ";
-                                  foreach($prod_data as $key){
-                                     $string = $key->tinh_nang;
-                                    $data = explode(',',$string);
+                                    $data = explode(',',$prod_data);
                                     //dd($data);
-                                    for($i=0;$i<count(explode(',',$string));$i++){
+                                    for($i=0;$i<count(explode(',',$prod_data));$i++){
                                        
                                        if($prod->ten_tinh_nang === $data[$i]){
                                           $check = "checked";
@@ -99,21 +98,10 @@
                                        }
                                        
                                     }
-                                  }
-                                  echo '<input type="checkbox" name="feature[]" id="tinh_nang" value="'.$prod->ten_tinh_nang.'" '.$check.'>'.$prod->ten_tinh_nang.'';
+                                  echo '<input type="checkbox" name="feature[]" id="tinh_nang" value="'.$prod->id_tinh_nang.'" '.$check.'>'.$prod->ten_tinh_nang.'';
                                  }
                              @endphp
-                            {{-- @foreach($featureProduct as $data)
-                                 <input type="checkbox" name="feature[]" id="tinh_nang" value="{{$data->id_tinh_nang}}" 
-                                 @foreach($prod_data as $prod)
-                                    @if($prod->id_tinh_nang === $data->id_tinh_nang) 
-                                       checked
-                                    @endif
-                                 @endforeach
-                                 >
-                                 
-                                 {{$data->ten_tinh_nang}} 
-                              @endforeach --}}
+   
                            </div>
                         </div>
                         <div class="form-group">
@@ -160,13 +148,13 @@
                         <div class="form-group">
                            <label for="inputEmail" class="col-sm-2 control-label">Chức năng</label>
                            <div class="col-sm-5">
-                              <input type="text" name="chuc_nang" class="form-control" id="chuc_nang" value="{{$productDetails->chuc_nang}}" required>
+                              <input type="text" name="chuc_nang" class="form-control" id="chuc_nang" value="{{$productDetails->chuc_nang}}" >
                            </div>
                         </div>
                         <div class="form-group">
                            <label for="inputEmail" class="col-sm-2 control-label">Phụ kiện đi kèm</label>
                            <div class="col-sm-5">
-                              <input type="text" name="phu_kien_di_kem" class="form-control" id="phu_kien_di_kem" value="{{$productDetails->phu_kien_di_kem}}" required>
+                              <input type="text" name="phu_kien_di_kem" class="form-control" id="phu_kien_di_kem" value="{{$productDetails->phu_kien_di_kem}}" >
                            </div>
                         </div>
                         @foreach($productType as $prd)

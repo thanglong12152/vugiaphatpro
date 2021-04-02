@@ -26,12 +26,13 @@ class CartModel extends Model
         $time = Carbon::now();
         $time2 = date('Y-m-d');
         //dd($request->all());
-        $data = CustomerModel::updateOrCreate(
+
+        $data = CustomerModel::updateOrInsert(
             ['ten_khach_hang' => $request->name_customer, 'so_dt' => $request->phone_customer],
             ['ten_khach_hang' => $request->name_customer, 'so_dt' => $request->phone_customer, 'dia_chi' => $request->address_customer]
         );
 
-        $id = DB::getPdo()->lastInsertId();;
+        $id = DB::getPdo()->lastInsertId();
 
         //dd($id);
         //Neu id user tra ve 0 thi tim kiem theo ten va so dt
@@ -56,7 +57,7 @@ class CartModel extends Model
                     ])
                     ->whereDate('created_at', $time2)
                     ->first();
-                    
+
                 if (!empty($cart->cart)) {
                     // $arrReturn = [];
 
@@ -98,9 +99,9 @@ class CartModel extends Model
                         'cart' => $json,
                         'updated_at' => $time
                     ]);
-                } else if (count($cart) == 0) {
+                } else if (empty($cart)) {
                     $user = DB::table('tb_khach_hang')->where(['ten_khach_hang' => $request->name_customer])->first();
-
+                    
                     $arr = [
                         $request->id_sp => [
                             "id_sp" => $request->id_sp,

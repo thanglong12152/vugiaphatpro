@@ -7,52 +7,208 @@ use App\Models\CartModel;
 use App\Models\CustomerModel;
 use Illuminate\Http\Request;
 use App\Product;
+use Aws\DynamoDb\Marshaler;
 use DB;
 use Session;
 use Carbon\Carbon;
-
+use AwsDynamoDB;
 
 class IndexController extends Controller
 {
+    public static function scanData($proType)
+    {
+        $marshaler = new Marshaler();
+
+        $eav = $marshaler->marshalJson('
+            {
+                ":name_prod_type": "' . $proType . '"
+            }
+        ');
+
+        $params = [
+            'TableName' => 'tb_san_pham',
+            'ProjectionExpression' => 'id_san_pham, ten_san_pham, loai_san_pham, anh_sp, ten_sp, sale_price, gia_goc, xuat_xu, kich_thuoc_sp, slug_sp',
+            'FilterExpression' => 'loai_san_pham = :name_prod_type',
+            'ExpressionAttributeValues' => $eav
+        ];
+
+        return AwsDynamoDB::scan($params);
+    }
+
     public function index()
     {
-        $product_Bath = DB::table('tb_san_pham')
-            ->selectRaw('
-            anh_sp,
-            ten_sp,
-            sale_price,
-            gia_goc,
-            xuat_xu,
-            kich_thuoc_sp,
-            tb_loai_san_pham.slug as loaiSp,
-            tb_san_pham.slug as slugSp
-        ')
-            ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-            ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-            ->where(['tb_loai_san_pham.loai_san_pham' => 'Bồn tắm'])->limit(5)->get();
-        $product_sauna = DB::table('tb_san_pham')
-            ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-            ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-            ->where(['tb_loai_san_pham.loai_san_pham' => 'Phòng xông hơi'])->limit(5)->get();
-        $product_steam = DB::table('tb_san_pham')
-            ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-            ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-            ->where(['tb_loai_san_pham.loai_san_pham' => 'Máy xông hơi'])->limit(5)->get();
-        $product_tbvs = DB::table('tb_san_pham')
-            ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-            ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-            ->where(['tb_loai_san_pham.loai_san_pham' => 'Thiết bị vệ sinh'])->limit(5)->get();
+        $product_Bath = self::scanData("Bồn tắm");
+        $product_sauna = self::scanData("Phòng xông hơi");
+        $product_steam = self::scanData("Máy xông hơi");
+        $product_tbvs = self::scanData("Thiết bị vệ sinh");
+  
         return view('frontend/index')->with(compact('product_Bath', 'product_steam', 'product_sauna', 'product_tbvs'));
+    }
+
+    public static function settingsConsolePage($page, $slug, $res_tinhnang, $res, $res_xuatxu, $price, $thuong_hieu, $muc_gia, $xuat_xu, $kich_thuoc, $namespace, $request)
+    {
+        $feature = $request->feature;
+        $datasp = explode(',', $feature);
+
+        $marshaler = new Marshaler();
+
+        $eav = $marshaler->marshalJson('
+            {
+                ":name_prod_type": "' . $slug . '"
+            }
+        ');
+
+        $params = [
+            'TableName' => 'tb_tinhnang_loaisp',
+            'ProjectionExpression' => 'slug_tinh_nang, ten_tinh_nang',
+            'FilterExpression' => 'loai_san_pham = :name_prod_type',
+            'ExpressionAttributeValues' => $eav
+        ];
+
+        $tinh_nang = AwsDynamoDB::scan($params);
+
+        if ($request->has('feature')) {
+            //print_r($res_tinhnang);
+            $arr = [];
+            $queryTN = "";
+            $eav1 = [
+                ":name_prod_type" => [
+                    "S" => $slug
+                ]
+            ];
+
+            if (!empty($res)) {
+                $i = 0;
+                $str = "";
+                foreach ($res as $rees) {
+                    $i++;
+                    if (count($res) < 2) {
+                        $str .= ':thuong_hieu' . $i;
+                    } else if ($i == count($res)) {
+                        $str .= ':thuong_hieu' . $i;
+                    } else {
+                        $str .= ':thuong_hieu' . $i . ",";
+                    }
+                    $eav1[':thuong_hieu' . $i] = [
+                        "N" => "$rees"
+                    ];
+                }
+                $queryTN .= 'and id_thuong_hieu IN (' . $str . ')';
+            }
+            if (!empty($res_xuatxu)) {
+                $i = 0;
+                $str = "";
+                foreach ($res as $rees) {
+                    $i++;
+                    if (count($res) < 2) {
+                        $str .= ':xuat_xu' . $i;
+                    } else if ($i == count($res)) {
+                        $str .= ':xuat_xu' . $i;
+                    } else {
+                        $str .= ':xuat_xu' . $i . ",";
+                    }
+                    $eav1[':xuat_xu' . $i] = [
+                        "N" => "$rees"
+                    ];
+                }
+                $queryTN .= ' and id_xuat_xu IN (' . $str . ')';
+            }
+
+            if (!empty($res_tinhnang)) {
+                $i = 0;
+                $str = "";
+                foreach ($res_tinhnang as $rees) {
+                    $i++;
+                    if (count($res_tinhnang) < 2) {
+                        $str .= ':tinh_nang' . $i;
+                    } else if ($i == count($res_tinhnang)) {
+                        $str .= ':tinh_nang' . $i;
+                    } else {
+                        $str .= ':tinh_nang' . $i . ",";
+                    }
+                    $eav1[':tinh_nang' . $i] = [
+                        "N" => "$rees"
+                    ];
+                }
+                $queryTN .= ' and id_tinh_nang IN (' . $str . ')';
+            }
+
+            $table = "tb_tinhnang_sanpham";
+            $params = [
+                'TableName' => $table,
+                'ProjectionExpression' => 'id_san_pham, ten_san_pham, loai_san_pham, anh_sp, ten_sp, sale_price, gia_goc, xuat_xu, kich_thuoc_sp, slug_sp, id_tinh_nang',
+                'FilterExpression' => 'loai_san_pham = :name_prod_type ' . $queryTN . '',
+                'ExpressionAttributeValues' => $eav1
+            ];
+
+            $productData = AwsDynamoDB::scan($params);
+
+            if (!empty($productData['Items'])) {
+                foreach ($productData['Items'] as $key => $value) {
+                    $data = json_decode($marshaler->unmarshalJson($value));
+                    array_push($arr, $data->id_san_pham);
+                }
+                $arrReturn = array_unique($arr);
+
+                $eav2 = [
+                    ":name_prod_type" => [
+                        "S" => $slug
+                    ]
+                ];
+                $x = 0;
+                $strIdSp = "";
+                $strId   = "";
+                if (!empty($arrReturn)) {
+                    foreach ($arrReturn as $dataId) {
+                        $x++;
+                        if (count($arrReturn) < 2) {
+                            $strIdSp .= ':id' . $x;
+                        } else if ($x == count($arrReturn)) {
+                            $strIdSp .= ':id' . $x;
+                        } else {
+                            $strIdSp .= ':id' . $x . ",";
+                        }
+                        $eav2[':id' . $x] = [
+                            "N" => "$dataId"
+                        ];
+                    }
+                    $strId = 'and id_san_pham IN (' . $strIdSp . ')';
+                }
+
+                $params1 = [
+                    'TableName' => "tb_san_pham",
+                    'ProjectionExpression' => 'id_san_pham, ten_san_pham, loai_san_pham, anh_sp, ten_sp, sale_price, gia_goc, xuat_xu, kich_thuoc_sp, slug_sp, id_tinh_nang',
+                    'FilterExpression' => 'loai_san_pham = :name_prod_type ' . $strId . '',
+                    'ExpressionAttributeValues' => $eav2
+                ];
+
+                $product = AwsDynamoDB::scan($params1);
+            }else{
+                $product = $productData;
+            }
+
+            return view($page)->with(compact('product', 'tinh_nang', 'thuong_hieu', 'muc_gia', 'xuat_xu', 'kich_thuoc', 'namespace', 'slug', 'feature', 'datasp'));
+        } else {
+            $product = self::scanData($slug);
+
+
+            $thuong_hieu = DB::table('tb_thuong_hieu')->get();
+            $muc_gia = DB::table('tb_muc_gia')->get();
+            $xuat_xu = DB::table('tb_xuat_xu')->get();
+            $kich_thuoc = DB::table('tb_kich_thuoc')->get();
+
+            return view($page)->with(compact('product', 'tinh_nang', 'thuong_hieu', 'muc_gia', 'xuat_xu', 'kich_thuoc', 'namespace', 'slug'));
+        }
     }
     public function redirect(Request $request, $namespace = null, $string = null)
     {
         $feature_array = array();
         $feature = $request->feature;
         $datasp = explode(',', $feature);
-        $data_thuonghieu = DB::table('tb_thuong_hieu')->select('slug')->get();
-        $data_tinhnang = DB::table('tb_tinh_nang')->select('slug')->get();
-        $data_mucgia = DB::table('tb_muc_gia')->select('slug')->get();
-        $data_xuatxu = DB::table('tb_xuat_xu')->select('slug')->get();
+        $data_thuonghieu = DB::table('tb_thuong_hieu')->select('slug', 'id')->get();
+        $data_tinhnang = DB::table('tb_tinh_nang')->select('slug', 'id_tinh_nang')->get();
+        $data_mucgia = DB::table('tb_muc_gia')->select('slug', 'id_muc_gia')->get();
+        $data_xuatxu = DB::table('tb_xuat_xu')->select('slug', 'id_xuat_xu')->get();
         //print_r($datasp);
         //print_r($data_tinhnang);
 
@@ -70,21 +226,20 @@ class IndexController extends Controller
         for ($i = 0; $i < count($datasp); $i++) {
             foreach ($data_thuonghieu as $data) {
                 if ($data->slug === $datasp[$i]) {
-                    array_push($res, $datasp[$i]);
+                    array_push($res, $data->id);
                 }
             }
         }
-        $res = implode(',', $res);
         /*=========================================================LOC TINH NANG=======================================*/
 
         for ($i = 0; $i < count($datasp); $i++) {
             foreach ($data_tinhnang as $data) {
                 if ($data->slug === $datasp[$i]) {
-                    array_push($res_tinhnang, $datasp[$i]);
+                    array_push($res_tinhnang, $data->id_tinh_nang);
                 }
             }
         }
-        $res_tinhnang = implode(',', $res_tinhnang);
+
         /*=========================================================LOC GIA=======================================*/
         for ($i = 0; $i < count($datasp); $i++) {
             foreach ($data_mucgia as $data) {
@@ -110,377 +265,38 @@ class IndexController extends Controller
 
         //print_r(array_pop($price));
 
-        /*=========================================================LOC THUONG HIEU=======================================*/
+        /*=========================================================LOC XUAT XU=======================================*/
         for ($i = 0; $i < count($datasp); $i++) {
             foreach ($data_xuatxu as $data) {
                 if ($data->slug === $datasp[$i]) {
-                    array_push($res_xuatxu, $datasp[$i]);
+                    array_push($res_xuatxu, $data->id_xuat_xu);
                 }
             }
             //print_r($datasp[$i]);
         }
-        $res_xuatxu = implode(',', $res_xuatxu);
+
 
         switch ($namespace) {
 
             case 'bon-tam':
                 $slug = "Bồn tắm";
-                if (request()->has('feature')) {
-                    $tinh_nang = DB::table('tb_tinh_nang')
-                        ->join('tb_loai_san_pham', function ($join) {
-                            $join->on('tb_tinh_nang.id_loai_sp', '=', 'tb_loai_san_pham.id_loai_san_pham');
-                        })->where(['tb_loai_san_pham.loai_san_pham' => 'Bồn tắm'])->get();
-
-                    //print_r($res_tinhnang);
-
-
-                    if (empty($res_mucgia)) {
-                        $product = DB::table('tb_san_pham')
-                            ->join('tb_tinhnang_sanpham', function ($join) {
-                                $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                            })
-                            ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                            ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                            ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                            ->where([
-                                ['loai_san_pham', 'like', '%' . $slug . '%'],
-                                ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%']
-
-                            ])
-                            ->paginate(5)
-                            ->appends('feature', request('feature'));
-                    } else {
-                        if (count($price) <= 1) {
-                            $product = DB::table('tb_san_pham')
-                                ->join('tb_tinhnang_sanpham', function ($join) {
-                                    $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                                })
-                                ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                                ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                                ->where([
-                                    ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                    ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                    ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%'],
-
-                                ])
-                                ->whereBetween('tb_san_pham.sale_price', array(0, max($price)))
-                                ->paginate(5)
-                                ->appends('feature', request('feature'));
-                        } else {
-                            $product = DB::table('tb_san_pham')
-                                ->join('tb_tinhnang_sanpham', function ($join) {
-                                    $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                                })
-                                ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                                ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                                ->where([
-                                    ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                    ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                    ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%'],
-
-                                ])
-                                ->whereBetween('tb_san_pham.sale_price', array(min($price), max($price)))
-                                ->paginate(5)
-                                ->appends('feature', request('feature'));
-                        }
-                    }
-                    return view('frontend/bath')->with(compact('product', 'tinh_nang', 'thuong_hieu', 'muc_gia', 'xuat_xu', 'kich_thuoc', 'namespace', 'slug', 'feature', 'datasp'));
-                } else {
-                    $product = DB::table('tb_san_pham')
-                        ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                        ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                        ->where(['tb_loai_san_pham.loai_san_pham' => 'Bồn tắm'])->paginate(5);
-
-
-                    $tinh_nang = DB::table('tb_tinh_nang')
-                        ->join('tb_loai_san_pham', function ($join) {
-                            $join->on('tb_tinh_nang.id_loai_sp', '=', 'tb_loai_san_pham.id_loai_san_pham');
-                        })->where(['tb_loai_san_pham.loai_san_pham' => 'Bồn tắm'])->get();
-
-                    $thuong_hieu = DB::table('tb_thuong_hieu')->get();
-                    $muc_gia = DB::table('tb_muc_gia')->get();
-                    $xuat_xu = DB::table('tb_xuat_xu')->get();
-                    $kich_thuoc = DB::table('tb_kich_thuoc')->get();
-                    return view('frontend/bath')->with(compact('product', 'tinh_nang', 'thuong_hieu', 'muc_gia', 'xuat_xu', 'kich_thuoc', 'namespace', 'slug'));
-                }
-
+                $page = 'frontend/bath';
+                return self::settingsConsolePage($page, $slug, $res_tinhnang, $res, $res_xuatxu, $price, $thuong_hieu, $muc_gia, $xuat_xu, $kich_thuoc, $namespace, $request);
                 break;
-
-
             case 'phong-xong-hoi':
                 $slug = "Phòng xông hơi";
-                if (request()->has('feature')) {
-                    $tinh_nang = DB::table('tb_tinh_nang')
-                        ->join('tb_loai_san_pham', function ($join) {
-                            $join->on('tb_tinh_nang.id_loai_sp', '=', 'tb_loai_san_pham.id_loai_san_pham');
-                        })->where(['tb_loai_san_pham.loai_san_pham' => 'Bồn tắm'])->get();
-
-                    //print_r($res_tinhnang);
-
-
-                    if (empty($res_mucgia)) {
-                        $product = DB::table('tb_san_pham')
-                            ->join('tb_tinhnang_sanpham', function ($join) {
-                                $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                            })
-                            ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                            ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                            ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                            ->where([
-                                ['loai_san_pham', 'like', '%' . $slug . '%'],
-                                ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%']
-
-                            ])
-                            ->paginate(5)
-                            ->appends('feature', request('feature'));
-                    } else {
-                        if (count($price) <= 1) {
-                            $product = DB::table('tb_san_pham')
-                                ->join('tb_tinhnang_sanpham', function ($join) {
-                                    $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                                })
-                                ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                                ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                                ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                                ->where([
-                                    ['loai_san_pham', 'like', '%' . $slug . '%'],
-                                    ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                    ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                    ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%'],
-
-                                ])
-                                ->whereBetween('tb_san_pham.sale_price', array(0, max($price)))
-                                ->paginate(5)
-                                ->appends('feature', request('feature'));
-                        } else {
-                            $product = DB::table('tb_san_pham')
-                                ->join('tb_tinhnang_sanpham', function ($join) {
-                                    $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                                })
-                                ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                                ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                                ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                                ->where([
-                                    ['loai_san_pham', 'like', '%' . $slug . '%'],
-                                    ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                    ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                    ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%'],
-
-                                ])
-                                ->whereBetween('tb_san_pham.sale_price', array(min($price), max($price)))
-                                ->paginate(5)
-                                ->appends('feature', request('feature'));
-                        }
-                    }
-
-                    return view('frontend/sauna')->with(compact('product', 'tinh_nang', 'thuong_hieu', 'muc_gia', 'xuat_xu', 'kich_thuoc', 'namespace', 'slug', 'feature', 'datasp'));
-                } else {
-                    $product = DB::table('tb_san_pham')
-                        ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                        ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                        ->where(['tb_loai_san_pham.loai_san_pham' => $slug])->paginate(5);
-
-
-
-
-
-                    $tinh_nang = DB::table('tb_tinh_nang')
-                        ->join('tb_loai_san_pham', function ($join) {
-                            $join->on('tb_tinh_nang.id_loai_sp', '=', 'tb_loai_san_pham.id_loai_san_pham');
-                        })->where(['tb_loai_san_pham.loai_san_pham' => $slug])->get();
-
-                    $thuong_hieu = DB::table('tb_thuong_hieu')->get();
-                    $muc_gia = DB::table('tb_muc_gia')->get();
-                    $xuat_xu = DB::table('tb_xuat_xu')->get();
-                    $kich_thuoc = DB::table('tb_kich_thuoc')->get();
-                    return view('frontend/sauna')->with(compact('product', 'tinh_nang', 'thuong_hieu', 'muc_gia', 'xuat_xu', 'kich_thuoc', 'namespace', 'slug'));
-                }
-
+                $page = 'frontend/sauna';
+                return self::settingsConsolePage($page, $slug, $res_tinhnang, $res, $res_xuatxu, $price, $thuong_hieu, $muc_gia, $xuat_xu, $kich_thuoc, $namespace, $request);
                 break;
             case 'may-xong-hoi':
                 $slug = "Máy xông hơi";
-                if (request()->has('feature')) {
-                    $tinh_nang = DB::table('tb_tinh_nang')
-                        ->join('tb_loai_san_pham', function ($join) {
-                            $join->on('tb_tinh_nang.id_loai_sp', '=', 'tb_loai_san_pham.id_loai_san_pham');
-                        })->where(['tb_loai_san_pham.loai_san_pham' => 'Bồn tắm'])->get();
-
-                    //print_r($res_tinhnang);
-
-
-                    if (empty($res_mucgia)) {
-                        $product = DB::table('tb_san_pham')
-                            ->join('tb_tinhnang_sanpham', function ($join) {
-                                $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                            })
-                            ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                            ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                            ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                            ->where([
-                                ['loai_san_pham', 'like', '%' . $slug . '%'],
-                                ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%']
-
-                            ])
-                            ->paginate(5)
-                            ->appends('feature', request('feature'));
-                    } else {
-                        if (count($price) <= 1) {
-                            $product = DB::table('tb_san_pham')
-                                ->join('tb_tinhnang_sanpham', function ($join) {
-                                    $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                                })
-                                ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                                ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                                ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                                ->where([
-                                    ['loai_san_pham', 'like', '%' . $slug . '%'],
-                                    ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                    ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                    ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%'],
-
-                                ])
-                                ->whereBetween('tb_san_pham.sale_price', array(0, max($price)))
-                                ->paginate(5)
-                                ->appends('feature', request('feature'));
-                        } else {
-                            $product = DB::table('tb_san_pham')
-                                ->join('tb_tinhnang_sanpham', function ($join) {
-                                    $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                                })
-                                ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                                ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                                ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                                ->where([
-                                    ['loai_san_pham', 'like', '%' . $slug . '%'],
-                                    ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                    ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                    ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%'],
-
-                                ])
-                                ->whereBetween('tb_san_pham.sale_price', array(min($price), max($price)))
-                                ->paginate(5)
-                                ->appends('feature', request('feature'));
-                        }
-                    }
-
-                    return view('frontend/steam_machine')->with(compact('product', 'tinh_nang', 'thuong_hieu', 'muc_gia', 'xuat_xu', 'kich_thuoc', 'namespace', 'slug', 'feature', 'datasp'));
-                } else {
-                    $product = DB::table('tb_san_pham')
-                        ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                        ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                        ->where(['tb_loai_san_pham.loai_san_pham' => $slug])->paginate(5);
-
-
-
-
-
-                    $tinh_nang = DB::table('tb_tinh_nang')
-                        ->join('tb_loai_san_pham', function ($join) {
-                            $join->on('tb_tinh_nang.id_loai_sp', '=', 'tb_loai_san_pham.id_loai_san_pham');
-                        })->where(['tb_loai_san_pham.loai_san_pham' => $slug])->get();
-
-                    $thuong_hieu = DB::table('tb_thuong_hieu')->get();
-                    $muc_gia = DB::table('tb_muc_gia')->get();
-                    $xuat_xu = DB::table('tb_xuat_xu')->get();
-                    $kich_thuoc = DB::table('tb_kich_thuoc')->get();
-                    return view('frontend/steam_machine')->with(compact('product', 'tinh_nang', 'thuong_hieu', 'muc_gia', 'xuat_xu', 'kich_thuoc', 'namespace', 'slug'));
-                }
+                $page = 'frontend/steam_machine';
+                return self::settingsConsolePage($page, $slug, $res_tinhnang, $res, $res_xuatxu, $price, $thuong_hieu, $muc_gia, $xuat_xu, $kich_thuoc, $namespace, $request);
                 break;
             case 'quat-den-tran':
                 $slug = "Quạt đèn trần";
-                if (request()->has('feature')) {
-                    $tinh_nang = DB::table('tb_tinh_nang')
-                        ->join('tb_loai_san_pham', function ($join) {
-                            $join->on('tb_tinh_nang.id_loai_sp', '=', 'tb_loai_san_pham.id_loai_san_pham');
-                        })->where(['tb_loai_san_pham.loai_san_pham' => 'Bồn tắm'])->get();
-
-                    //print_r($res_tinhnang);
-
-
-                    if (empty($res_mucgia)) {
-                        $product = DB::table('tb_san_pham')
-                            ->join('tb_tinhnang_sanpham', function ($join) {
-                                $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                            })
-                            ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                            ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                            ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                            ->where([
-                                ['loai_san_pham', 'like', '%' . $slug . '%'],
-                                ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%']
-
-                            ])
-                            ->paginate(5)
-                            ->appends('feature', request('feature'));
-                    } else {
-                        if (count($price) <= 1) {
-                            $product = DB::table('tb_san_pham')
-                                ->join('tb_tinhnang_sanpham', function ($join) {
-                                    $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                                })
-                                ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                                ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                                ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                                ->where([
-                                    ['loai_san_pham', 'like', '%' . $slug . '%'],
-                                    ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                    ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                    ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%'],
-
-                                ])
-                                ->whereBetween('tb_san_pham.sale_price', array(0, max($price)))
-                                ->paginate(5)
-                                ->appends('feature', request('feature'));
-                        } else {
-                            $product = DB::table('tb_san_pham')
-                                ->join('tb_tinhnang_sanpham', function ($join) {
-                                    $join->on('tb_san_pham.id_san_pham', '=', 'tb_tinhnang_sanpham.id_san_pham');
-                                })
-                                ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                                ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                                ->join('tb_thuong_hieu', 'tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id')
-                                ->where([
-                                    ['loai_san_pham', 'like', '%' . $slug . '%'],
-                                    ['tinh_nang', 'like', '%' . $res_tinhnang . '%'],
-                                    ['tb_thuong_hieu.slug', 'like', '%' . $res . '%'],
-                                    ['tb_xuat_xu.slug', 'like', '%' . $res_xuatxu . '%'],
-
-                                ])
-                                ->whereBetween('tb_san_pham.sale_price', array(min($price), max($price)))
-                                ->paginate(5)
-                                ->appends('feature', request('feature'));
-                        }
-                    }
-
-                    return view('frontend/ceiling_fan')->with(compact('product', 'tinh_nang', 'thuong_hieu', 'muc_gia', 'xuat_xu', 'kich_thuoc', 'namespace', 'slug', 'feature', 'datasp'));
-                } else {
-                    $product = DB::table('tb_san_pham')
-                        ->join('tb_loai_san_pham', 'tb_san_pham.id_loai_san_pham', '=', 'tb_loai_san_pham.id_loai_san_pham')
-                        ->join('tb_xuat_xu', 'tb_san_pham.id_xuat_xu', '=', 'tb_xuat_xu.id_xuat_xu')
-                        ->where(['tb_loai_san_pham.loai_san_pham' => $slug])->paginate(5);
-
-
-
-
-                    $tinh_nang = DB::table('tb_tinh_nang')
-                        ->join('tb_loai_san_pham', function ($join) {
-                            $join->on('tb_tinh_nang.id_loai_sp', '=', 'tb_loai_san_pham.id_loai_san_pham');
-                        })->where(['tb_loai_san_pham.loai_san_pham' => $slug])->get();
-
-                    $thuong_hieu = DB::table('tb_thuong_hieu')->get();
-                    $muc_gia = DB::table('tb_muc_gia')->get();
-                    $xuat_xu = DB::table('tb_xuat_xu')->get();
-                    $kich_thuoc = DB::table('tb_kich_thuoc')->get();
-                    return view('frontend/ceiling_fan')->with(compact('product', 'tinh_nang', 'thuong_hieu', 'muc_gia', 'xuat_xu', 'kich_thuoc', 'namespace', 'slug'));
-                }
+                $page = 'frontend/ceiling_fan';
+                return self::settingsConsolePage($page, $slug, $res_tinhnang, $res, $res_xuatxu, $price, $thuong_hieu, $muc_gia, $xuat_xu, $kich_thuoc, $namespace, $request);
                 break;
             case 'chi-tiet-san-pham':
                 return view('frontend/product_detail');
@@ -500,7 +316,7 @@ class IndexController extends Controller
     }
     public function detailProduct(Request $request, $slug = null)
     {
-        $data = DB::table('tb_san_pham')->where(['tb_san_pham.slug' => $slug])
+        $data = DB::table('tb_san_pham')->where(['tb_san_pham.slug_sp' => $slug])
             ->join('tb_thuong_hieu', function ($join) {
                 $join->on('tb_san_pham.id_thuong_hieu', '=', 'tb_thuong_hieu.id');
             })
@@ -585,7 +401,7 @@ class IndexController extends Controller
                 'tb_cart.id_cart' => $cartId
             ])
             ->first();
-       
+
         if (!empty($data->cart)) {
             $cart = json_decode($data->cart, true);
             $totalCart = 0;
@@ -619,30 +435,32 @@ class IndexController extends Controller
             ])
             ->first();
         $respon = json_decode($data->cart, true);
+
         unset($respon[$request->id]);
 
-        $json = json_encode($respon);
-
-        if(count($data->cart) > 1){
-            $arrUpdate = CartModel::where([
-                'id_cart' => $request->cartId
-            ])->update([
-                'cart' => $json,
-                'updated_at' => $time
-            ]);
-        }else if(count($data->cart) == 1){
-            $arrUpdate = CartModel::where([
-                'id_cart' => $request->cartId
-            ])->update([
-                'cart' => "",
-                'updated_at' => $time
-            ]);
+        if (!empty($respon)) {
+            $json = json_encode($respon);
+        } else {
+            $json = "";
         }
+
+
+        $arrUpdate = CartModel::where([
+            'id_cart' => $request->cartId
+        ])->update([
+            'cart' => $json,
+            'updated_at' => $time
+        ]);
+
 
         if ($arrUpdate) {
             return "Đã xóa";
         } else {
             return "Thất bại";
         }
+    }
+    public function hello()
+    {
+        dd("a");
     }
 }

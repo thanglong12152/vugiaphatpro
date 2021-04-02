@@ -1,5 +1,5 @@
 @include('block/header')
-
+<?php use Aws\DynamoDb\Marshaler; ?>
 <main>
    <div class="slideshow">
       <div class="main-slideShow">
@@ -410,15 +410,20 @@
                <div class="product_grid">
                   <div class="row_inner" id="box_product_2">
                      <!--	EACH PRODUCT	-->
-                     @foreach($product_Bath as $data)
+                     @foreach($product_Bath['Items'] as $key => $value) 
+                     <?php
+                        
+                        $marshaler = new Marshaler(); 
+                        $data = json_decode($marshaler->unmarshalJson($value)); 
+                     ?>
                      <div class="item">
                         <div class="frame_inner">
                            <figure class="product_image "> <a
-                           href="{{url('/chi-tiet-san-pham/'.$data->slugSp)}}"
+                           href="{{url('/chi-tiet-san-pham/'.$data->slug_sp)}}"
                                  title="{{$data->ten_sp}}"> <img alt="{{$data->ten_sp}}" class="lazy"
                                     src="{{url('image/product/small/'.$data->anh_sp)}}" style="display: inline-block;">
                               </a> </figure>
-                           <h3><a href="{{url('/chi-tiet-san-pham/'.$data->slugSp)}}"
+                           <h3><a href="{{url('/chi-tiet-san-pham/'.$data->slug_sp)}}"
                                  title="{{$data->ten_sp}}" class="name">{{$data->ten_sp}}</a>
                            </h3>
                            <div class="discount"><span>-{{100-ceil(($data->sale_price/ $data->gia_goc)*100)}}%</span>
@@ -481,7 +486,12 @@
                <div class="product_grid">
                   <div class="row_inner" id="box_product_3">
                      <!--	EACH PRODUCT	-->
-                     @foreach($product_sauna as $data)
+                     @foreach($product_sauna['Items'] as $key => $value) 
+                     <?php
+                        
+                        $marshaler = new Marshaler(); 
+                        $data = json_decode($marshaler->unmarshalJson($value)); 
+                     ?>
 
                      <div class="item">
                         <div class="frame_inner">
@@ -540,7 +550,12 @@
                <div class="product_grid">
                   <div class="row_inner" id="box_product_4">
                      <!--	EACH PRODUCT	-->
-                     @foreach($product_steam as $data)
+                     @foreach($product_steam['Items'] as $key => $value) 
+                     <?php
+                        
+                        $marshaler = new Marshaler(); 
+                        $data = json_decode($marshaler->unmarshalJson($value)); 
+                     ?>
                      <div class="item">
                         <div class="frame_inner">
                            <figure class="product_image "> <a
@@ -589,7 +604,12 @@
                <div class="product_grid">
                   <div class="row_inner" id="box_product_23">
                      <!--	EACH PRODUCT	-->
-                     @foreach($product_tbvs as $data)
+                     @foreach($product_tbvs['Items'] as $key => $value) 
+                     <?php
+                        
+                        $marshaler = new Marshaler(); 
+                        $data = json_decode($marshaler->unmarshalJson($value)); 
+                     ?>
                      <div class="item">
                         <div class="frame_inner">
                            <figure class="product_image "> <a

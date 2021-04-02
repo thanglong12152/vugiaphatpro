@@ -115,8 +115,8 @@
             <h3 class="control-sidebar-heading">General Settings</h3>
             <div class="form-group">
                <label class="control-sidebar-subheading">
-               Report panel usage
-               <input type="checkbox" class="pull-right" checked>
+                  Report panel usage
+                  <input type="checkbox" class="pull-right" checked>
                </label>
                <p>
                   Some information about this general settings option
@@ -125,8 +125,8 @@
             <!-- /.form-group -->
             <div class="form-group">
                <label class="control-sidebar-subheading">
-               Allow mail redirect
-               <input type="checkbox" class="pull-right" checked>
+                  Allow mail redirect
+                  <input type="checkbox" class="pull-right" checked>
                </label>
                <p>
                   Other sets of options are available
@@ -135,8 +135,8 @@
             <!-- /.form-group -->
             <div class="form-group">
                <label class="control-sidebar-subheading">
-               Expose author name in posts
-               <input type="checkbox" class="pull-right" checked>
+                  Expose author name in posts
+                  <input type="checkbox" class="pull-right" checked>
                </label>
                <p>
                   Allow the user to show his name in blog posts
@@ -146,22 +146,22 @@
             <h3 class="control-sidebar-heading">Chat Settings</h3>
             <div class="form-group">
                <label class="control-sidebar-subheading">
-               Show me as online
-               <input type="checkbox" class="pull-right" checked>
+                  Show me as online
+                  <input type="checkbox" class="pull-right" checked>
                </label>
             </div>
             <!-- /.form-group -->
             <div class="form-group">
                <label class="control-sidebar-subheading">
-               Turn off notifications
-               <input type="checkbox" class="pull-right">
+                  Turn off notifications
+                  <input type="checkbox" class="pull-right">
                </label>
             </div>
             <!-- /.form-group -->
             <div class="form-group">
                <label class="control-sidebar-subheading">
-               Delete chat history
-               <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                  Delete chat history
+                  <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
                </label>
             </div>
             <!-- /.form-group -->
@@ -202,7 +202,8 @@
 <script>
 
 </script>
-<script> CKEDITOR.replace( 'editor1', {
+<script>
+   CKEDITOR.replace( 'editor1', {
    filebrowserBrowseUrl: '<?php echo e(asset('ckfinder/ckfinder.html')); ?>',
    filebrowserImageBrowseUrl: '<?php echo e(asset('ckfinder/ckfinder.html?type=Images')); ?>',
    filebrowserFlashBrowseUrl: '<?php echo e(asset('ckfinder/ckfinder.html?type=Flash')); ?>',
@@ -213,7 +214,7 @@
 } );
 </script>
 <script type="text/javascript">
-/** add active class and stay opened when selected */
+   /** add active class and stay opened when selected */
 var url = window.location;
 // for sidebar menu but not for treeview submenu
 $('ul.sidebar-menu a').filter(function() {
@@ -225,4 +226,5 @@ $('ul.treeview-menu a').filter(function() {
 }).parentsUntil(".sidebar-menu > .treeview-menu").siblings().removeClass('active menu-open').end().addClass('active menu-open');
 </script>
 </body>
+
 </html><?php /**PATH C:\xampp\htdocs\vugiaphatpro\resources\views/block/footer-admin.blade.php ENDPATH**/ ?>

@@ -42,6 +42,7 @@
                         <div class="form-group">
                            <label for="inputName" class="col-sm-2 control-label">Tên sản phẩm</label>
                            <div class="col-sm-5">
+                              <input type="hidden" class="form-control" name="id_sp" id="id_sp" value="<?php echo e($productDetails->id_san_pham); ?>" placeholder="Tên sản phẩm" required>
                               <input type="text" class="form-control" name="name_prod" id="name_prod" value="<?php echo e($productDetails->ten_sp); ?>" placeholder="Tên sản phẩm" required>
                               <span id="checkpass"></span>
                            </div>
@@ -89,11 +90,9 @@
                               foreach($featureProduct as $prod){
                                  //dd($prod);
                                  $check= " ";
-                                  foreach($prod_data as $key){
-                                     $string = $key->tinh_nang;
-                                    $data = explode(',',$string);
+                                    $data = explode(',',$prod_data);
                                     //dd($data);
-                                    for($i=0;$i<count(explode(',',$string));$i++){
+                                    for($i=0;$i<count(explode(',',$prod_data));$i++){
                                        
                                        if($prod->ten_tinh_nang === $data[$i]){
                                           $check = "checked";
@@ -102,11 +101,10 @@
                                        }
                                        
                                     }
-                                  }
-                                  echo '<input type="checkbox" name="feature[]" id="tinh_nang" value="'.$prod->ten_tinh_nang.'" '.$check.'>'.$prod->ten_tinh_nang.'';
+                                  echo '<input type="checkbox" name="feature[]" id="tinh_nang" value="'.$prod->id_tinh_nang.'" '.$check.'>'.$prod->ten_tinh_nang.'';
                                  }
                              ?>
-                            
+   
                            </div>
                         </div>
                         <div class="form-group">
@@ -154,13 +152,13 @@
                         <div class="form-group">
                            <label for="inputEmail" class="col-sm-2 control-label">Chức năng</label>
                            <div class="col-sm-5">
-                              <input type="text" name="chuc_nang" class="form-control" id="chuc_nang" value="<?php echo e($productDetails->chuc_nang); ?>" required>
+                              <input type="text" name="chuc_nang" class="form-control" id="chuc_nang" value="<?php echo e($productDetails->chuc_nang); ?>" >
                            </div>
                         </div>
                         <div class="form-group">
                            <label for="inputEmail" class="col-sm-2 control-label">Phụ kiện đi kèm</label>
                            <div class="col-sm-5">
-                              <input type="text" name="phu_kien_di_kem" class="form-control" id="phu_kien_di_kem" value="<?php echo e($productDetails->phu_kien_di_kem); ?>" required>
+                              <input type="text" name="phu_kien_di_kem" class="form-control" id="phu_kien_di_kem" value="<?php echo e($productDetails->phu_kien_di_kem); ?>" >
                            </div>
                         </div>
                         <?php $__currentLoopData = $productType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

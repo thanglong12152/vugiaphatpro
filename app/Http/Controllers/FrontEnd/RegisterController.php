@@ -5,7 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {

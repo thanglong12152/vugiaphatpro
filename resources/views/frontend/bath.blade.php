@@ -1,5 +1,5 @@
 @include('block/header')
-
+<?php use Aws\DynamoDb\Marshaler; ?>
 <div class="breadcrumbs">
    <div class="container cls">
       <div class="breadcrumbs_wrapper" itemscope="" itemtype="http://schema.org/WebPage">
@@ -104,7 +104,11 @@
                                              </svg>
                                           </span>
                                           @php
-                                          foreach($tinh_nang as $data){
+                                          $marshaler = new Marshaler();
+                                          
+                                          foreach($tinh_nang['Items'] as $key => $value){
+                                             $data = json_decode($marshaler->unmarshalJson($value));
+
                                           $activated = '';
                                           $comma ='';
                                           if(empty($feature)){
@@ -112,16 +116,18 @@
 
                                           }else{
                                           $comma = ',';
-
-                                          for ($i = 0; $i < count($datasp) ;$i++){ if($data->slug === $datasp[$i]){
+                                          for ($i = 0; $i < count($datasp) ;$i++){ if($data->slug_tinh_nang ===
+                                             $datasp[$i]){
                                              $activated = 'activated';
 
                                              $array = array(
-                                             'data' => $data->slug
+                                             'data' => $data->slug_tinh_nang
                                              );
+
                                              $array2 = array(
                                              'data' => $datasp[$i]
                                              );
+
                                              $array3 = array_diff($datasp,$array);
                                              $array4 = implode(',',$array3);
                                              }
@@ -143,7 +149,7 @@
                                              }
                                              }else{
                                              echo '<div class="'.$activated.' cls item"><a
-                                                   href="/'.$namespace.'/?feature='.$feature.''.$comma.''.$data->slug.'"
+                                                   href="/'.$namespace.'/?feature='.$feature.''.$comma.''.$data->slug_tinh_nang.'"
                                                    title="'.$data->ten_tinh_nang.'"><i
                                                       class="icon_v1 "></i>'.$data->ten_tinh_nang.'</a></div>';
                                              }
@@ -414,26 +420,27 @@
                   </div>
                </article>
                <div class="product_grid">
-                  @if($product->isEmpty())
+                  @if(empty($product['Items']))
                   <h1 class="text-center" style="width:100%">Không có dữ liệu</h1>
                   @else
-                  @foreach($product as $data)
+                  @foreach($product['Items'] as $key => $value)
+                  <?php
+                        
+                        $marshaler = new Marshaler(); 
+                        $data = json_decode($marshaler->unmarshalJson($value)); 
+                     ?>
                   <div class="item" itemscope="" itemtype="http://schema.org/Product">
                      <div class="frame_inner">
-                        <link itemprop="url"
-                           href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html">
+                        <link itemprop="url" href="{{url('chi-tiet-san-pham/'.$data->slug_sp)}}">
                         <figure class="product_image ">
-                           <a href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html"
-                              title="Bồn tắm nằm Amazon TP-7002" itemprop="url"><img itemprop="image"
-                                 alt="Bồn tắm nằm Amazon TP-7002"
+                           <a href="{{url('chi-tiet-san-pham/'.$data->slug_sp)}}" title="Bồn tắm nằm Amazon TP-7002"
+                              itemprop="url"><img itemprop="image" alt="Bồn tắm nằm Amazon TP-7002"
                                  src="{{url('image/product/small/'.$data->anh_sp)}}"></a>
                            <div class="button_area"><a href="javascript:void(0)" onclick="add_cart(1429,1)"
-                                 class="add_cart"><i></i></a><a
-                                 href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html"
+                                 class="add_cart"><i></i></a><a href="{{url('chi-tiet-san-pham/'.$data->slug_sp)}}"
                                  class="detail_button" title="Chi tiết sản phẩm"><i></i></a></div>
                         </figure>
-                        <h2 itemprop="name"><a
-                              href="https://vugiaphat.vn/bon-tam-nam/von-tam-nam-amazon-tp-7002-p1429.html"
+                        <h2 itemprop="name"><a href="{{url('chi-tiet-san-pham/'.$data->slug_sp)}}"
                               title="Bồn tắm nằm Amazon TP-7002" class="name">{{$data->ten_sp}}</a> </h2>
                         <div class="discount"><span>-{{100-ceil(($data->sale_price/ $data->gia_goc)*100)}}%</span></div>
                         <div class="price_arae" itemscope="" itemtype="http://schema.org/Offer">
@@ -455,11 +462,11 @@
             </div>
          </section>
          <div class="pagination">
-            @if($product->isEmpty())
+            @if(empty($product['Items']))
 
             @else
 
-            {{$product->links('vendor.pagination.bootstrap-4')}}
+            {{-- {{$product->links('vendor.pagination.bootstrap-4')}} --}}
             @endif
          </div>
       </div>

@@ -76,7 +76,7 @@
                            <label for="inputEmail" class="col-sm-2 control-label">Tính năng</label>
                            <div class="col-sm-5">
                               @foreach($featureProduct as $data)
-                                 <input type="checkbox" name="feature[]" id="tinh_nang" value="{{$data->ten_tinh_nang}}" >{{$data->ten_tinh_nang}} 
+                                 <input type="checkbox" name="feature[]" id="tinh_nang" value="{{$data->id_tinh_nang}}" >{{$data->ten_tinh_nang}} 
                               @endforeach
                            </div>
                         </div>
